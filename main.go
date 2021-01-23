@@ -2,8 +2,10 @@ package main
 
 import (
 	"database/sql"
+	_ "html/template"
 	"log"
 	"net/http"
+	"text/template"
 
 	"github.com/bmizerany/pat"
 	_ "github.com/mattn/go-sqlite3"
@@ -16,6 +18,12 @@ type Item struct {
 	Kategorie string
 	Angebot   string
 	Laden     string
+}
+
+// regionHandler
+type regionHandler struct {
+	db         *sql.DB
+	structItem []Item
 }
 
 // InitDB initializes SQLite Database
@@ -40,8 +48,7 @@ func CreateTable(db *sql.DB) {
 		Region TEXT,
 		Kategorie TEXT,
 		Angebot TEXT,
-		Laden TEXT,
-		InsertedDatetime DATETIME);`)
+		Laden TEXT);`)
 
 	if err != nil {
 		panic(err)
@@ -55,9 +62,7 @@ func StoreItem(db *sql.DB, items []Item) {
 		Region,
 		Kategorie,
 		Angebot,
-		Laden,
-		InsertedDatetime
-	) values(?, ?, ?, ?, ?, CURRENT_TIMESTAMP)`)
+		Laden) values(?, ?, ?, ?, ?)`)
 
 	if err != nil {
 		panic(err)
@@ -75,7 +80,7 @@ func StoreItem(db *sql.DB, items []Item) {
 // ReadItem selects an item from database
 func ReadItem(db *sql.DB) []Item {
 	rows, err := db.Query(`SELECT ID, Region, Kategorie, Angebot, Laden FROM items
-	ORDER BY datetime(InsertedDatetime) DESC`)
+	ORDER BY ID ASC`)
 
 	if err != nil {
 		panic(err)
@@ -94,10 +99,39 @@ func ReadItem(db *sql.DB) []Item {
 	return result
 }
 
+// HomeHandler parses HTML files for the homepage
+func HomeHandler(w http.ResponseWriter, req *http.Request) {
+	homeTemplate, _ := template.ParseFiles("static/index.html", "static/styles.css")
+	err := homeTemplate.Execute(w, nil)
+
+	if err != nil {
+		log.Println("runtime error: exec template ", err)
+		return
+	}
+}
+
 // RegionHandler manages pages of selected items in requested Regions
-func RegionHandler(w http.ResponseWriter, req *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	http.ServeFile(w, req, "static/region.html")
+func (h *regionHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	regionString := req.URL.Query().Get(":reg")
+	var regionResult []Item
+
+	itemsForRegionHandler, _ := h.db.Query(`SELECT Kategorie, Angebot, Laden FROM items
+	WHERE Region LIKE '` + regionString + `' ORDER BY ID ASC`)
+
+	defer itemsForRegionHandler.Close()
+	for itemsForRegionHandler.Next() {
+		item := Item{}
+		itemsForRegionHandler.Scan(&item.Kategorie, &item.Angebot, &item.Laden)
+		regionResult = append(regionResult, item)
+	}
+
+	regionData := map[string]interface{}{
+		"Region":      regionString,
+		"RegionItems": regionResult,
+	}
+
+	regionTemplate, _ := template.ParseFiles("static/region.html", "static/styles.css")
+	regionTemplate.Execute(w, regionData)
 }
 
 // ListHandler shows saved Items in a list
@@ -107,15 +141,6 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-	m := pat.New()
-	m.Get("/:region", http.HandlerFunc(RegionHandler))
-
-	fs := http.FileServer(http.Dir("./static"))
-	http.Handle("/", fs)
-
-	http.Handle("/:region", m)
-	http.Handle("/merkliste", http.HandlerFunc(ListHandler))
-
 	db := InitDB()
 	defer db.Close()
 	CreateTable(db)
@@ -123,11 +148,24 @@ func main() {
 	testItems := []Item{
 		Item{"1", "Nord", "Essen", "Pizzas dienstags für 7 Euro", "Pizzeria XY in Hünfeld"},
 		Item{"2", "West", "Kleidung", "Sale bis 50% auf T-Shirts", "Klamottenladen in Fulda"},
+		Item{"3", "Nord", "Technik", "USB-C Kabel für nur 2,99€", "Tech Shop in Petersberg"},
+		Item{"4", "West", "Essen", "Große Waffeln - 4€", "Waffelladen in Fulda"},
+		Item{"5", "West", "Kleidung", "10€ Rabatt auf alle Jacken", "Klamottenladen 2 in Fulda"},
 	}
 
 	StoreItem(db, testItems)
 	readItems := ReadItem(db)
 	log.Println(readItems)
+
+	m := pat.New()
+	m.Get("/", http.HandlerFunc(HomeHandler))
+	m.Get("/region/:reg", &regionHandler{db, testItems})
+
+	/* fs := http.FileServer(http.Dir("./static"))
+	http.Handle("/", fs) */
+
+	http.Handle("/", m)
+	http.Handle("/merkliste", http.HandlerFunc(ListHandler))
 
 	err := http.ListenAndServe(":80", nil)
 	if err != nil {

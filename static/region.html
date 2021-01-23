@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Local Shopping Fulda-{{.Region}}</title>
+        <link rel="stylesheet" href="/styles.css">
+    </head>
+
+    <body>
+        {{ if eq .Region "Nord" }}
+            <h1 class="north">Local Shopping<br/>Fulda-{{.Region}}</h1>
+        {{ else if eq .Region "Süd"}}
+            <h1 class="south">Local Shopping<br/>Fulda-{{.Region}}</h1>
+        {{ else }}
+            <h1 class="west">Local Shopping<br/>Fulda-{{.Region}}</h1>
+        {{ end }}
+
+        <p>Filter: </p>
+
+        {{ if not .RegionItems}}
+            <p>Aktuell sind hier keine Angebote.</p>
+        {{ else }}
+            {{ range $i, $item := .RegionItems }}
+                <p>{{ $item }}</p>
+            {{ end }}
+        {{ end }}
+    </body>
+</html>

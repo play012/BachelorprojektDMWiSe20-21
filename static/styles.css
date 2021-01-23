@@ -5,12 +5,25 @@
 
 h1 {
     margin: 0px;
-    background-color: #000080;
     text-align: center;
     padding: 10%;
     font-family: "Lemon Milk";
-    color: white;
     font-size: 4vw;
+}
+
+h1.north {
+    background-color: #ff7ffe;
+    color: white;
+}
+
+h1.south {
+    background-color: #d5ff00;
+    color: black;
+}
+
+h1.west {
+    background-color: #000080;
+    color: white;
 }
 
 img {
