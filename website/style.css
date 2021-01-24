@@ -1,0 +1,142 @@
+body {margin: 0px;padding: 0px;}
+
+
+
+h1 {
+	color: #c6c6c6;
+	/* font-family: 'Righteous', cursive; */
+	font-family: 'DM Serif Display', serif;
+	font-size: 40pt;
+
+}
+
+h2 {
+	/*font-family: 'Righteous', cursive; */
+	font-family: 'DM Serif Display', serif;
+	color: #9f7777;
+}
+
+
+
+
+.containerTop {
+	background-color: #070d59;
+	text-align: center;
+	font-family: arial;
+	height: auto;
+}
+
+.containerBox {
+	display: inline-block;
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+.map {
+	position: relative;
+	text-align: center;
+	margin-top: 30px;	
+}
+
+img {
+	display: inline-block;
+	position: relative;
+	max-width: 60%;
+	height: auto;
+	max-height: 600px;
+	z-index: 1;
+	opacity: 50%;
+}
+
+
+
+
+.west {
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	margin-left: -30%;
+	background-color: #ffc773;
+	height: 100%;
+	width: 30%;
+
+
+}
+
+.nord {
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	background-color: #00a8cc;
+	height: 50%;
+	width: 30%;
+
+}
+
+.sued {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background-color: #000839;
+	height: 50%;
+	width: 30%;
+
+}
+
+#warenkorb {
+	position: absolute;
+	top: 120%;
+	width: 70px;
+	height: auto;
+	left: 80%;
+	margin-right: 50%;
+	margin-left: -10%;
+}
+
+.west:hover, .sued:hover, .nord:hover {
+	color: white;
+	background-color: white;
+}
+
+.west h2 {
+	position: absolute;
+	top: 50%;
+	margin-top: -5px;
+	left: 50%;
+	margin-left: -30px;
+	opacity: 100%;
+	z-index:2;
+}
+
+.nord h2{
+	position: absolute;
+	top: 50%;
+	margin-top: -5px;
+	left: 50%;
+	margin-left: -30px;
+	opacity: 100%;
+	z-index:2;
+}
+
+.sued h2{
+	position: absolute;
+	top: 50%;
+	margin-top: -5px;
+	left: 50%;
+	margin-left: -30px;
+	opacity: 100%;
+	z-index:2;
+}
+
+
+@media (max-width: 900px) {
+	h1 {
+		font-size: 20pt;
+	}
+
+	.containerBox {
+		margin-top: 40px;
+		margin-bottom: 40px;
+
+	}
+}
