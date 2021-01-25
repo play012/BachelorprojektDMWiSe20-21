@@ -130,8 +130,14 @@ func (h *regionHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		"RegionItems": regionResult,
 	}
 
-	regionTemplate, _ := template.ParseFiles("static/region.html")
-	regionTemplate.Execute(w, regionData)
+	if regionString == "Nord" || regionString == "West" || regionString == "Süd" {
+		regionTemplate, _ := template.ParseFiles("static/region.html")
+		regionTemplate.Execute(w, regionData)
+	} else {
+		badTemplate, _ := template.ParseFiles("static/404.html")
+		badTemplate.Execute(w, regionData)
+	}
+
 }
 
 // ListHandler shows saved Items in a list
