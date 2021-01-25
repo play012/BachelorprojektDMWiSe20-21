@@ -17,11 +17,11 @@
         {{ end }}
 
         <div id="filter">
-            <input id="filterClothing" type="checkbox">
+            <input id="filterClothing" type="checkbox" onchange="checkFilters()">
             <label for="filterClothing" class="checkboxclothing"></label>
-            <input id="filterTech" type="checkbox">
+            <input id="filterTech" type="checkbox" onchange="checkFilters()">
             <label for="filterTech" class="checkboxtech"></label>
-            <input id="filterFood" type="checkbox">
+            <input id="filterFood" type="checkbox" onchange="checkFilters()">
             <label for="filterFood" class="checkboxfood"></label>
         </div>
 
@@ -44,32 +44,44 @@
             {{ end }}
         {{ end }}
 
-        <!-- script>
+        <script>
             function checkFilters() {
                 var checkClothing = document.getElementById("filterClothing");
                 var checkTech = document.getElementById("filterTech");
                 var checkFood = document.getElementById("filterFood");
-                var divFood = document.getElementById("itemEssen");
-                var divTech = document.getElementById("itemTechnik");
-                var divClothing = document.getElementById("itemKleidung");
+                var divFood = document.getElementsByClassName("itemEssen");
+                var divTech = document.getElementsByClassName("itemTechnik");
+                var divClothing = document.getElementsByClassName("itemKleidung");
                 if (checkClothing.checked == true) {
-                    divClothing.style.display = "block";
+                    for (var i=0; i<divClothing.length; i+=1) {
+                        divClothing[i].style.display = "none";
+                    }
                 } else {
-                    divClothing.style.display = "none";
+                    for (var i=0; i<divClothing.length; i+=1) {
+                        divClothing[i].style.display = "block";
+                    }
                 }
                 
                 if (checkFood.checked == true) {
-                    divFood.style.display = "block";
+                    for (var i=0; i<divFood.length; i+=1) {
+                        divFood[i].style.display = "none";
+                    }
                 } else {
-                    divFood.style.display = "none";
+                    for (var i=0; i<divFood.length; i+=1) {
+                        divFood[i].style.display = "block";
+                    }
                 }
 
                 if (checkTech.checked == true) {
-                    divTech.style.display = "block";
+                    for (var i=0; i<divTech.length; i+=1) {
+                        divTech[i].style.display = "none";
+                    }
                 } else {
-                    divTech.style.display = "none";
+                    for (var i=0; i<divTech.length; i+=1) {
+                        divTech[i].style.display = "block";
+                    }
                 }
             }
-        </script -->
+        </script>
     </body>
 </html>
