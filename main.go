@@ -55,7 +55,7 @@ func CreateTable(db *sql.DB) {
 	}
 }
 
-// StroItem inserts Items into database
+// StoreItem inserts Items into database
 func StoreItem(db *sql.DB, items []Item) {
 	addItem, err := db.Prepare(`INSERT OR REPLACE INTO items(
 		ID,
@@ -101,7 +101,7 @@ func ReadItem(db *sql.DB) []Item {
 
 // HomeHandler parses HTML files for the homepage
 func HomeHandler(w http.ResponseWriter, req *http.Request) {
-	homeTemplate, _ := template.ParseFiles("static/index.html", "static/styles.css")
+	homeTemplate, _ := template.ParseFiles("static/index.html")
 	err := homeTemplate.Execute(w, nil)
 
 	if err != nil {
@@ -130,7 +130,7 @@ func (h *regionHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		"RegionItems": regionResult,
 	}
 
-	regionTemplate, _ := template.ParseFiles("static/region.html", "static/styles.css")
+	regionTemplate, _ := template.ParseFiles("static/region.html")
 	regionTemplate.Execute(w, regionData)
 }
 
@@ -166,6 +166,7 @@ func main() {
 
 	http.Handle("/", m)
 	http.Handle("/merkliste", http.HandlerFunc(ListHandler))
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
 	err := http.ListenAndServe(":80", nil)
 	if err != nil {

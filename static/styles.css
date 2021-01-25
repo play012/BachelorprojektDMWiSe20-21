@@ -1,3 +1,7 @@
+body {
+    margin: 0px;
+}
+
 @font-face {
     font-family: "Lemon Milk";
     src: url("LEMONMILK-Regular.otf");
@@ -6,10 +10,17 @@
 h1 {
     margin: 0px;
     text-align: center;
-    padding: 10%;
+    padding: 5%;
     font-family: "Lemon Milk";
     font-size: 4vw;
 }
+
+@media screen and (min-width: 1200px) {
+    h1 {
+       font-size: 48px;
+       padding: 50px;
+    }
+  }
 
 h1.north {
     background-color: #ff7ffe;
@@ -26,8 +37,113 @@ h1.west {
     color: white;
 }
 
-img {
-    margin: auto;
-    position: absolute;
+p {
+    text-align: center;
+    margin: 20px;
+    font-size: 20px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.map {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     max-width: 95%;
+}
+
+#filter {
+    width: 360px;
+    height: 120px;
+    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+#filterClothing, #filterTech, #filterFood {
+    display: none;
+}
+
+.checkboxclothing{
+    flex: 1;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    background: transparent url(/static/icons.png) no-repeat 0 0;
+}
+
+.checkboxtech{
+    flex: 1;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    background: transparent url(/static/icons.png) no-repeat 50% 0;
+}
+
+.checkboxfood{
+    flex: 1;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    background: transparent url(/static/icons.png) no-repeat 100% 0;
+}
+
+#filterClothing:checked + .checkboxclothing{
+    background: transparent url(/static/icons.png) no-repeat 0 100%;
+}
+
+#filterTech:checked + .checkboxtech{
+    background: transparent url(/static/icons.png) no-repeat 50% 100%;
+}
+
+#filterFood:checked + .checkboxfood{
+    background: transparent url(/static/icons.png) no-repeat 100% 100%;
+}
+
+.itemEssen {
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border: 1px solid;
+}
+
+.itemTechnik {
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border: 1px solid;
+}
+
+.itemKleidung {
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border: 1px solid;
+}
+
+#foodImg {
+    float: left;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    background: transparent url(/static/icons.png) no-repeat 100% 0;
+}
+
+#techImg {
+    float: left;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    background: transparent url(/static/icons.png) no-repeat 50% 0;
+}
+
+#clothingImg {
+    float: left;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    background: transparent url(/static/icons.png) no-repeat 0 0;
 }

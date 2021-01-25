@@ -2,7 +2,9 @@
 <html lang="en">
     <head>
         <title>Local Shopping Fulda-{{.Region}}</title>
-        <link rel="stylesheet" href="/styles.css">
+        <link rel="stylesheet" href="/static/styles.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
     </head>
 
     <body>
@@ -14,14 +16,60 @@
             <h1 class="west">Local Shopping<br/>Fulda-{{.Region}}</h1>
         {{ end }}
 
-        <p>Filter: </p>
+        <div id="filter">
+            <input id="filterClothing" type="checkbox">
+            <label for="filterClothing" class="checkboxclothing"></label>
+            <input id="filterTech" type="checkbox">
+            <label for="filterTech" class="checkboxtech"></label>
+            <input id="filterFood" type="checkbox">
+            <label for="filterFood" class="checkboxfood"></label>
+        </div>
 
         {{ if not .RegionItems}}
             <p>Aktuell sind hier keine Angebote.</p>
         {{ else }}
             {{ range $i, $item := .RegionItems }}
-                <p>{{ $item }}</p>
+                <div class="item{{ $item.Kategorie }}">
+                    {{ if eq $item.Kategorie "Essen" }}
+                        <img src="/static/tp.png" id="foodImg">
+                    {{ else if eq $item.Kategorie "Technik"}}
+                        <img src="/static/tp.png" id="techImg">
+                    {{ else if eq $item.Kategorie "Kleidung"}}
+                        <img src="/static/tp.png" id="clothingImg">
+                    {{ else }}
+                    {{ end }}
+                    <p>{{ $item.Angebot }}</p>
+                    <p>{{ $item.Laden }}</p>
+                </div>
             {{ end }}
         {{ end }}
+
+        <!-- script>
+            function checkFilters() {
+                var checkClothing = document.getElementById("filterClothing");
+                var checkTech = document.getElementById("filterTech");
+                var checkFood = document.getElementById("filterFood");
+                var divFood = document.getElementById("itemEssen");
+                var divTech = document.getElementById("itemTechnik");
+                var divClothing = document.getElementById("itemKleidung");
+                if (checkClothing.checked == true) {
+                    divClothing.style.display = "block";
+                } else {
+                    divClothing.style.display = "none";
+                }
+                
+                if (checkFood.checked == true) {
+                    divFood.style.display = "block";
+                } else {
+                    divFood.style.display = "none";
+                }
+
+                if (checkTech.checked == true) {
+                    divTech.style.display = "block";
+                } else {
+                    divTech.style.display = "none";
+                }
+            }
+        </script -->
     </body>
 </html>
