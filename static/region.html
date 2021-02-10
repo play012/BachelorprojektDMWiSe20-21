@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
     <head>
         <title>Local Shopping Fulda-{{.Region}}</title>
+        <link rel="icon" href="/static/favicon.ico">
         <link rel="stylesheet" href="/static/styles.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
@@ -9,11 +10,11 @@
 
     <body>
         {{ if eq .Region "Nord" }}
-            <h1 class="north">Local Shopping<br/>Fulda-{{.Region}}</h1>
+            <a href="/"><h1 class="north">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
         {{ else if eq .Region "Süd"}}
-            <h1 class="south">Local Shopping<br/>Fulda-{{.Region}}</h1>
+            <a href="/"><h1 class="south">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
         {{ else }}
-            <h1 class="west">Local Shopping<br/>Fulda-{{.Region}}</h1>
+            <a href="/"><h1 class="west">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
         {{ end }}
 
         <div id="filter">
@@ -29,59 +30,33 @@
             <p>Aktuell sind hier keine Angebote.</p>
         {{ else }}
             {{ range $i, $item := .RegionItems }}
-                <div class="item{{ $item.Kategorie }}">
-                    {{ if eq $item.Kategorie "Essen" }}
-                        <img src="/static/tp.png" id="foodImg">
-                    {{ else if eq $item.Kategorie "Technik"}}
-                        <img src="/static/tp.png" id="techImg">
-                    {{ else if eq $item.Kategorie "Kleidung"}}
-                        <img src="/static/tp.png" id="clothingImg">
-                    {{ else }}
-                    {{ end }}
-                    <p>{{ $item.Angebot }}</p>
-                    <p>{{ $item.Laden }}</p>
+                <div class="item{{ $item.Kategorie }}" onload="compareItemsToLocalStorage('{{ $i }}', '{{ $item.Kategorie }}', '{{ $item.Angebot }}',  '{{ $item.Laden }}')">
+                    <div class="imgWrapper">
+                        {{ if eq $item.Kategorie "Essen" }}
+                            <img src="/static/tp.png" id="foodImg">
+                        {{ else if eq $item.Kategorie "Technik"}}
+                            <img src="/static/tp.png" id="techImg">
+                        {{ else if eq $item.Kategorie "Kleidung"}}
+                            <img src="/static/tp.png" id="clothingImg">
+                        {{ else }}
+                        {{ end }}
+                    </div>
+                    
+                    <div class="textWrapper">
+                        <p>{{ $item.Angebot }}</p>
+                        <p>{{ $item.Laden }}</p>
+                    </div>
+
+                    <div class="imgWrapper">
+                        <button class="addItemBtn" id="addItemBtn{{ $i }}" onclick="addToLocalStorage('{{ $i }}', '{{ $item.Kategorie }}', '{{ $item.Angebot }}', '{{ $item.Laden }}')"></button>
+                    </div>
                 </div>
             {{ end }}
         {{ end }}
+        
+        <a href="/merkliste" class="merkliste"></a>
 
-        <script>
-            function checkFilters() {
-                var checkClothing = document.getElementById("filterClothing");
-                var checkTech = document.getElementById("filterTech");
-                var checkFood = document.getElementById("filterFood");
-                var divFood = document.getElementsByClassName("itemEssen");
-                var divTech = document.getElementsByClassName("itemTechnik");
-                var divClothing = document.getElementsByClassName("itemKleidung");
-                if (checkClothing.checked == true) {
-                    for (var i=0; i<divClothing.length; i+=1) {
-                        divClothing[i].style.display = "none";
-                    }
-                } else {
-                    for (var i=0; i<divClothing.length; i+=1) {
-                        divClothing[i].style.display = "block";
-                    }
-                }
-                
-                if (checkFood.checked == true) {
-                    for (var i=0; i<divFood.length; i+=1) {
-                        divFood[i].style.display = "none";
-                    }
-                } else {
-                    for (var i=0; i<divFood.length; i+=1) {
-                        divFood[i].style.display = "block";
-                    }
-                }
-
-                if (checkTech.checked == true) {
-                    for (var i=0; i<divTech.length; i+=1) {
-                        divTech[i].style.display = "none";
-                    }
-                } else {
-                    for (var i=0; i<divTech.length; i+=1) {
-                        divTech[i].style.display = "block";
-                    }
-                }
-            }
-        </script>
+        <script type="text/javascript" src="/static/filter.js"></script>
+        <script type="text/javascript" src="/static/localStorage.js"></script>
     </body>
 </html>

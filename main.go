@@ -28,7 +28,7 @@ type regionHandler struct {
 
 // InitDB initializes SQLite Database
 func InitDB() *sql.DB {
-	db, err := sql.Open("sqlite3", ":memory:")
+	db, err := sql.Open("sqlite3", "./angebote.db")
 
 	if err != nil {
 		panic(err)
@@ -140,10 +140,10 @@ func (h *regionHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 }
 
-// ListHandler shows saved Items in a list
+// ListHandler parses file for page of saved items
 func ListHandler(w http.ResponseWriter, req *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	http.ServeFile(w, req, "static/merkliste.html")
+	listTemplate, _ := template.ParseFiles("static/merkliste.html")
+	listTemplate.Execute(w, nil)
 }
 
 func main() {
@@ -152,11 +152,11 @@ func main() {
 	CreateTable(db)
 
 	testItems := []Item{
-		Item{"1", "Nord", "Essen", "Pizzas dienstags für 7 Euro", "Pizzeria XY in Hünfeld"},
-		Item{"2", "West", "Kleidung", "Sale bis 50% auf T-Shirts", "Klamottenladen in Fulda"},
-		Item{"3", "Nord", "Technik", "USB-C Kabel für nur 2,99€", "Tech Shop in Petersberg"},
-		Item{"4", "West", "Essen", "Große Waffeln - 4€", "Waffelladen in Fulda"},
-		Item{"5", "West", "Kleidung", "10€ Rabatt auf alle Jacken", "Klamottenladen 2 in Fulda"},
+		{"1", "Nord", "Essen", "Pizzas dienstags für 7 Euro", "Pizzeria XY in Hünfeld"},
+		{"2", "West", "Kleidung", "Sale bis 50% auf T-Shirts", "Klamottenladen in Fulda"},
+		{"3", "Nord", "Technik", "USB-C Kabel für nur 2,99€", "Tech Shop in Petersberg"},
+		{"4", "West", "Essen", "Große Waffeln - 4€", "Waffelladen in Fulda"},
+		{"5", "West", "Kleidung", "10€ Rabatt auf alle Jacken", "Klamottenladen 2 in Fulda"},
 	}
 
 	StoreItem(db, testItems)

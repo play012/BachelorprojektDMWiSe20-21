@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Local Shopping Fulda</title>
+        <link rel="icon" href="/static/favicon.ico">
         <link rel="stylesheet" href="/static/styles.css">
     </head>
 
     <body>
         <h1 class="west">Local Shopping<br/>Fulda</h1>
 
-        <picture>
-            <!-- Responsive Imagemaps?? (js/jQuery) -->
-            <!-- source media="(min-width: 1000px)" srcset="/static/Landkreis_1000px.png" usemap="#imageMapLarge" -->
-            <!-- img src="/static/Landkreis_500px.png" usemap="#imageMapSmall" -->
-            <img src="/static/Landkreis_1000px.png" class="map" usemap="#imageMapLarge">
+        <picture class="imageMapLarge">
+            <img alt="Landkreis Fulda" src="/static/Landkreis_1000px.webp" class="map" usemap="#imageMapLarge">
 
             <map name="imageMapLarge">
                 <area alt="Eiterfeld" title="Eiterfeld" href="/region/Nord" coords="544,74,642,137" shape="rect">
@@ -39,14 +38,20 @@
                 <area alt="Flieden" title="Flieden" href="/region/West" coords="173,854,257,885" shape="rect">
                 <area alt="Kalbach" title="Kalbach" href="/region/West" coords="364,871,455,929" shape="rect">
             </map>
+        </picture>
 
-            <!--
+        <picture class="imageMapSmall">
+            <img alt="Landkreis Fulda" src="/static/Landkreis_500px.webp" class="map" usemap="#imageMapSmall">
+
             <map name="imageMapSmall">
                 <area target="" alt="Nord" title="Nord" href="/region/Nord" coords="166,117,340,211" shape="rect">
                 <area target="" alt="Süd" title="Süd" href="/region/Süd" coords="243,313,366,419" shape="rect">
                 <area target="" alt="West" title="West" href="/region/West" coords="38,301,185,385" shape="rect">
             </map>
-            -->
         </picture>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/imageMapResizer.js"></script>
+        <script type="text/javascript"> $('map').imageMapResize(); </script>
     </body>
 </html>

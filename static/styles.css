@@ -5,6 +5,7 @@ body {
 @font-face {
     font-family: "Lemon Milk";
     src: url("LEMONMILK-Regular.otf");
+    font-display: swap;
 }
 
 h1 {
@@ -37,11 +38,53 @@ h1.west {
     color: white;
 }
 
+a:link {
+    text-decoration: none;
+}
+
+a:hover > h1 {
+    background-color: lightgray!important;
+    color: black!important;
+}
+
+a.merkliste {
+    position:absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    background: transparent url(/static/icons.png) no-repeat 0 100%;
+}
+
 p {
     text-align: center;
     margin: 20px;
     font-size: 20px;
     font-family: 'Noto Sans JP', sans-serif;
+}
+
+#noItemsStored {
+    display: none;
+}
+
+@media screen and (min-width: 500px) {
+    .imageMapLarge {
+        display: block;
+    }
+
+    .imageMapSmall {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .imageMapSmall {
+        display: block;
+    }
+
+    .imageMapLarge {
+        display: none;
+    }
 }
 
 .map {
@@ -89,42 +132,69 @@ p {
 }
 
 #filterClothing:checked + .checkboxclothing{
-    background: transparent url(/static/icons.png) no-repeat 0 100%;
+    background: transparent url(/static/icons.png) no-repeat 0 50%;
 }
 
 #filterTech:checked + .checkboxtech{
-    background: transparent url(/static/icons.png) no-repeat 50% 100%;
+    background: transparent url(/static/icons.png) no-repeat 50% 50%;
 }
 
 #filterFood:checked + .checkboxfood{
-    background: transparent url(/static/icons.png) no-repeat 100% 100%;
+    background: transparent url(/static/icons.png) no-repeat 100% 50%;
 }
 
 .itemEssen {
-    display: block;
+    display: flex;
     margin: 10px;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
-    border: 1px solid;
-}
-
-.itemTechnik {
-    display: block;
-    margin: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+    max-width: 60%;
     border: 1px solid;
 }
 
 .itemKleidung {
-    display: block;
+    display: flex;
     margin: 10px;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    max-width: 60%;
     border: 1px solid;
+}
+
+.itemTechnik {
+    display: flex;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60%;
+    border: 1px solid;
+}
+
+.imgWrapper {
+    flex: 1;
+    height: 120px;
+    max-width: 120px;
+}
+
+.textWrapper {
+    flex: 1;
+    text-align: center;
+    line-height: 30px;
+}
+
+button {
+    border: none;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+}
+
+.addItemBtn {
+    background: transparent url(/static/icons.png) no-repeat 50% 100%;
+}
+
+.delItemBtn {
+    background: transparent url(/static/icons.png) no-repeat 100% 100%;
 }
 
 #foodImg {
