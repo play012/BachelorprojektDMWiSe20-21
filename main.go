@@ -146,6 +146,34 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 	listTemplate.Execute(w, nil)
 }
 
+//-------------------TODO----------------//
+// FormHandler adds Items to Database 
+func FormHandler(w http.ResponseWriter, req *http.Request) {
+	listTemplate, _ := template.ParseFiles("static/formular.html")
+	listTemplate.Execute(w, nil)
+}
+
+// gets Values from Item Form 
+func form(c web.C, w http.ResponseWriter, r *http.Request){
+
+    //Call to ParseForm makes form fields available.
+    err := r.ParseForm()
+    if err != nil {
+        http.Redirect(w, r, "/", http.StatusSeeOther)         
+    }
+
+    PId := r.PostFormValue("id")
+	PReg := r.PostFormValue("Region")
+	PKat := r.PostFormValue("Kategorie")
+	PAng := r.PostFormValue("Angebot")
+	PLad := r.PostFormValue("Laden")
+
+    fmt.Fprintf(w, "Produkt ID: %s!", PId)
+	fmt.Fprintf(w, "Produkt befindet sich in: %s!", PReg)
+	
+}
+
+
 func main() {
 	db := InitDB()
 	defer db.Close()
@@ -172,7 +200,9 @@ func main() {
 
 	http.Handle("/", m)
 	http.Handle("/merkliste", http.HandlerFunc(ListHandler))
+	http.Handle("/formular", http.HandlerFunc(FormHandler))
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	
 
 	err := http.ListenAndServe(":80", nil)
 	if err != nil {
