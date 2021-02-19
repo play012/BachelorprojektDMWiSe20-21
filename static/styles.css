@@ -56,6 +56,15 @@ a.merkliste {
     background: transparent url(/static/icons.png) no-repeat 0 100%;
 }
 
+a.formn {
+    position:absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+
 p {
     text-align: center;
     margin: 20px;

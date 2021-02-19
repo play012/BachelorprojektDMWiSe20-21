@@ -156,10 +156,9 @@ func FormHandler(w http.ResponseWriter, req *http.Request) {
 // gets Values from Item Form 
 func form(w http.ResponseWriter, r *http.Request){
 
-    //Call to ParseForm makes form fields available.
-    err := r.ParseForm()
-    if err != nil {
-        http.Redirect(w, r, "/", http.StatusSeeOther)         
+    ifr.Method != "GET" {
+        http.Redirect(w, r, "/", http.StatusSeeOther)
+		return         
     }
 
     PId := r.FormValue("id")
@@ -202,7 +201,7 @@ func main() {
 
 	http.Handle("/", m)
 	http.Handle("/merkliste", http.HandlerFunc(ListHandler))
-	http.Handle("/formular", form)
+	http.HandleFunc("/formular", form)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	
 
