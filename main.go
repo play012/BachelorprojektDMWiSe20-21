@@ -156,7 +156,7 @@ func FormHandler(w http.ResponseWriter, req *http.Request) {
 // gets Values from Item Form 
 func form(w http.ResponseWriter, r *http.Request){
 
-    ifr.Method != "GET" {
+    if r.Method != "GET" {
         http.Redirect(w, r, "/", http.StatusSeeOther)
 		return         
     }
@@ -167,8 +167,8 @@ func form(w http.ResponseWriter, r *http.Request){
 	PAng := r.FormValue("Angebot")
 	PLad := r.FormValue("Laden")
 
-    fmt.Fprintf(w, "Produkt ID: %s!", id)
-	fmt.Fprintf(w, "Produkt befindet sich in: %s!", PReg)
+    //fmt.Fprintf(w, "Produkt ID: %s!", id)
+	// fmt.Fprintf(w, "Produkt befindet sich in: %s!", PReg)
 
 
 	tpl.ExecuteTemplate(w, "formular.html")
