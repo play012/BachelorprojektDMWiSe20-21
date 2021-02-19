@@ -162,15 +162,17 @@ func form(w http.ResponseWriter, r *http.Request){
         http.Redirect(w, r, "/", http.StatusSeeOther)         
     }
 
-    PId := r.PostFormValue("id")
-	PReg := r.PostFormValue("Region")
-	PKat := r.PostFormValue("Kategorie")
-	PAng := r.PostFormValue("Angebot")
-	PLad := r.PostFormValue("Laden")
+    PId := r.FormValue("id")
+	PReg := r.FormValue("Region")
+	PKat := r.FormValue("Kategorie")
+	PAng := r.FormValue("Angebot")
+	PLad := r.FormValue("Laden")
 
     fmt.Fprintf(w, "Produkt ID: %s!", id)
 	fmt.Fprintf(w, "Produkt befindet sich in: %s!", PReg)
-	
+
+
+	tpl.ExecuteTemplate(w, "formular.html")
 }
 
 
@@ -200,7 +202,7 @@ func main() {
 
 	http.Handle("/", m)
 	http.Handle("/merkliste", http.HandlerFunc(ListHandler))
-	http.Handle("/formular", http.HandlerFunc(FormHandler))
+	http.Handle("/formular", form)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	
 
