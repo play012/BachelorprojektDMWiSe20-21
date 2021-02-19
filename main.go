@@ -154,7 +154,7 @@ func FormHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 // gets Values from Item Form 
-func form(c web.C, w http.ResponseWriter, r *http.Request){
+func form(w http.ResponseWriter, r *http.Request){
 
     //Call to ParseForm makes form fields available.
     err := r.ParseForm()
@@ -168,7 +168,7 @@ func form(c web.C, w http.ResponseWriter, r *http.Request){
 	PAng := r.PostFormValue("Angebot")
 	PLad := r.PostFormValue("Laden")
 
-    fmt.Fprintf(w, "Produkt ID: %s!", PId)
+    fmt.Fprintf(w, "Produkt ID: %s!", id)
 	fmt.Fprintf(w, "Produkt befindet sich in: %s!", PReg)
 	
 }
