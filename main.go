@@ -149,8 +149,8 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 //-------------------TODO----------------//
 // FormHandler adds Items to Database 
 func FormHandler(w http.ResponseWriter, req *http.Request) {
-	listTemplate, _ := template.ParseFiles("static/formular.html")
-	listTemplate.Execute(w, nil)
+	formTemplate, _ := template.ParseFiles("static/formular.html")
+	formTemplate.Execute(w, nil)
 }
 
 // gets Values from Item Form 
