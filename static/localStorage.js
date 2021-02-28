@@ -8,39 +8,11 @@ window.onload = function() {
 }
 
 function addToLocalStorage(idNum, itemCategory, itemOffer, itemStore) {
-    let item = [itemCategory, itemOffer, itemStore];
+    let item = [idNum, itemCategory, itemOffer, itemStore];
     let itemStr = JSON.stringify(item);
-    var compArr = [];
 
-    for (var k = 0; k < localStorage.length; k++) {
-        compArr = JSON.parse(localStorage.getItem(localStorage.key(k)));
-        console.log("what");
-        if (compArr == item) {
-            eval('document.getElementById("addItemBtn' + idNum +'").id = "delItemBtn' + idNum +'";');
-            eval('document.getElementById("delItemBtn' + idNum +'").onclick = removeItemFromLocalStorage();');
-            console.log("dumped item");
-            return;
-        }
-
-        if (eval('document.getElementById("addItemBtn' + idNum +'") != null);')) {
-            console.log("item saved successfully");
-            eval('localStorage.setItem("Item' + localStorage.length + '", itemStr);');
-            eval('document.getElementById("addItemBtn' + idNum +'").id = "delItemBtn' + idNum +'";');
-            eval('document.getElementById("delItemBtn' + idNum +'").onclick = removeItemFromLocalStorage();');
-        }
-        console.log("item save failed");
-    }
-}
-
-function compareItemsToLocalStorage(idNum, itemCatListed, itemOfferListed, itemStoreListed) {
-    var itemsListed = [itemCatListed, itemOfferListed, itemStoreListed];
-    var compItem = [];
-    for (var l = 0; l < localStorage.length; l++) {
-        compItem = JSON.parse(localStorage.getItem(localStorage.key(l)));
-        if (compItem == itemsListed) {
-            eval('document.getElementById("addItemBtn' + idNum +'").id = "delItemBtn' + idNum +'";');
-            eval('document.getElementById("delItemBtn' + idNum +'").onclick = removeItemFromLocalStorage();');
-        }
+    if (eval('document.getElementById("addItemBtn' + idNum +'") != null')) {
+        eval('localStorage.setItem("Item' + idNum + '", itemStr);');
     }
 }
 
@@ -66,34 +38,37 @@ function loadItemsFromLocalStorage() {
         var imgDiv = itemDiv.cloneNode(true);
         var textDiv = itemDiv.cloneNode(true);
         var btnDiv = itemDiv.cloneNode(true);
-        itemDiv.className = "itemBox";
 
         imgDiv.className = "imgWrapper";
-        if (itemArr[j][0] == "Technik") {
+        if (itemArr[j][1] == "Technik") {
+            itemDiv.className = "itemTechnik";
             imgDiv.innerHTML = '<img src="/static/tp.png" id="techImg">';
-        } else if (itemArr[j][0] == "Essen") {
+        } else if (itemArr[j][1] == "Essen") {
+            itemDiv.className = "itemEssen";
             imgDiv.innerHTML = '<img src="/static/tp.png" id="foodImg">';
-        } else if (itemArr[j][0] == "Kleidung") {
+        } else if (itemArr[j][1] == "Kleidung") {
+            itemDiv.className = "itemKleidung";
             imgDiv.innerHTML = '<img src="/static/tp.png" id="clothingImg">';
         } else {
             itemDiv.style.display = "none";
         }
 
         textDiv.className = "textWrapper";
-        var offerText = itemArr[j][1];
-        var storeText = itemArr[j][2];
+        var offerText = itemArr[j][2];
+        var storeText = itemArr[j][3];
         textDiv.innerHTML = '<p>' + offerText + '</p><p>' + storeText + '</p>';
 
         btnDiv.className = "imgWrapper";
-        btnDiv.innerHTML = '<button class="delItemBtn" id="delItemBtn' + j + '" onclick="removeItemFromLocalStorage()"></button>';
+        btnDiv.innerHTML = '<button class="delItemBtn" id="delItemBtn' + itemArr[j][0] + '" onclick="removeItemsFromLocalStorage(' + itemArr[j][0] + ')"></button>';
 
         itemDiv.appendChild(imgDiv);
         itemDiv.appendChild(textDiv);
         itemDiv.appendChild(btnDiv);
-        document.getElementById("scrollBox").appendChild(itemDiv);
+        document.body.appendChild(itemDiv);
     }
 }
 
-function removeItemFromLocalStorage() {
-    
+function removeItemsFromLocalStorage(id) {
+    eval('localStorage.removeItem("Item' + id +'");');
+    document.location.reload();
 }

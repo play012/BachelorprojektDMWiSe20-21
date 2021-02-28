@@ -115,13 +115,13 @@ func (h *regionHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	regionString := req.URL.Query().Get(":reg")
 	var regionResult []Item
 
-	itemsForRegionHandler, _ := h.db.Query(`SELECT Kategorie, Angebot, Laden FROM items
+	itemsForRegionHandler, _ := h.db.Query(`SELECT ID, Kategorie, Angebot, Laden FROM items
 	WHERE Region LIKE '` + regionString + `' ORDER BY ID ASC`)
 
 	defer itemsForRegionHandler.Close()
 	for itemsForRegionHandler.Next() {
 		item := Item{}
-		itemsForRegionHandler.Scan(&item.Kategorie, &item.Angebot, &item.Laden)
+		itemsForRegionHandler.Scan(&item.ID, &item.Kategorie, &item.Angebot, &item.Laden)
 		regionResult = append(regionResult, item)
 	}
 
@@ -143,6 +143,14 @@ func (h *regionHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 // ListHandler parses file for page of saved items
 func ListHandler(w http.ResponseWriter, req *http.Request) {
 	listTemplate, _ := template.ParseFiles("static/merkliste.html")
+	listTemplate.Execute(w, nil)
+}
+
+// FormHandler listens for Form to post new items
+func FormHandler(w http.ResponseWriter, req *http.Request) {
+	listTemplate, _ := template.ParseFiles("static/form.html")
+	// listener
+	// StoreItem(db, formItem)
 	listTemplate.Execute(w, nil)
 }
 

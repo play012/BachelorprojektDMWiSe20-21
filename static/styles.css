@@ -112,6 +112,7 @@ p {
     margin: 10px;
     width: 100px;
     height: 100px;
+    cursor: pointer;
     background: transparent url(/static/icons.png) no-repeat 0 0;
 }
 
@@ -120,6 +121,7 @@ p {
     margin: 10px;
     width: 100px;
     height: 100px;
+    cursor: pointer;
     background: transparent url(/static/icons.png) no-repeat 50% 0;
 }
 
@@ -128,6 +130,7 @@ p {
     margin: 10px;
     width: 100px;
     height: 100px;
+    cursor: pointer;
     background: transparent url(/static/icons.png) no-repeat 100% 0;
 }
 
@@ -150,6 +153,7 @@ p {
     margin-right: auto;
     max-width: 60%;
     border: 1px solid;
+    border-radius: 100px;
 }
 
 .itemKleidung {
@@ -159,6 +163,7 @@ p {
     margin-right: auto;
     max-width: 60%;
     border: 1px solid;
+    border-radius: 100px;
 }
 
 .itemTechnik {
@@ -168,6 +173,7 @@ p {
     margin-right: auto;
     max-width: 60%;
     border: 1px solid;
+    border-radius: 100px;
 }
 
 .imgWrapper {
@@ -187,6 +193,7 @@ button {
     margin: 10px;
     width: 100px;
     height: 100px;
+    cursor: pointer;
 }
 
 .addItemBtn {
