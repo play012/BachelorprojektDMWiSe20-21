@@ -169,8 +169,8 @@ func form(w http.ResponseWriter, r *http.Request){
 	PLad := r.FormValue("Laden")
 
     
-	//formTemplate, _ := template.ParseFiles("static/formular.html")
-	//formTemplate.Execute(w, nil)
+	formTemplate, _ := template.ParseFiles("static/formular.html")
+	formTemplate.Execute(w, nil)
 
 	//tpl.ExecuteTemplate(w, "formular.html")
 }
