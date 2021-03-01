@@ -170,7 +170,7 @@ func form(w http.ResponseWriter, r *http.Request){
 
     
 	//formTemplate, _ := template.ParseFiles("static/formular.html")
-	//formTemplate.Execute(w, nil)
+	formTemplate.Execute(w, nil)
 
 	//tpl.ExecuteTemplate(w, "formular.html")
 }
