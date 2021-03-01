@@ -148,10 +148,31 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 
 // FormHandler listens for Form to post new items
 func FormHandler(w http.ResponseWriter, req *http.Request) {
-	listTemplate, _ := template.ParseFiles("static/form.html")
+	listTemplate, _ := template.ParseFiles("static/formular.html")
 	// listener
 	// StoreItem(db, formItem)
 	listTemplate.Execute(w, nil)
+}
+
+// gets Values from Item Form 
+func form(w http.ResponseWriter, r *http.Request){
+
+    if r.Method != "GET" {
+        http.Redirect(w, r, "/", http.StatusSeeOther)
+		return         
+    }
+
+    PId := r.FormValue("id")
+	PReg := r.FormValue("Region")
+	PKat := r.FormValue("Kategorie")
+	PAng := r.FormValue("Angebot")
+	PLad := r.FormValue("Laden")
+
+    
+	//formTemplate, _ := template.ParseFiles("static/formular.html")
+	//formTemplate.Execute(w, nil)
+
+	//tpl.ExecuteTemplate(w, "formular.html")
 }
 
 func main() {
@@ -180,6 +201,8 @@ func main() {
 
 	http.Handle("/", m)
 	http.Handle("/merkliste", http.HandlerFunc(ListHandler))
+	http.Handle("/formular", http.HandlerFunc(FormHandler))
+	http.HandleFunc("/form",form)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
 	err := http.ListenAndServe(":80", nil)
