@@ -202,7 +202,7 @@ func main() {
 
 	http.Handle("/", m)
 	http.Handle("/merkliste", http.HandlerFunc(ListHandler))
-	http.HandleFunc("/formular", http.HandlerFunc(ListHandler))
+	http.Handle("/formular", http.HandlerFunc(ListHandler))
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	
 
