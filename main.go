@@ -147,7 +147,7 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 	listTemplate.Execute(w, nil)
 }
 
-//-------------------TODO----------------//
+//-------------------TODO----------------// ---- geht nicht
 // FormHandler adds Items to Database 
 func FormHandler(w http.ResponseWriter, req *http.Request) {
 	formTemplate, _ := template.ParseFiles("static/formular.html")
@@ -202,6 +202,7 @@ func main() {
 
 	http.Handle("/", m)
 	http.Handle("/merkliste", http.HandlerFunc(ListHandler))
+	http.Handle("/formular", http.HandlerFunc(FormHandler))
 	http.HandleFunc("/form",form)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	
