@@ -9,7 +9,7 @@ import (
 
 	"github.com/bmizerany/pat"
 	_ "github.com/mattn/go-sqlite3"
-	"io"
+	
 )
 
 // Item is listed in Database
