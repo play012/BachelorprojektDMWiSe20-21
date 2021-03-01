@@ -9,6 +9,7 @@ import (
 
 	"github.com/bmizerany/pat"
 	_ "github.com/mattn/go-sqlite3"
+	"io"
 )
 
 // Item is listed in Database
@@ -154,7 +155,7 @@ func FormHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 // gets Values from Item Form 
-func form(w http.ResponseWriter, req *http.Request){
+func form(w http.ResponseWriter, r *http.Request){
 
     if r.Method != "GET" {
         http.Redirect(w, r, "/", http.StatusSeeOther)
