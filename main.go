@@ -160,7 +160,7 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	formTemplate, _ := template.ParseFiles("static/formular.html")
 
-	if r.Method == http.MethodPost {
+	if r.Method == http.MethodGet {
 		r.ParseForm()
 		pReg := r.FormValue("Region")
 		pKat := r.FormValue("Kategorie")
@@ -169,7 +169,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 		SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
 		showItem := ShowItem(h.db)
-		t.log(showItem)
+		t.Log(showItem)
 		log.Println("Neues Item gespeichert: "+pReg, pKat, pAng, pLad)
 		formTemplate.Execute(w, struct{ Success bool }{true})
 	} else {
