@@ -75,6 +75,14 @@ p {
     user-select: none;
 }
 
+input {
+    text-align: center;
+    margin: 20px;
+    font-size: 20px;
+    font-family: 'Noto Sans JP', sans-serif;
+    user-select: none;
+}
+
 #noItemsStored {
     display: none;
 }
