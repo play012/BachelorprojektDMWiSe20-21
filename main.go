@@ -160,7 +160,7 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	formTemplate, _ := template.ParseFiles("static/formular.html")
 
-	if r.Method == http.MethodGet {
+	if r.Method == http.MethodPost {
 		r.ParseForm()
 		pReg := r.FormValue("Region")
 		pKat := r.FormValue("Kategorie")
