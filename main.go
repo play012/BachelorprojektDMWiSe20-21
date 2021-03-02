@@ -168,7 +168,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		pLad := r.FormValue("Laden")
 
 		SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
-		showItem := ShowItem(h.db)
+		ShowItem(h.db)
 		//Log(showItem)
 		log.Println("Neues Item gespeichert: "+pReg, pKat, pAng, pLad)
 		formTemplate.Execute(w, struct{ Success bool }{true})
