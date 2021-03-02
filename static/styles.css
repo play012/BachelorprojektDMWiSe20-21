@@ -4,7 +4,7 @@ body {
 
 @font-face {
     font-family: "Lemon Milk";
-    src: url("LEMONMILK-Regular.otf");
+    src: url("lemonmilk.woff") format("woff");
     font-display: swap;
 }
 
@@ -14,6 +14,7 @@ h1 {
     padding: 5%;
     font-family: "Lemon Milk";
     font-size: 4vw;
+    user-select: none;
 }
 
 @media screen and (min-width: 1200px) {
@@ -39,6 +40,7 @@ h1.west {
 }
 
 a:link {
+    outline: none;
     text-decoration: none;
 }
 
@@ -61,6 +63,7 @@ p {
     margin: 20px;
     font-size: 20px;
     font-family: 'Noto Sans JP', sans-serif;
+    user-select: none;
 }
 
 #noItemsStored {
@@ -85,6 +88,10 @@ p {
     .imageMapLarge {
         display: none;
     }
+}
+
+area {
+    outline: none;
 }
 
 .map {
@@ -189,6 +196,7 @@ p {
 }
 
 button {
+    outline: none;
     border: none;
     margin: 10px;
     width: 100px;
@@ -209,6 +217,7 @@ button {
     margin: 10px;
     width: 100px;
     height: 100px;
+    user-select: none;
     background: transparent url(/static/icons.png) no-repeat 100% 0;
 }
 
@@ -217,6 +226,7 @@ button {
     margin: 10px;
     width: 100px;
     height: 100px;
+    user-select: none;
     background: transparent url(/static/icons.png) no-repeat 50% 0;
 }
 
@@ -225,5 +235,22 @@ button {
     margin: 10px;
     width: 100px;
     height: 100px;
+    user-select: none;
     background: transparent url(/static/icons.png) no-repeat 0 0;
+}
+
+#clearAllBtn {
+    display: none;
+    margin: 10px;
+    height: 100px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: transparent;
+    outline: none;
+    border: 1px solid;
+    border-radius: 100px;
+    cursor: pointer;
 }
