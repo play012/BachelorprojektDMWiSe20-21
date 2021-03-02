@@ -75,13 +75,6 @@ p {
     user-select: none;
 }
 
-input {
-    text-align: center;
-    margin: 20px;
-    font-size: 20px;
-    font-family: 'Noto Sans JP', sans-serif;
-    user-select: none;
-}
 
 #noItemsStored {
     display: none;
@@ -178,6 +171,17 @@ area {
     max-width: 60%;
     border: 1px solid;
     border-radius: 100px;
+}
+
+.add {
+    text-align: center;
+    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60%;
+    font-size: 20px;
+    font-family: 'Noto Sans JP', sans-serif;
+    user-select: none;
 }
 
 .itemEssen {
