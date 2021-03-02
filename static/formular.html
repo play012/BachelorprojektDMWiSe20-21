@@ -16,7 +16,7 @@
         {{if .Success}}
             <p>Vielen Dank für das Einreichen eines Angebots!</p>
         {{else}}
-            <form action="/formular" method="post">
+            <form action="/formular" method="post" class="formular">
                 <select name="Region">
                     <option value="Nord">Nord</option>
                     <option value="West">West</option>
@@ -29,6 +29,9 @@
                 </select>
                 <input type="text" name="Angebot" placeholder="Angebot" />
                 <input type="text" name="Laden" placeholder="Laden" />
+                    
+                    <input type="text" name="Region" placeholder="Region" />
+                    <input type="text" name="Kategorie" placeholder="Kategorie" />
                 <input type="submit" value="Angebot hochladen">
             </form>
         {{end}}
