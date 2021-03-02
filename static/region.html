@@ -30,7 +30,7 @@
             <p>Aktuell sind hier keine Angebote.</p>
         {{ else }}
             {{ range $i, $item := .RegionItems }}
-                <div class="item{{ $item.Kategorie }}" onload="compareItemsToLocalStorage('{{ $i }}', '{{ $item.Kategorie }}', '{{ $item.Angebot }}',  '{{ $item.Laden }}')">
+                <div class="item{{ $item.Kategorie }}">
                     <div class="imgWrapper">
                         {{ if eq $item.Kategorie "Essen" }}
                             <img src="/static/tp.png" id="foodImg">
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="imgWrapper">
-                        <button class="addItemBtn" id="addItemBtn{{ $i }}" onclick="addToLocalStorage('{{ $i }}', '{{ $item.Kategorie }}', '{{ $item.Angebot }}', '{{ $item.Laden }}')"></button>
+                        <button class="addItemBtn" id="addItemBtn{{ $item.ID }}" onclick="addToLocalStorage('{{ $item.ID }}', '{{ $item.Kategorie }}', '{{ $item.Angebot }}', '{{ $item.Laden }}')"></button>
                     </div>
                 </div>
             {{ end }}
