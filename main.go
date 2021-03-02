@@ -205,7 +205,7 @@ func main() {
 	m.Get("/region/:reg", &RegionHandler{db, ShowItem(db)})
 	m.Get("/merkliste", http.HandlerFunc(ListHandler))
 	m.Get("/formular", &FormHandler{db})
-	m.Post("/formular", &FormHandler{db, SaveItem(db)})
+	m.Post("/formular", &FormHandler{db})
 
 	/* fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs) */
