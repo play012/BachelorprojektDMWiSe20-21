@@ -71,11 +71,11 @@ func CreateTable(db *sql.DB) {
 
 // SaveItem inserts Items into database
 func SaveItem(db *sql.DB, items []StoreItem) {
-	addItem, err := db.Prepare(query: "INSERT OR REPLACE INTO items(
+	addItem, err := db.Prepare(`INSERT OR REPLACE INTO items(
 		Region,
 		Kategorie,
 		Angebot,
-		Laden) values(?, ?, ?, ?)")
+		Laden) values(?, ?, ?, ?)`)
 
 	if err != nil {
 		panic(err)
@@ -167,9 +167,19 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		pAng := r.FormValue("Angebot")
 		pLad := r.FormValue("Laden")
 
-		SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
-		ShowItem(h.db)
-		//Log(showItem)
+
+		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
+			Region,
+			Kategorie,
+			Angebot,
+			Laden) values(?, ?, ?, ?)`)
+     	checkErr(err)
+
+     	for _, item := range items {
+			addItem.Exec(item.Region, item.Kategorie, item.Angebot, item.Laden)
+		}
+		//SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
+		
 		log.Println("Neues Item gespeichert: "+pReg, pKat, pAng, pLad)
 		formTemplate.Execute(w, struct{ Success bool }{true})
 	} else {
