@@ -124,30 +124,64 @@ func HomeHandler(w http.ResponseWriter, req *http.Request) {
 func (h *RegionHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	regionString := req.URL.Query().Get(":reg")
 	var regionResult []ReadItem
+	req.ParseForm()
+	sortReq := req.Form.Get("sort")
 
-	itemsForRegionHandler, _ := h.db.Query(`SELECT ID, Kategorie, Angebot, Laden FROM items
-	WHERE Region LIKE '` + regionString + `' ORDER BY ID ASC`)
+	//newest items and page without sort request serve the same items
+	if len(sortReq) == 0 || sortReq == "newest" {
+		newestItems, _ := h.db.Query(`SELECT ID, Kategorie, Angebot, Laden FROM items
+		WHERE Region LIKE '` + regionString + `' ORDER BY ID DESC`)
 
-	defer itemsForRegionHandler.Close()
-	for itemsForRegionHandler.Next() {
-		item := ReadItem{}
-		itemsForRegionHandler.Scan(&item.ID, &item.Kategorie, &item.Angebot, &item.Laden)
-		regionResult = append(regionResult, item)
-	}
+		defer newestItems.Close()
+		for newestItems.Next() {
+			item := ReadItem{}
+			newestItems.Scan(&item.ID, &item.Kategorie, &item.Angebot, &item.Laden)
+			regionResult = append(regionResult, item)
+		}
 
-	regionData := map[string]interface{}{
-		"Region":      regionString,
-		"RegionItems": regionResult,
-	}
+		sortReq = "newest"
+		regionData := map[string]interface{}{
+			"Region":      regionString,
+			"RegionItems": regionResult,
+			"Sort":        sortReq,
+		}
 
-	if regionString == "Nord" || regionString == "West" || regionString == "Süd" {
-		regionTemplate, _ := template.ParseFiles("static/region.html")
-		regionTemplate.Execute(w, regionData)
+		if regionString == "Nord" || regionString == "West" || regionString == "Süd" {
+			regionTemplate, _ := template.ParseFiles("static/region.html")
+			regionTemplate.Execute(w, regionData)
+		} else {
+			badTemplate, _ := template.ParseFiles("static/404.html")
+			badTemplate.Execute(w, nil)
+		}
+	} else if sortReq == "oldest" {
+		// oldest items serves items with lowest ID first
+		oldestItems, _ := h.db.Query(`SELECT ID, Kategorie, Angebot, Laden FROM items
+		WHERE Region LIKE '` + regionString + `' ORDER BY ID ASC`)
+
+		defer oldestItems.Close()
+		for oldestItems.Next() {
+			item := ReadItem{}
+			oldestItems.Scan(&item.ID, &item.Kategorie, &item.Angebot, &item.Laden)
+			regionResult = append(regionResult, item)
+		}
+
+		regionData := map[string]interface{}{
+			"Region":      regionString,
+			"RegionItems": regionResult,
+			"Sort":        sortReq,
+		}
+
+		if regionString == "Nord" || regionString == "West" || regionString == "Süd" {
+			regionTemplate, _ := template.ParseFiles("static/region.html")
+			regionTemplate.Execute(w, regionData)
+		} else {
+			badTemplate, _ := template.ParseFiles("static/404.html")
+			badTemplate.Execute(w, regionData)
+		}
 	} else {
 		badTemplate, _ := template.ParseFiles("static/404.html")
-		badTemplate.Execute(w, regionData)
+		badTemplate.Execute(w, nil)
 	}
-
 }
 
 // ListHandler parses file for page of saved items

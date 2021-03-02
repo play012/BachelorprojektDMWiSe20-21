@@ -15,6 +15,10 @@
         
         {{if .Success}}
             <p>Vielen Dank für das Einreichen eines Angebots!</p>
+
+            <form action="/formular" method="get" id="postBtnForm">
+                <button id="newPostBtn">Ein weiteres Angebot posten</button>
+            </form>
         {{else}}
             <form action="/formular" method="post">
                 <select name="Region">

@@ -17,6 +17,12 @@ h1 {
     user-select: none;
 }
 
+h2 {
+    font-family: "Lemon Milk";
+    font-size: 22px;
+    user-select: none;
+}
+
 @media screen and (min-width: 1200px) {
     h1 {
        font-size: 48px;
@@ -44,6 +50,10 @@ a:link {
     text-decoration: none;
 }
 
+a > h1 {
+    transition: background-color 0.5s, color 0.5s;
+}
+
 a:hover > h1 {
     background-color: lightgray!important;
     color: black!important;
@@ -55,7 +65,13 @@ a.merkliste {
     right: 20px;
     width: 100px;
     height: 100px;
+    border-radius: 100px;
     background: transparent url(/static/icons.png) no-repeat 0 100%;
+    transition: background-color 0.5s;
+}
+
+a.merkliste:hover {
+    background-color: rgb(200, 255, 255);
 }
 
 p {
@@ -102,7 +118,7 @@ area {
 }
 
 #filter {
-    width: 360px;
+    width: 680px;
     height: 120px;
     margin: 20px;
     margin-left: auto;
@@ -120,7 +136,13 @@ area {
     width: 100px;
     height: 100px;
     cursor: pointer;
+    border-radius: 100px;
     background: transparent url(/static/icons.png) no-repeat 0 0;
+    transition: background-color 0.5s;
+}
+
+.checkboxclothing:hover {
+    background-color: rgb(200, 255, 255);
 }
 
 .checkboxtech{
@@ -129,7 +151,13 @@ area {
     width: 100px;
     height: 100px;
     cursor: pointer;
+    border-radius: 100px;
     background: transparent url(/static/icons.png) no-repeat 50% 0;
+    transition: background-color 0.5s;
+}
+
+.checkboxtech:hover {
+    background-color: rgb(200, 255, 255);
 }
 
 .checkboxfood{
@@ -138,7 +166,13 @@ area {
     width: 100px;
     height: 100px;
     cursor: pointer;
+    border-radius: 100px;
     background: transparent url(/static/icons.png) no-repeat 100% 0;
+    transition: background-color 0.5s;
+}
+
+.checkboxfood:hover {
+    background-color: rgb(200, 255, 255);
 }
 
 #filterClothing:checked + .checkboxclothing{
@@ -161,6 +195,7 @@ area {
     max-width: 60%;
     border: 1px solid;
     border-radius: 100px;
+    z-index: -1;
 }
 
 .itemKleidung {
@@ -171,6 +206,7 @@ area {
     max-width: 60%;
     border: 1px solid;
     border-radius: 100px;
+    z-index: -1;
 }
 
 .itemTechnik {
@@ -181,6 +217,7 @@ area {
     max-width: 60%;
     border: 1px solid;
     border-radius: 100px;
+    z-index: -1;
 }
 
 .imgWrapper {
@@ -205,11 +242,23 @@ button {
 }
 
 .addItemBtn {
+    border-radius: 100px;
     background: transparent url(/static/icons.png) no-repeat 50% 100%;
+    transition: background-color 0.5s;
+}
+
+.addItemBtn:hover {
+    background-color: rgb(200, 255, 200);
 }
 
 .delItemBtn {
+    border-radius: 100px;
     background: transparent url(/static/icons.png) no-repeat 100% 100%;
+    transition: background-color 0.5s;
+}
+
+.delItemBtn:hover {
+    background-color: rgb(255, 215, 200);
 }
 
 #foodImg {
@@ -248,9 +297,57 @@ button {
     margin-right: auto;
     font-size: 20px;
     font-family: 'Noto Sans JP', sans-serif;
-    background: transparent;
     outline: none;
     border: 1px solid;
     border-radius: 100px;
+    background-color: transparent;
     cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+#clearAllBtn:hover {
+    background-color: rgb(255, 215, 200);
+}
+
+form {
+    text-align: center;
+}
+
+#newPostBtn {
+    margin: 10px;
+    height: 100px;
+    width: 300px;
+    font-size: 20px;
+    font-family: 'Noto Sans JP', sans-serif;
+    outline: none;
+    border: 1px solid;
+    border-radius: 100px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+#newPostBtn:hover {
+    background-color: rgb(200, 255, 200);
+}
+
+#sortSelect {
+    appearance: none;
+    margin: 10px;
+    height: 100px;
+    width: 300px;
+    outline: none;
+    border: 1px solid;
+    border-radius: 100px;
+    background-color: transparent;
+    cursor: default;
+    text-align-last: center;
+    font-family: "Lemon Milk";
+    font-size: 22px;
+    user-select: none;
+    transition: background-color 0.5s;
+}
+
+#sortSelect:hover {
+    background-color: rgb(200, 255, 255);
 }
