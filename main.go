@@ -173,11 +173,9 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			Kategorie,
 			Angebot,
 			Laden) values(?, ?, ?, ?)`)
-     	checkErr(err)
-
-     	for _, item := range items {
-			addItem.Exec(item.Region, item.Kategorie, item.Angebot, item.Laden)
-		}
+     	
+		addItem.Exec(args: pReg, pKat, pAng, pLad)
+		
 		//SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
 		
 		log.Println("Neues Item gespeichert: "+pReg, pKat, pAng, pLad)
