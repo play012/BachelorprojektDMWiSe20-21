@@ -71,11 +71,11 @@ func CreateTable(db *sql.DB) {
 
 // SaveItem inserts Items into database
 func SaveItem(db *sql.DB, items []StoreItem) {
-	addItem, err := db.Prepare(`INSERT OR REPLACE INTO items(
+	addItem, err := db.Prepare(query: "INSERT OR REPLACE INTO items(
 		Region,
 		Kategorie,
 		Angebot,
-		Laden) values(?, ?, ?, ?)`)
+		Laden) values(?, ?, ?, ?)")
 
 	if err != nil {
 		panic(err)
