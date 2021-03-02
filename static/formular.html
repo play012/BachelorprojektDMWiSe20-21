@@ -17,12 +17,12 @@
             <p>Vielen Dank für das Einreichen eines Angebots!</p>
         {{else}}
             <form action="/formular" method="post" class="formular">
-                <select name="Region">
+                <select name="Region" class="formular">
                     <option value="Nord">Nord</option>
                     <option value="West">West</option>
                     <option value="Süd">Süd</option>
                 </select>
-                <select name="Kategorie">
+                <select name="Kategorie" class="formular">
                     <option value="Essen">Essen</option>
                     <option value="Kleidung">Kleidung</option>
                     <option value="Technik">Technik</option>
@@ -31,10 +31,8 @@
                     <input type="text" name="Angebot" placeholder="Angebot" />
                     <input type="text" name="Laden" placeholder="Laden" />
                     
-                    <input type="text" name="Region" placeholder="Region" />
-                    <input type="text" name="Kategorie" placeholder="Kategorie" />
                 </div>
-                <input type="submit" value="Angebot hochladen">
+                <input type="submit" value="Angebot hochladen" class="formular">
             </form>
         {{end}}
     </body>
