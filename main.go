@@ -164,10 +164,10 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == http.MethodPost {
 		r.ParseForm()
-		pReg := r.FormValue("Region")
-		pKat := r.FormValue("Kategorie")
-		pAng := r.FormValue("Angebot")
-		pLad := r.FormValue("Laden")
+		var pReg string := r.FormValue("Region")
+		var pKat string := r.FormValue("Kategorie")
+		var pAng string := r.FormValue("Angebot")
+		var pLad string := r.FormValue("Laden")
 
 
 		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
