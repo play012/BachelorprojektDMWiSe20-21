@@ -156,6 +156,8 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 	listTemplate.Execute(w, nil)
 }
 
+
+
 // FormHandler gets values from Item Form
 func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	formTemplate, _ := template.ParseFiles("static/formular.html")
@@ -175,7 +177,13 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			Laden) values(?, ?, ?, ?)`)
      	
 		addItem.Exec(pReg, pKat, pAng, pLad)
+		rows, _ := h.db.Query(`SELECT ID, Region, Kategorie, Angebot, Laden FROM items
+		ORDER BY ID ASC`)
 		
+		for rows.Next(){
+			rows.Scan(&pReg, &pKat, &pAng, &pLad)
+		}
+
 		//SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
 		
 		log.Println("Neues Item gespeichert: "+pReg, pKat, pAng, pLad)
