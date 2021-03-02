@@ -174,7 +174,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			Angebot,
 			Laden) values(?, ?, ?, ?)`)
      	
-		addItem.Exec(args: pReg, pKat, pAng, pLad)
+		addItem.Exec(pReg, pKat, pAng, pLad)
 		
 		//SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
 		
