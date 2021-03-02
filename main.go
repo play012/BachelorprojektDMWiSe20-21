@@ -169,22 +169,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		pAng := r.FormValue("Angebot")
 		pLad := r.FormValue("Laden")
 
-
-		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
-			Region,
-			Kategorie,
-			Angebot,
-			Laden) values(?, ?, ?, ?)`)
-     	
-		addItem.Exec(pReg, pKat, pAng, pLad)
-		rows, _ := h.db.Query(`SELECT ID, Region, Kategorie, Angebot, Laden FROM items
-		ORDER BY ID ASC`)
-		
-		for rows.Next(){
-			rows.Scan(&pReg, &pKat, &pAng, &pLad)
-		}
-
-		//SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
+		SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
 		
 		log.Println("Neues Item gespeichert: "+pReg, pKat, pAng, pLad)
 		formTemplate.Execute(w, struct{ Success bool }{true})
@@ -220,7 +205,7 @@ func main() {
 	m.Get("/region/:reg", &RegionHandler{db, ShowItem(db)})
 	m.Get("/merkliste", http.HandlerFunc(ListHandler))
 	m.Get("/formular", &FormHandler{db})
-	m.Post("/formular", &FormHandler{db})
+	m.Post("/formular", &FormHandler{db, SaveItem(db)})
 
 	/* fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs) */
