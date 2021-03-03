@@ -170,7 +170,8 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		pLad := r.FormValue("Laden")
 
 		newItems := []StoreItem{
-			{"Süd", "Essen", "Pizzas dienstags für 7 Euro", "Pizzeria XY in Hünfeld"}
+			{"Süd", "Essen", "Pizzas dienstags für 7 Euro", "Pizzeria XY in Hünfeld"},
+			{pReg, pKat, pAng, pLad},
 		}
 
 		SaveItem(h.db, newItems)
