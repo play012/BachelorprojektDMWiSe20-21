@@ -169,13 +169,14 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		pAng := r.FormValue("Angebot")
 		pLad := r.FormValue("Laden")
 
-		SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
+		
 		
 		log.Println("Neues Item gespeichert: "+pReg, pKat, pAng, pLad)
 		formTemplate.Execute(w, struct{ Success bool }{true})
 	} else {
 		formTemplate.Execute(w, nil)
 	}
+	SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
 }
 
 // NotFoundHandler catches requests for nonexistent routes and redirects to a 404 page
