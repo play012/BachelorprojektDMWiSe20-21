@@ -174,7 +174,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			{pReg, pKat, pAng, pLad},
 		}
 
-		SaveItem(h, newItems)
+		SaveItem(h.db, newItems)
 		
 		log.Println("Neues Item gespeichert: "+pReg, pKat, pAng, pLad)
 		formTemplate.Execute(w, struct{ Success bool }{true})
