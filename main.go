@@ -188,9 +188,8 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 		defer addItem.Close()
 	
-		for _, item := range testItems {
-			addItem.Exec(item.Region, item.Kategorie, item.Angebot, item.Laden)
-		}
+		addItem.Exec(pReg, pKat, pAng, pLad)
+		
 
 		//
 		
