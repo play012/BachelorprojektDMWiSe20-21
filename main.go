@@ -175,6 +175,24 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 
 		SaveItem(h.db, newItems)
+
+		// Test
+		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
+			Region,
+			Kategorie,
+			Angebot,
+			Laden) values(?, ?, ?, ?)`)
+	
+		if err != nil {
+			panic(err)
+		}
+		defer addItem.Close()
+	
+		for _, item := range items {
+			addItem.Exec(item.Region, item.Kategorie, item.Angebot, item.Laden)
+		}
+
+		//
 		
 		log.Println("Neues Item gespeichert: "+pReg, pKat, pAng, pLad)
 		formTemplate.Execute(w, struct{ Success bool }{true})
