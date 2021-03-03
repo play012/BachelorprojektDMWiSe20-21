@@ -177,7 +177,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		SaveItem(h.db, newItems)
 
 		// Test
-		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
+		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO newItems(
 			Region,
 			Kategorie,
 			Angebot,
@@ -188,7 +188,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 		defer addItem.Close()
 	
-		for _, item := range items {
+		for _, item := range newItems {
 			addItem.Exec(item.Region, item.Kategorie, item.Angebot, item.Laden)
 		}
 
