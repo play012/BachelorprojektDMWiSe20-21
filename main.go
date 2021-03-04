@@ -37,6 +37,7 @@ type RegionHandler struct {
 // FormHandler gives database to form for adding new items
 type FormHandler struct {
 	db *sql.DB
+	structItem []StoreItem
 }
 
 // InitDB initializes SQLite Database
@@ -169,7 +170,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		pAng := r.FormValue("Angebot")
 		pLad := r.FormValue("Laden")
 
-		items := []StoreItem{
+		items += []StoreItem{
 			{pReg, pKat, pAng, pLad},
 		}
 
@@ -235,8 +236,8 @@ func main() {
 	m.Get("/", http.HandlerFunc(HomeHandler))
 	m.Get("/region/:reg", &RegionHandler{db, ShowItem(db)})
 	m.Get("/merkliste", http.HandlerFunc(ListHandler))
-	m.Get("/formular", &FormHandler{db})
-	m.Post("/formular", &FormHandler{db})
+	m.Get("/formular", &FormHandler{db, testItems})
+	m.Post("/formular", &FormHandler{db, testItems})
 
 	/* fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs) */
