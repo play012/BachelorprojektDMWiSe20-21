@@ -190,7 +190,7 @@ func (FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	
 		//addItem.Exec(&pReg, &pKat, &pAng, &pLad)
 		addItem.Exec("Süd", "Essen", "Test", "Test")
-		addItem.Commit()
+		
 		rows, _ := db.Query("SELECT Region, Kategorie, Angebot, Laden FROM items")
 		var region string
 		var kategorie string
