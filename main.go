@@ -198,7 +198,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			rows.Scan(&region, &kategorie, &angebot, &laden)
 			log.Println(region +"," + kategorie +"," + angebot +"," + laden)
 		}
-		addItem.Commit()
+		h.db.Commit()
 		
 
 		//
