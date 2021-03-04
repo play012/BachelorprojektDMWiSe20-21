@@ -174,10 +174,10 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			{pReg, pKat, pAng, pLad},
 		}
 
-		SaveItem(h.db, items)
+		//SaveItem(h.db, items)
 
 		// Test
-		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO testItems(
+		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
 			Region,
 			Kategorie,
 			Angebot,
@@ -189,7 +189,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		defer addItem.Close()
 	
 		addItem.Exec(&pReg, &pKat, &pAng, &pLad)
-		rows, _ := h.db.Query("SELECT Region, Kategorie, Angebot, Laden FROM testItems")
+		rows, _ := h.db.Query("SELECT Region, Kategorie, Angebot, Laden FROM items")
 		var region string
 		var kategorie string
 		var angebot string
@@ -198,7 +198,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			rows.Scan(&region, &kategorie, &angebot, &laden)
 			log.Println(region +"," + kategorie +"," + angebot +"," + laden)
 		}
-		h.db.Commit()
+		//h.db.Commit()
 		
 
 		//
