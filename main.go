@@ -160,7 +160,7 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 
 
 // FormHandler gets values from Item Form
-func (FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	formTemplate, _ := template.ParseFiles("static/formular.html")
 	//var testItems  []StoreItem
 	if r.Method == http.MethodPost {
@@ -175,7 +175,7 @@ func (FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		//SaveItem(h.db, items)
 
 		// Test
-		addItem, err := db.Prepare(`INSERT OR REPLACE INTO items(
+		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
 			Region,
 			Kategorie,
 			Angebot,
@@ -189,7 +189,7 @@ func (FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		//addItem.Exec(&pReg, &pKat, &pAng, &pLad)
 		addItem.Exec("Süd", "Essen", "Test", "Test")
 		
-		rows, _ := db.Query("SELECT Region, Kategorie, Angebot, Laden FROM items")
+		rows, _ := h.db.Query("SELECT Region, Kategorie, Angebot, Laden FROM items")
 		var region string
 		var kategorie string
 		var angebot string
