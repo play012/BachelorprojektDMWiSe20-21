@@ -189,7 +189,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		defer addItem.Close()
 	
 		addItem.Exec(pReg, pKat, pAng, pLad)
-		rows, _ := h.db.Query("SELECT Region, Kategorie, Angebot, Laden")
+		rows, _ := h.db.Query("SELECT Region, Kategorie, Angebot, Laden FROM items")
 		var region string
 		var kategorie string
 		var angebot string
