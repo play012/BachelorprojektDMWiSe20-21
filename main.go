@@ -159,7 +159,7 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 
 
 // FormHandler gets values from Item Form
-func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *FormHandler,items []StoreItem) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	formTemplate, _ := template.ParseFiles("static/formular.html")
 
 	if r.Method == http.MethodPost {
@@ -169,11 +169,11 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		pAng := r.FormValue("Angebot")
 		pLad := r.FormValue("Laden")
 
-		newItems := []StoreItem{
+		items := []StoreItem{
 			{pReg, pKat, pAng, pLad},
 		}
 
-		SaveItem(h.db, newItems)
+		SaveItem(h.db, items)
 
 		// Test
 		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
@@ -235,8 +235,8 @@ func main() {
 	m.Get("/", http.HandlerFunc(HomeHandler))
 	m.Get("/region/:reg", &RegionHandler{db, ShowItem(db)})
 	m.Get("/merkliste", http.HandlerFunc(ListHandler))
-	m.Get("/formular", &FormHandler{db})
-	m.Post("/formular", &FormHandler{db})
+	m.Get("/formular", &FormHandler{db,testItems})
+	m.Post("/formular", &FormHandler{db,testItems})
 
 	/* fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs) */
