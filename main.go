@@ -209,6 +209,24 @@ func (h *FormHandler,items []StoreItem) ServeHTTP(w http.ResponseWriter, r *http
 	}
 }
 
+// SaveItem inserts Items into database
+func SaveFormItem(db *sql.DB, items []StoreItem) {
+	addItem, err := db.Prepare(`INSERT OR REPLACE INTO items(
+		Region,
+		Kategorie,
+		Angebot,
+		Laden) values(?, ?, ?, ?)`)
+
+	if err != nil {
+		panic(err)
+	}
+	defer addItem.Close()
+
+	for _, item := range items {
+		addItem.Exec(item.Region, item.Kategorie, item.Angebot, item.Laden)
+	}
+}
+
 // NotFoundHandler catches requests for nonexistent routes and redirects to a 404 page
 func NotFoundHandler(w http.ResponseWriter, req *http.Request) {
 	notFoundTemplate, _ := template.ParseFiles("static/404.html")
@@ -235,8 +253,8 @@ func main() {
 	m.Get("/", http.HandlerFunc(HomeHandler))
 	m.Get("/region/:reg", &RegionHandler{db, ShowItem(db)})
 	m.Get("/merkliste", http.HandlerFunc(ListHandler))
-	m.Get("/formular", &FormHandler{db,testItems})
-	m.Post("/formular", &FormHandler{db,testItems})
+	m.Get("/formular", &FormHandler{db})
+	m.Post("/formular",  http.HandlerFunc(SaveFormItem))
 
 	/* fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs) */
