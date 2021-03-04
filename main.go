@@ -239,8 +239,8 @@ func main() {
 	m.Get("/", http.HandlerFunc(HomeHandler))
 	m.Get("/region/:reg", &RegionHandler{db, ShowItem(db)})
 	m.Get("/merkliste", http.HandlerFunc(ListHandler))
-	m.Get("/formular", &FormHandler{db, testItems})
-	m.Post("/formular", &FormHandler{db, testItems})
+	m.Get("/formular", &FormHandler{db})
+	m.Post("/formular", &FormHandler{db})
 
 	/* fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs) */
