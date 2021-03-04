@@ -170,9 +170,7 @@ func (FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		pAng := r.FormValue("Angebot")
 		pLad := r.FormValue("Laden")
 
-		items := []StoreItem{
-			{pReg, pKat, pAng, pLad},
-		}
+		
 
 		//SaveItem(h.db, items)
 
