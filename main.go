@@ -162,7 +162,7 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 // FormHandler gets values from Item Form
 func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	formTemplate, _ := template.ParseFiles("static/formular.html")
-	var testItems  []StoreItem
+	//var testItems  []StoreItem
 	if r.Method == http.MethodPost {
 		r.ParseForm()
 		pReg := r.FormValue("Region")
@@ -188,7 +188,9 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 		defer addItem.Close()
 	
-		addItem.Exec(&pReg, &pKat, &pAng, &pLad)
+		//addItem.Exec(&pReg, &pKat, &pAng, &pLad)
+		addItem.Exec("Süd", "Essen", "Test", "Test")
+		addItem.Commit()
 		rows, _ := h.db.Query("SELECT Region, Kategorie, Angebot, Laden FROM items")
 		var region string
 		var kategorie string
