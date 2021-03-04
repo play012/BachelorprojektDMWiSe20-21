@@ -164,10 +164,10 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == http.MethodPost {
 		r.ParseForm()
-		var pReg string := r.FormValue("Region")
-		var pKat string := r.FormValue("Kategorie")
-		var pAng string := r.FormValue("Angebot")
-		var pLad string := r.FormValue("Laden")
+		pReg := r.FormValue("Region")
+		pKat := r.FormValue("Kategorie")
+		pAng := r.FormValue("Angebot")
+		pLad := r.FormValue("Laden")
 
 		newItems := []StoreItem{
 			{pReg, pKat, pAng, pLad},
@@ -187,7 +187,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 		defer addItem.Close()
 	
-		addItem.Exec(pReg, pKat, pAng, pLad)
+		addItem.Exec(&pReg, &pKat, &pAng, &pLad)
 		rows, _ := h.db.Query("SELECT Region, Kategorie, Angebot, Laden FROM items")
 		var region string
 		var kategorie string
