@@ -189,6 +189,16 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		defer addItem.Close()
 	
 		addItem.Exec(pReg, pKat, pAng, pLad)
+		rows, _ :=("SELECT Region, Kategorie, Angebot, Laden")
+		var region string
+		var kategorie string
+		var angebot string
+		var laden string
+		for rows.Next() {
+			rows.Scan(&region, &kategorie, &angebot, &laden)
+			log.Println(region +"," + kategorie +"," + angebot +"," + laden)
+		}
+
 		
 
 		//
