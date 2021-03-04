@@ -37,7 +37,7 @@ type RegionHandler struct {
 // FormHandler gives database to form for adding new items
 type FormHandler struct {
 	db *sql.DB
-	structItem []StoreItem
+	
 }
 
 // InitDB initializes SQLite Database
@@ -160,7 +160,7 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 
 
 // FormHandler gets values from Item Form
-func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	formTemplate, _ := template.ParseFiles("static/formular.html")
 	//var testItems  []StoreItem
 	if r.Method == http.MethodPost {
@@ -177,7 +177,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		//SaveItem(h.db, items)
 
 		// Test
-		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
+		addItem, err := db.Prepare(`INSERT OR REPLACE INTO items(
 			Region,
 			Kategorie,
 			Angebot,
@@ -191,7 +191,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		//addItem.Exec(&pReg, &pKat, &pAng, &pLad)
 		addItem.Exec("Süd", "Essen", "Test", "Test")
 		addItem.Commit()
-		rows, _ := h.db.Query("SELECT Region, Kategorie, Angebot, Laden FROM items")
+		rows, _ := db.Query("SELECT Region, Kategorie, Angebot, Laden FROM items")
 		var region string
 		var kategorie string
 		var angebot string
@@ -218,6 +218,7 @@ func NotFoundHandler(w http.ResponseWriter, req *http.Request) {
 	notFoundTemplate.Execute(w, nil)
 }
 
+var db *sql.DB
 func main() {
 	db := InitDB()
 	defer db.Close()
