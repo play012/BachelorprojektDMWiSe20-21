@@ -136,6 +136,10 @@ nav ul li a:hover {
     color: black;
 }
 
+#burgerbutton:checked ~ ul {
+    display: block;
+}
+
 #noItemsStored {
     display: none;
 }
