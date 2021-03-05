@@ -9,6 +9,18 @@
     </head>
 
     <body>
+        <nav>
+            <input type="checkbox" id="burgerbutton" />
+            <label for="burgerbutton" class="burgerimage" title="Navigation">&#x2630;</label>
+            <ul>
+              <li><a href="/region/Nord" title="Nord">Link</a></li>
+              <li><a href="/region/Süd" title="Süd">Link</a></li>
+              <li><a href="/region/West" title="West">Link</a></li>
+              <li><a href="/formular" title="Formular">Link</a></li>
+              <li><a href="/impressum" title="Impressum">Link</a></li>
+            </ul>
+        </nav>
+        
         {{ if eq .Region "Nord" }}
             <a href="/"><h1 class="north">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
         {{ else if eq .Region "Süd"}}
