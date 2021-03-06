@@ -162,7 +162,7 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 // FormHandler gets values from Item Form
 func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	formTemplate, _ := template.ParseFiles("static/formular.html")
-	//var testItems  []StoreItem
+	
 	if r.Method == http.MethodPost {
 		r.ParseForm()
 		pReg := r.FormValue("Region")
@@ -171,8 +171,6 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		pLad := r.FormValue("Laden")
 
 		
-
-		//SaveItem(h.db, items)
 		SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
 		// Test
 		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
