@@ -216,7 +216,7 @@ func NotFoundHandler(w http.ResponseWriter, req *http.Request) {
 	notFoundTemplate.Execute(w, nil)
 }
 
-var db *sql.DB
+//var db *sql.DB
 
 func main() {
 	db := InitDB()
@@ -246,7 +246,7 @@ func main() {
 	if erro != nil {
 		panic(erro)
 	}
-	//defer addItem.Close()
+	defer addItem.Close()
 	for _, item := range items {
 		addItem.Exec(item.Region, item.Kategorie, item.Angebot, item.Laden)
 	}
