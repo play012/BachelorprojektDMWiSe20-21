@@ -173,13 +173,13 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		
 
 		//SaveItem(h.db, items)
-
+		SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
 		// Test
 		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
 			Region,
 			Kategorie,
 			Angebot,
-			Laden) VALUES (1, 2, 3, 4);`)
+			Laden) VALUES (?, ?, ?, ?);`)
 	
 		if err != nil {
 			panic(err)
