@@ -232,20 +232,26 @@ func main() {
 	}
 
 	SaveItem(db, testItems)
-
+	//TEST
+	items := []StoreItem{
+		{"Süd", "Essen", "1", "2"},
+		
+	}
 	addItem, erro := db.Prepare(`INSERT OR REPLACE INTO items(
 		Region,
 		Kategorie,
 		Angebot,
-		Laden) VALUES (1, 2, 3, 4);`)
+		Laden) VALUES (?, ?, ?, ?)`)
 
 	if erro != nil {
 		panic(erro)
 	}
-	defer addItem.Close()
-
-	//addItem.Exec(&pReg, &pKat, &pAng, &pLad)
-	addItem.Exec("Süd", "Essen", "Test", "Test")
+	//defer addItem.Close()
+	for _, item := range items {
+		addItem.Exec(item.Region, item.Kategorie, item.Angebot, item.Laden)
+	}
+	
+	// ----------------
 
 	m := pat.New()
 	m.NotFound = http.HandlerFunc(NotFoundHandler)
