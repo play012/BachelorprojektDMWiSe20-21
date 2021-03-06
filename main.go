@@ -42,31 +42,29 @@ type FormHandler struct {
 
 // InitDB initializes SQLite Database
 func InitDB()  {
-	db, err := sql.Open("sqlite3", "./angebote.db")
-
-	if err != nil {
-		panic(err)
-	}
-
-	if db == nil {
-		panic("db nil")
-	}
+	sqlStmt := `CREATE TABLE IF NOT EXISTS items(
+		ID INTEGER PRIMARY KEY AUTOINCREMENT,
+		Region TEXT,
+		Kategorie TEXT,
+		Angebot TEXT,
+		Laden TEXT);
+	`
+	CreateTable(sqlstmt)
 
 	
 }
 
 // CreateTable if not exists
-func CreateTable(db *sql.DB) {
-	// AUTOINCREMENT creates own IDs as primary keys
-	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS items(
-		ID INTEGER PRIMARY KEY AUTOINCREMENT,
-		Region TEXT,
-		Kategorie TEXT,
-		Angebot TEXT,
-		Laden TEXT);`)
-
-	if err != nil {
+func CreateTable(sqlstmt string) {
+	
+ 
+	 db, err := sql.Open("sqlite3", "./angebote.db")
+	 if err != nil {
 		panic(err)
+	}
+
+	if db == nil {
+		panic("db nil")
 	}
 }
 
@@ -221,7 +219,7 @@ var db *sql.DB
 func main() {
 	InitDB()
 	//defer db.Close()
-	CreateTable(db)
+	
 
 	testItems := []StoreItem{
 		{"Nord", "Essen", "Pizzas dienstags für 7 Euro", "Pizzeria XY in Hünfeld"},
