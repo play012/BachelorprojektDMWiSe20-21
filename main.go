@@ -49,17 +49,19 @@ func InitDB()  {
 		Angebot TEXT,
 		Laden TEXT);
 	`
-	CreateTable(sqlstmt)
+	CreateTable(sqlStmt)
 
 	
 }
 
 // CreateTable if not exists
-func CreateTable(sqlstmt string) {
+func CreateTable(sqlStmt string) {
 	
  
 	 db, err := sql.Open("sqlite3", "./angebote.db")
+	 _, err = db.Exec(sqlStmt)
 	 if err != nil {
+		 
 		panic(err)
 	}
 
