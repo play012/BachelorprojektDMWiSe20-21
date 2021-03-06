@@ -233,6 +233,20 @@ func main() {
 
 	SaveItem(db, testItems)
 
+	addItem, err := db.Prepare(`INSERT OR REPLACE INTO items(
+		Region,
+		Kategorie,
+		Angebot,
+		Laden) VALUES (1, 2, 3, 4);`)
+
+	if err != nil {
+		panic(err)
+	}
+	defer addItem.Close()
+
+	//addItem.Exec(&pReg, &pKat, &pAng, &pLad)
+	addItem.Exec("Süd", "Essen", "Test", "Test")
+
 	m := pat.New()
 	m.NotFound = http.HandlerFunc(NotFoundHandler)
 	m.Get("/", http.HandlerFunc(HomeHandler))
