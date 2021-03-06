@@ -58,7 +58,7 @@ func InitDB() *sql.DB {
 // CreateTable if not exists
 func CreateTable(db *sql.DB) {
 	// AUTOINCREMENT creates own IDs as primary keys
-	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS items(
+	_, err := db.Exec(`CREATE OR REPLACE TABLE items(
 		ID INTEGER PRIMARY KEY AUTOINCREMENT,
 		Region TEXT,
 		Kategorie TEXT,
