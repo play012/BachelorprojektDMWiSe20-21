@@ -1,4 +1,4 @@
-package main
+package main2
 
 import (
 	"database/sql"
@@ -41,37 +41,37 @@ type FormHandler struct {
 }
 
 // InitDB initializes SQLite Database
-func InitDB()  {
-	sqlStmt := `CREATE TABLE IF NOT EXISTS items(
-		ID INTEGER PRIMARY KEY AUTOINCREMENT,
-		Region TEXT,
-		Kategorie TEXT,
-		Angebot TEXT,
-		Laden TEXT);
-	`
-	CreateTable(sqlStmt)
+func InitDB() *sql.DB {
+	db, err := sql.Open("sqlite3", "./angebote.db")
 
-	
-}
-
-// CreateTable if not exists
-func CreateTable(sqlStmt string) {
-	
- 
-	 db, err := sql.Open("sqlite3", "./angebote.db")
-	 _, err = db.Exec(sqlStmt)
-	 if err != nil {
-		 
+	if err != nil {
 		panic(err)
 	}
 
 	if db == nil {
 		panic("db nil")
 	}
+
+	return db
+}
+
+// CreateTable if not exists
+func CreateTable(db *sql.DB) {
+	// AUTOINCREMENT creates own IDs as primary keys
+	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS items(
+		ID INTEGER PRIMARY KEY AUTOINCREMENT,
+		Region TEXT,
+		Kategorie TEXT,
+		Angebot TEXT,
+		Laden TEXT);`)
+
+	if err != nil {
+		panic(err)
+	}
 }
 
 // SaveItem inserts Items into database
-func SaveItem(items []StoreItem) {
+func SaveItem(db *sql.DB, items []StoreItem) {
 	addItem, err := db.Prepare(`INSERT OR REPLACE INTO items(
 		Region,
 		Kategorie,
@@ -172,7 +172,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 		
 
-		//SaveItem(h.db, items)
+		SaveItem(h.db, items)
 
 		// Test
 		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
@@ -196,7 +196,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		var laden string
 		for rows.Next() {
 			rows.Scan(&region, &kategorie, &angebot, &laden)
-			//log.Println(region +"," + kategorie +"," + angebot +"," + laden)
+			log.Println(region +"," + kategorie +"," + angebot +"," + laden)
 		}
 		
 		
@@ -216,12 +216,12 @@ func NotFoundHandler(w http.ResponseWriter, req *http.Request) {
 	notFoundTemplate.Execute(w, nil)
 }
 
-var db *sql.DB
+//var db *sql.DB
 
 func main() {
-	InitDB()
-	//defer db.Close()
-	
+	db := InitDB()
+	defer db.Close()
+	CreateTable(db)
 
 	testItems := []StoreItem{
 		{"Nord", "Essen", "Pizzas dienstags für 7 Euro", "Pizzeria XY in Hünfeld"},
@@ -231,7 +231,7 @@ func main() {
 		{"West", "Kleidung", "10€ Rabatt auf alle Jacken", "Klamottenladen 2 in Fulda"},
 	}
 
-	SaveItem(testItems)
+	SaveItem(db, testItems)
 
 	m := pat.New()
 	m.NotFound = http.HandlerFunc(NotFoundHandler)
