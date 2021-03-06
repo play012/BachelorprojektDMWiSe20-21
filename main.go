@@ -219,7 +219,7 @@ func NotFoundHandler(w http.ResponseWriter, req *http.Request) {
 var db *sql.DB
 
 func main() {
-	db = InitDB()
+	InitDB()
 	defer db.Close()
 	CreateTable(db)
 
