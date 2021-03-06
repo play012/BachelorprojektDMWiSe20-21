@@ -41,7 +41,7 @@ type FormHandler struct {
 }
 
 // InitDB initializes SQLite Database
-func InitDB() *sql.DB {
+func InitDB()  {
 	db, err := sql.Open("sqlite3", "./angebote.db")
 
 	if err != nil {
@@ -52,7 +52,7 @@ func InitDB() *sql.DB {
 		panic("db nil")
 	}
 
-	return db
+	
 }
 
 // CreateTable if not exists
@@ -71,7 +71,7 @@ func CreateTable(db *sql.DB) {
 }
 
 // SaveItem inserts Items into database
-func SaveItem(db *sql.DB, items []StoreItem) {
+func SaveItem(items []StoreItem) {
 	addItem, err := db.Prepare(`INSERT OR REPLACE INTO items(
 		Region,
 		Kategorie,
@@ -219,7 +219,7 @@ func NotFoundHandler(w http.ResponseWriter, req *http.Request) {
 var db *sql.DB
 
 func main() {
-	db := InitDB()
+	db = InitDB()
 	defer db.Close()
 	CreateTable(db)
 
@@ -231,7 +231,7 @@ func main() {
 		{"West", "Kleidung", "10€ Rabatt auf alle Jacken", "Klamottenladen 2 in Fulda"},
 	}
 
-	SaveItem(db, testItems)
+	SaveItem(testItems)
 
 	m := pat.New()
 	m.NotFound = http.HandlerFunc(NotFoundHandler)
