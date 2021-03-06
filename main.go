@@ -172,7 +172,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 		
 
-		SaveItem(h.db, items)
+		//SaveItem(h.db, items)
 
 		// Test
 		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
