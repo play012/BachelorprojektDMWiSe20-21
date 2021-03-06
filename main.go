@@ -216,7 +216,7 @@ func NotFoundHandler(w http.ResponseWriter, req *http.Request) {
 	notFoundTemplate.Execute(w, nil)
 }
 
-//var db *sql.DB
+var db *sql.DB
 
 func main() {
 	db := InitDB()
