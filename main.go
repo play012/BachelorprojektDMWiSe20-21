@@ -220,7 +220,7 @@ var db *sql.DB
 
 func main() {
 	InitDB()
-	defer db.Close()
+	//defer db.Close()
 	CreateTable(db)
 
 	testItems := []StoreItem{
