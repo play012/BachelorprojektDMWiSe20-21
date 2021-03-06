@@ -233,13 +233,13 @@ func main() {
 
 	SaveItem(db, testItems)
 
-	addItem, err := db.Prepare(`INSERT OR REPLACE INTO items(
+	addItem, erro := db.Prepare(`INSERT OR REPLACE INTO items(
 		Region,
 		Kategorie,
 		Angebot,
 		Laden) VALUES (1, 2, 3, 4);`)
 
-	if err != nil {
+	if erro != nil {
 		panic(err)
 	}
 	defer addItem.Close()
