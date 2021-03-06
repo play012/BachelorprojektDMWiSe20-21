@@ -179,7 +179,7 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			Region,
 			Kategorie,
 			Angebot,
-			Laden) values(?, ?, ?, ?)`)
+			Laden) VALUES (1, 2, 3, 4);`)
 	
 		if err != nil {
 			panic(err)
