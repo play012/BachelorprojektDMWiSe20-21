@@ -240,7 +240,7 @@ func main() {
 		Laden) VALUES (1, 2, 3, 4);`)
 
 	if erro != nil {
-		panic(err)
+		panic(erro)
 	}
 	defer addItem.Close()
 
