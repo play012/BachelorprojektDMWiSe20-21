@@ -228,7 +228,7 @@ func main() {
 		{"West", "Kleidung", "Sale bis 50% auf T-Shirts", "Klamottenladen in Fulda"},
 		{"Nord", "Technik", "USB-C Kabel für nur 2,99€", "Tech Shop in Petersberg"},
 		{"West", "Essen", "Große Waffeln - 4€", "Waffelladen in Fulda"},
-		{"Süd", "Kleidung", "10€ Rabatt auf alle Jacken", "Klamottenladen 2 in Fulda"},
+		{"Süd", "Kleidung", "50€ Rabatt auf alle Jacken", "Klamottenladen 2 in Fulda"},
 	}
 
 	SaveItem(db, testItems)
