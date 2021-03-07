@@ -6,50 +6,66 @@
         <link rel="stylesheet" href="/static/styles.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="/static/index.js"></script>
     </head>
 
     <body>
-        <nav>
-            <input type="checkbox" id="burgerbutton" />
-            <label for="burgerbutton" class="burgerimage" title="Navigation">&#x2630;</label>
-            <ul>
-              <li><a href="/region/Nord" title="Nord">Fulda Nord</a></li>
-              <li><a href="/region/Süd" title="Süd">Fulda Süd</a></li>
-              <li><a href="/region/West" title="West">Fulda West</a></li>
-              <li><a href="/formular" title="Formular">Angebot hinzufügen</a></li>
-              <li><a class="li-round" href="/impressum" title="Impressum">Impressum</a></li>
-            </ul>
-        </nav>
+        <div class="header">
+            <nav>
+                <input type="checkbox" id="burgerbutton" onclick="changeUlDisplay()"/>
+                <label for="burgerbutton" id="navIcon" class="burgerimage" title="Navigation">&#x2630;</label>
+            </nav>
         
-        {{ if eq .Region "Nord" }}
-            <a href="/"><h1 class="north">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
-        {{ else if eq .Region "Süd"}}
-            <a href="/"><h1 class="south">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
-        {{ else }}
-            <a href="/"><h1 class="west">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
-        {{ end }}
+            {{ if eq .Region "Nord" }}
+                <a href="/"><h1 class="north">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
+            {{ else if eq .Region "Süd"}}
+                <a href="/"><h1 class="south">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
+            {{ else }}
+                <a href="/"><h1 class="west">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
+            {{ end }}
+        </div>
+        <ul id="navList" style="display: none;">
+            {{ if eq .Region "Nord" }}
+                <li><a href="/region/Süd" title="Süd" class="north">Fulda Süd</a></li>
+                <li><a href="/region/West" title="West" class="north">Fulda West</a></li>
+                <li><a href="/formular" title="Formular" class="north">Angebot hinzufügen</a></li>
+                <li><a href="/impressum" title="Impressum" class="north">Impressum</a></li>
+            {{ else if eq .Region "Süd"}}
+                <li><a href="/region/Nord" title="Nord" class="south">Fulda Nord</a></li>
+                <li><a href="/region/West" title="West" class="south">Fulda West</a></li>
+                <li><a href="/formular" title="Formular" class="south">Angebot hinzufügen</a></li>
+                <li><a href="/impressum" title="Impressum" class="south">Impressum</a></li>
+            {{ else if eq .Region "West"}}
+                <li><a href="/region/Nord" title="Nord" class="west">Fulda Nord</a></li>
+                <li><a href="/region/Süd" title="Süd" class="west">Fulda Süd</a></li>
+                <li><a href="/formular" title="Formular" class="west">Angebot hinzufügen</a></li>
+                <li><a href="/impressum" title="Impressum" class="west">Impressum</a></li>
+            {{ else }}
+                <li><a href="/region/Nord" title="Nord" class="west">Fulda Nord</a></li>
+                <li><a href="/region/Süd" title="Süd" class="west">Fulda Süd</a></li>
+                <li><a href="/region/West" title="West" class="west">Fulda West</a></li>
+                <li><a href="/formular" title="Formular" class="west">Angebot hinzufügen</a></li>
+                <li><a href="/impressum" title="Impressum" class="west">Impressum</a></li>
+            {{ end }}
+        </ul>
 
         {{ if not .RegionItems}}
             <p>Aktuell sind hier keine Angebote.</p>
         {{ else }}
-			<div class= "wrapSortFormFilter">
-					<form id="sortForm" method="get">
-						<select name="sort" id="sortSelect" onchange="submitForm()">
-								<option value="newest" {{ if eq .Sort "newest" }}selected{{ end }}>neueste zuerst</option>
-								<option value="oldest" {{ if eq .Sort "oldest" }}selected{{ end }}>älteste zuerst</option>
-						</select>
-					</form>
-			
-				<div id="filter">
-					<input id="filterClothing" type="checkbox" onchange="checkFilters()">
-					<label for="filterClothing" class="checkboxclothing"></label>
-					<input id="filterTech" type="checkbox" onchange="checkFilters()">
-					<label for="filterTech" class="checkboxtech"></label>
-					<input id="filterFood" type="checkbox" onchange="checkFilters()">
-					<label for="filterFood" class="checkboxfood"></label>
-				</div>
-			</div>
-
+            <div id="filter">
+                <input id="filterClothing" type="checkbox" onchange="checkFilters()">
+                <label for="filterClothing" class="checkboxclothing"></label>
+                <input id="filterTech" type="checkbox" onchange="checkFilters()">
+                <label for="filterTech" class="checkboxtech"></label>
+                <input id="filterFood" type="checkbox" onchange="checkFilters()">
+                <label for="filterFood" class="checkboxfood"></label>
+                <form id="sortForm" method="get">
+                    <select name="sort" id="sortSelect" onchange="submitForm()">
+                            <option value="newest" {{ if eq .Sort "newest" }}selected{{ end }}>neueste zuerst</option>
+                            <option value="oldest" {{ if eq .Sort "oldest" }}selected{{ end }}>älteste zuerst</option>
+                    </select>
+                </form>
+            </div>
 
             {{ range $i, $item := .RegionItems }}
                 <div class="item{{ $item.Kategorie }}">

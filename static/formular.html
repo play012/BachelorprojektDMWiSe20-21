@@ -5,25 +5,27 @@
 
         <link rel="icon" href="/static/favicon.ico">
         <link rel="stylesheet" href="/static/styles.css">
-		<link rel="stylesheet" href="/static/styleFormular.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
-        
+        <script type="text/javascript" src="/static/index.js"></script>
     </head>
 
     <body>
-        <nav>
-            <input type="checkbox" id="burgerbutton" />
-            <label for="burgerbutton" class="burgerimage" title="Navigation">&#x2630;</label>
-            <ul>
-              <li><a href="/region/Nord" title="Nord">Fulda Nord</a></li>
-              <li><a href="/region/Süd" title="Süd">Fulda Süd</a></li>
-              <li><a href="/region/West" title="West">Fulda West</a></li>
-              <li><a href="/formular" title="Formular">Angebot hinzufügen</a></li>
-              <li><a class="li-round" href="/impressum" title="Impressum">Impressum</a></li>
-            </ul>
-          </nav>
-        <a href="/"><h1 class="west">Angebot hinzufügen</h1></a>
+        <div class="header">
+			<nav>
+                <input type="checkbox" id="burgerbutton" onclick="changeUlDisplay()"/>
+                <label for="burgerbutton" id="navIcon" class="burgerimage" title="Navigation">&#x2630;</label>
+            </nav>
+
+			<a href="/"><h1 class="west">Angebot hinzufügen</h1></a>
+		</div>
+
+        <ul id="navList" style="display: none;">
+            <li><a href="/region/Nord" title="Nord" class="west">Fulda Nord</a></li>
+            <li><a href="/region/Süd" title="Süd" class="west">Fulda Süd</a></li>
+            <li><a href="/region/West" title="West" class="west">Fulda West</a></li>
+            <li><a href="/impressum" title="Impressum" class="west">Impressum</a></li>
+        </ul>
         
         {{if .Success}}
             <p>Vielen Dank für das Einreichen eines Angebots!</p>

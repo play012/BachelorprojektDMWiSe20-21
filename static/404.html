@@ -3,21 +3,26 @@
     <head>
         <title>Local Shopping Fulda</title>
         <link rel="stylesheet" href="/static/styles.css">
+        <script type="text/javascript" src="/static/index.js"></script>
     </head>
 
     <body>
+      <div class="header">
         <nav>
-            <input type="checkbox" id="burgerbutton" />
-            <label for="burgerbutton" class="burgerimage" title="Navigation">&#x2630;</label>
-            <ul>
-              <li><a href="/region/Nord" title="Nord">Link</a></li>
-              <li><a href="/region/Süd" title="Süd">Link</a></li>
-              <li><a href="/region/West" title="West">Link</a></li>
-              <li><a href="/formular" title="Formular">Link</a></li>
-              <li><a href="/impressum" title="Impressum">Link</a></li>
-            </ul>
-          </nav>
+          <input type="checkbox" id="burgerbutton" onclick="changeUlDisplay()"/>
+          <label for="burgerbutton" id="navIcon" class="burgerimage" title="Navigation">&#x2630;</label>
+        </nav>
+  
         <a href="/"><h1 class="west">404</h1></a>
-        <p>Seite wurde nicht gefunden</p>
+      </div>
+  
+      <ul id="navList" style="display: none;">
+        <li><a href="/region/Nord" title="Nord" class="west">Fulda Nord</a></li>
+        <li><a href="/region/Süd" title="Süd" class="west">Fulda Süd</a></li>
+        <li><a href="/region/West" title="West" class="west">Fulda West</a></li>
+        <li><a href="/impressum" title="Impressum" class="west">Impressum</a></li>
+      </ul>
+
+      <p>Seite wurde nicht gefunden</p>
     </body>
 </html>
