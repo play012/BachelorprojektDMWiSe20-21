@@ -160,8 +160,8 @@ nav ul li a:hover {
     }
 }
 
-/*-------------------------------------------max-width: 500 !!!-----------------------------------*/
-@media screen and (max-width: 500px) {
+/*-------------------------------------------max-width: 700 !!!-----------------------------------*/
+@media screen and (max-width: 700px) {
     .imageMapSmall {
         display: block;
     }
@@ -197,7 +197,7 @@ nav ul li a:hover {
 		height: 50px;	
 	}
 	
-	.itemTechnik {
+	.itemTechnik.itemEssen.itemKleidung {
 		margin: 10px;
 		margin-left: 0px;
 		margin-right: 0px;
