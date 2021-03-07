@@ -475,6 +475,7 @@ form {
 	.wrapSortFormFilter {
 		display: block;
 		width: 90%;
+		margin-top: 20px;
 	}
 	
 	#sortSelect {
