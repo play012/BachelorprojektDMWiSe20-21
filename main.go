@@ -37,6 +37,7 @@ type RegionHandler struct {
 // FormHandler gives database to form for adding new items
 type FormHandler struct {
 	db *sql.DB
+	
 }
 
 // InitDB initializes SQLite Database
@@ -57,7 +58,7 @@ func InitDB() *sql.DB {
 // CreateTable if not exists
 func CreateTable(db *sql.DB) {
 	// AUTOINCREMENT creates own IDs as primary keys
-	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS items(
+	_, err := db.Exec(`DROP TABLE IF EXISTS items; CREATE TABLE items(
 		ID INTEGER PRIMARY KEY AUTOINCREMENT,
 		Region TEXT,
 		Kategorie TEXT,
@@ -190,10 +191,12 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 	listTemplate.Execute(w, nil)
 }
 
+
+
 // FormHandler gets values from Item Form
 func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	formTemplate, _ := template.ParseFiles("static/formular.html")
-
+	
 	if r.Method == http.MethodPost {
 		r.ParseForm()
 		pReg := r.FormValue("Region")
@@ -201,7 +204,37 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		pAng := r.FormValue("Angebot")
 		pLad := r.FormValue("Laden")
 
+		
 		SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
+		// Test
+		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
+			Region,
+			Kategorie,
+			Angebot,
+			Laden) VALUES (?, ?, ?, ?);`)
+	
+		if err != nil {
+			panic(err)
+		}
+		defer addItem.Close()
+	
+		//addItem.Exec(&pReg, &pKat, &pAng, &pLad)
+		addItem.Exec("Süd", "Essen", "Test", "Test")
+		
+		rows, _ := h.db.Query("SELECT Region, Kategorie, Angebot, Laden FROM items")
+		var region string
+		var kategorie string
+		var angebot string
+		var laden string
+		for rows.Next() {
+			rows.Scan(&region, &kategorie, &angebot, &laden)
+			log.Println(region +"," + kategorie +"," + angebot +"," + laden)
+		}
+		
+		
+
+		//
+		
 		log.Println("Neues Item gespeichert: "+pReg, pKat, pAng, pLad)
 		formTemplate.Execute(w, struct{ Success bool }{true})
 	} else {
@@ -215,6 +248,8 @@ func NotFoundHandler(w http.ResponseWriter, req *http.Request) {
 	notFoundTemplate.Execute(w, nil)
 }
 
+//var db *sql.DB
+
 func main() {
 	db := InitDB()
 	defer db.Close()
@@ -225,10 +260,30 @@ func main() {
 		{"West", "Kleidung", "Sale bis 50% auf T-Shirts", "Klamottenladen in Fulda"},
 		{"Nord", "Technik", "USB-C Kabel für nur 2,99€", "Tech Shop in Petersberg"},
 		{"West", "Essen", "Große Waffeln - 4€", "Waffelladen in Fulda"},
-		{"West", "Kleidung", "10€ Rabatt auf alle Jacken", "Klamottenladen 2 in Fulda"},
+		{"Süd", "Kleidung", "50€ Rabatt auf alle Jacken", "Klamottenladen 2 in Fulda"},
 	}
 
 	SaveItem(db, testItems)
+	//TEST
+	items := []StoreItem{
+		{"Süd", "Essen", "1", "2"},
+		
+	}
+	addItem, erro := db.Prepare(`INSERT OR REPLACE INTO items(
+		Region,
+		Kategorie,
+		Angebot,
+		Laden) VALUES (?, ?, ?, ?)`)
+
+	if erro != nil {
+		panic(erro)
+	}
+	defer addItem.Close()
+	for _, item := range items {
+		addItem.Exec(item.Region, item.Kategorie, item.Angebot, item.Laden)
+	}
+	
+	// ----------------
 
 	m := pat.New()
 	m.NotFound = http.HandlerFunc(NotFoundHandler)
