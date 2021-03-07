@@ -9,6 +9,18 @@
     </head>
 
     <body>
+        <nav>
+            <input type="checkbox" id="burgerbutton" />
+            <label for="burgerbutton" class="burgerimage" title="Navigation">&#x2630;</label>
+            <ul>
+              <li><a href="/region/Nord" title="Nord">Fulda Nord</a></li>
+              <li><a href="/region/Süd" title="Süd">Fulda Süd</a></li>
+              <li><a href="/region/West" title="West">Fulda West</a></li>
+              <li><a href="/formular" title="Formular">Angebot hinzufügen</a></li>
+              <li><a class="li-round" href="/impressum" title="Impressum">Impressum</a></li>
+            </ul>
+        </nav>
+        
         {{ if eq .Region "Nord" }}
             <a href="/"><h1 class="north">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
         {{ else if eq .Region "Süd"}}
@@ -17,18 +29,28 @@
             <a href="/"><h1 class="west">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
         {{ end }}
 
-        <div id="filter">
-            <input id="filterClothing" type="checkbox" onchange="checkFilters()">
-            <label for="filterClothing" class="checkboxclothing"></label>
-            <input id="filterTech" type="checkbox" onchange="checkFilters()">
-            <label for="filterTech" class="checkboxtech"></label>
-            <input id="filterFood" type="checkbox" onchange="checkFilters()">
-            <label for="filterFood" class="checkboxfood"></label>
-        </div>
-
         {{ if not .RegionItems}}
             <p>Aktuell sind hier keine Angebote.</p>
         {{ else }}
+			<div class= "wrapSortFormFilter">
+					<form id="sortForm" method="get">
+						<select name="sort" id="sortSelect" onchange="submitForm()">
+								<option value="newest" {{ if eq .Sort "newest" }}selected{{ end }}>neueste zuerst</option>
+								<option value="oldest" {{ if eq .Sort "oldest" }}selected{{ end }}>älteste zuerst</option>
+						</select>
+					</form>
+			
+				<div id="filter">
+					<input id="filterClothing" type="checkbox" onchange="checkFilters()">
+					<label for="filterClothing" class="checkboxclothing"></label>
+					<input id="filterTech" type="checkbox" onchange="checkFilters()">
+					<label for="filterTech" class="checkboxtech"></label>
+					<input id="filterFood" type="checkbox" onchange="checkFilters()">
+					<label for="filterFood" class="checkboxfood"></label>
+				</div>
+			</div>
+
+
             {{ range $i, $item := .RegionItems }}
                 <div class="item{{ $item.Kategorie }}">
                     <div class="imgWrapper">

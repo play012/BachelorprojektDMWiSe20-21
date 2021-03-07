@@ -5,35 +5,64 @@
 
         <link rel="icon" href="/static/favicon.ico">
         <link rel="stylesheet" href="/static/styles.css">
+		<link rel="stylesheet" href="/static/styleFormular.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
         
     </head>
 
     <body>
+        <nav>
+            <input type="checkbox" id="burgerbutton" />
+            <label for="burgerbutton" class="burgerimage" title="Navigation">&#x2630;</label>
+            <ul>
+              <li><a href="/region/Nord" title="Nord">Fulda Nord</a></li>
+              <li><a href="/region/Süd" title="Süd">Fulda Süd</a></li>
+              <li><a href="/region/West" title="West">Fulda West</a></li>
+              <li><a href="/formular" title="Formular">Angebot hinzufügen</a></li>
+              <li><a class="li-round" href="/impressum" title="Impressum">Impressum</a></li>
+            </ul>
+          </nav>
         <a href="/"><h1 class="west">Angebot hinzufügen</h1></a>
         
         {{if .Success}}
             <p>Vielen Dank für das Einreichen eines Angebots!</p>
-        {{else}}
-            <form action="/formular" method="Post" class="formular">
-                <select name="Region" class="formular">
-                    <option value="Nord">Nord</option>
-                    <option value="West">West</option>
-                    <option value="Süd">Süd</option>
-                </select>
-                <select name="Kategorie" class="formular">
-                    <option value="Essen">Essen</option>
-                    <option value="Kleidung">Kleidung</option>
-                    <option value="Technik">Technik</option>
-                </select>
-                <div class="add">
-                    <input type="text" name="Angebot" placeholder="Angebot" />
-                    <input type="text" name="Laden" placeholder="Laden" />
-                    
-                </div>
-                <input type="submit" value="Angebot hochladen" class="formular">
+
+            <form action="/formular" method="get" id="postBtnForm">
+                <button id="newPostBtn">Ein weiteres Angebot posten</button>
             </form>
+        {{else}}
+			<!--Formwrapper Div 	formWrapper-->
+			<div class="formWrapper">
+				<form action="/formular" method="post">
+			
+					<!--selection-->
+					<select class="selection" name="Region">
+						<option value="Nord">Nord</option>
+						<option value="West">West</option>
+						<option value="Süd">Süd</option>
+					</select>
+					
+					<!--selection-->
+					<select class="selection" name="Kategorie" >
+						<option value="Essen">Essen</option>
+						<option value="Kleidung">Kleidung</option>
+						<option value="Technik">Technik</option>
+					</select>
+					
+					<br>
+					
+					<!--Textfelder	textfield-->
+					<input class="textfield" type="text" name="Angebot" placeholder="Angebot" />
+					<input class="textfield" type="text" name="Laden" placeholder="Laden" />
+					
+					<br>
+					
+					<!--Send Button		send-->
+					<input id="send" type="submit" value="Angebot hochladen">
+					
+				</form>
+			</div>
         {{end}}
     </body>
 </html>

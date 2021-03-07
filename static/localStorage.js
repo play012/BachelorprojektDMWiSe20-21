@@ -83,3 +83,7 @@ function clearAllItems() {
     localStorage.clear();
     document.location.reload();
 }
+
+function submitForm() {
+    document.getElementById("sortForm").submit();
+}
