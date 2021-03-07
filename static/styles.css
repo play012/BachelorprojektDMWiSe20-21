@@ -180,6 +180,38 @@ area {
     display: none;
 }
 
+#sortSelect {
+    appearance: none;
+    margin: 10px;
+    height: 100px;
+    width: 300px;
+    outline: none;
+    border: 1px solid;
+    border-radius: 100px;
+    background-color: transparent;
+    cursor: default;
+    text-align-last: center;
+    font-family: "Lemon Milk";
+    font-size: 22px;
+    user-select: none;
+    transition: background-color 0.5s;
+}
+
+
+#sortForm {
+	margin-left: auto;
+	margin-right: auto;
+	width: 320px;
+}
+
+#sortSelect:hover {
+    background-color: rgb(200, 255, 255);
+}
+
+.wrapSortFormFilter {
+		display: flex;
+}
+
 .checkboxclothing{
     flex: 1;
     margin: 10px;
@@ -381,26 +413,7 @@ form {
     background-color: rgb(200, 255, 200);
 }
 
-#sortSelect {
-    appearance: none;
-    margin: 10px;
-    height: 100px;
-    width: 300px;
-    outline: none;
-    border: 1px solid;
-    border-radius: 100px;
-    background-color: transparent;
-    cursor: default;
-    text-align-last: center;
-    font-family: "Lemon Milk";
-    font-size: 22px;
-    user-select: none;
-    transition: background-color 0.5s;
-}
 
-#sortSelect:hover {
-    background-color: rgb(200, 255, 255);
-}
 
 
 /*-------------------------------------------min-width: 500 !!!-----------------------------------*/
@@ -415,7 +428,7 @@ form {
 }
 
 /*-------------------------------------------max-width: 700 !!!-----------------------------------*/
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 500px) {
     .imageMapSmall {
         display: block;
     }
@@ -454,5 +467,9 @@ form {
 	
 	h1 {
 		margin-top: 40px;
+	}
+	
+	.wrapSortFilter {
+		display: block;
 	}
 }
