@@ -167,7 +167,8 @@ area {
 }
 
 #filter {
-    width: 680px;
+    /*width: 680px;*/
+	width: 350px;
     height: 120px;
     margin: 20px;
     margin-left: auto;
