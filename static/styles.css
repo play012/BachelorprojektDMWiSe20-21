@@ -113,7 +113,7 @@ nav ul {
     top: 53px;
     margin: 0;
     padding: 0;
-    width: 50vw;
+    width: 50%;
     list-style: none;
 }
 
@@ -123,12 +123,18 @@ nav ul li {
 }
 
 nav ul li a {
-    text-decoration: none;
+    /*text-decoration: none;*/
+	font-family: 'Noto Sans JP', sans-serif;
     color: black;
     background-color: #fff;
     border-bottom: 1px solid black;
+	border-right: 1px solid black;
     display: block;
     padding: 20px;
+}
+
+#li-round {
+	border-radius: 0px 0px 30px 0px;
 }
 
 nav ul li a:hover {
