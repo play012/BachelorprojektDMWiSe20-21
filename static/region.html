@@ -23,10 +23,13 @@
         
         {{ if eq .Region "Nord" }}
             <a href="/"><h1 class="north">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
+			<div style="background-image: url('nord.png');"> 
         {{ else if eq .Region "Süd"}}
             <a href="/"><h1 class="south">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
+			<div style="background-image: url('sued.png');"> 
         {{ else }}
             <a href="/"><h1 class="west">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
+			<div style="background-image: url('west.png');"> 
         {{ end }}
 
         {{ if not .RegionItems}}
