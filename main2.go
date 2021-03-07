@@ -1,4 +1,4 @@
-package main
+package main2
 
 import (
 	"database/sql"
@@ -58,7 +58,7 @@ func InitDB() *sql.DB {
 // CreateTable if not exists
 func CreateTable(db *sql.DB) {
 	// AUTOINCREMENT creates own IDs as primary keys
-	_, err := db.Exec(`DROP TABLE IF EXISTS items; CREATE TABLE items(
+	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS items(
 		ID INTEGER PRIMARY KEY AUTOINCREMENT,
 		Region TEXT,
 		Kategorie TEXT,
@@ -125,64 +125,30 @@ func HomeHandler(w http.ResponseWriter, req *http.Request) {
 func (h *RegionHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	regionString := req.URL.Query().Get(":reg")
 	var regionResult []ReadItem
-	req.ParseForm()
-	sortReq := req.Form.Get("sort")
 
-	//newest items and page without sort request serve the same items
-	if len(sortReq) == 0 || sortReq == "newest" {
-		newestItems, _ := h.db.Query(`SELECT ID, Kategorie, Angebot, Laden FROM items
-		WHERE Region LIKE '` + regionString + `' ORDER BY ID DESC`)
+	itemsForRegionHandler, _ := h.db.Query(`SELECT ID, Kategorie, Angebot, Laden FROM items
+	WHERE Region LIKE '` + regionString + `' ORDER BY ID ASC`)
 
-		defer newestItems.Close()
-		for newestItems.Next() {
-			item := ReadItem{}
-			newestItems.Scan(&item.ID, &item.Kategorie, &item.Angebot, &item.Laden)
-			regionResult = append(regionResult, item)
-		}
+	defer itemsForRegionHandler.Close()
+	for itemsForRegionHandler.Next() {
+		item := ReadItem{}
+		itemsForRegionHandler.Scan(&item.ID, &item.Kategorie, &item.Angebot, &item.Laden)
+		regionResult = append(regionResult, item)
+	}
 
-		sortReq = "newest"
-		regionData := map[string]interface{}{
-			"Region":      regionString,
-			"RegionItems": regionResult,
-			"Sort":        sortReq,
-		}
+	regionData := map[string]interface{}{
+		"Region":      regionString,
+		"RegionItems": regionResult,
+	}
 
-		if regionString == "Nord" || regionString == "West" || regionString == "Süd" {
-			regionTemplate, _ := template.ParseFiles("static/region.html")
-			regionTemplate.Execute(w, regionData)
-		} else {
-			badTemplate, _ := template.ParseFiles("static/404.html")
-			badTemplate.Execute(w, nil)
-		}
-	} else if sortReq == "oldest" {
-		// oldest items serves items with lowest ID first
-		oldestItems, _ := h.db.Query(`SELECT ID, Kategorie, Angebot, Laden FROM items
-		WHERE Region LIKE '` + regionString + `' ORDER BY ID ASC`)
-
-		defer oldestItems.Close()
-		for oldestItems.Next() {
-			item := ReadItem{}
-			oldestItems.Scan(&item.ID, &item.Kategorie, &item.Angebot, &item.Laden)
-			regionResult = append(regionResult, item)
-		}
-
-		regionData := map[string]interface{}{
-			"Region":      regionString,
-			"RegionItems": regionResult,
-			"Sort":        sortReq,
-		}
-
-		if regionString == "Nord" || regionString == "West" || regionString == "Süd" {
-			regionTemplate, _ := template.ParseFiles("static/region.html")
-			regionTemplate.Execute(w, regionData)
-		} else {
-			badTemplate, _ := template.ParseFiles("static/404.html")
-			badTemplate.Execute(w, regionData)
-		}
+	if regionString == "Nord" || regionString == "West" || regionString == "Süd" {
+		regionTemplate, _ := template.ParseFiles("static/region.html")
+		regionTemplate.Execute(w, regionData)
 	} else {
 		badTemplate, _ := template.ParseFiles("static/404.html")
-		badTemplate.Execute(w, nil)
+		badTemplate.Execute(w, regionData)
 	}
+
 }
 
 // ListHandler parses file for page of saved items
@@ -196,7 +162,7 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 // FormHandler gets values from Item Form
 func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	formTemplate, _ := template.ParseFiles("static/formular.html")
-	
+	//var testItems  []StoreItem
 	if r.Method == http.MethodPost {
 		r.ParseForm()
 		pReg := r.FormValue("Region")
@@ -205,13 +171,15 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		pLad := r.FormValue("Laden")
 
 		
-		SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
+
+		SaveItem(h.db, items)
+
 		// Test
 		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
 			Region,
 			Kategorie,
 			Angebot,
-			Laden) VALUES (?, ?, ?, ?);`)
+			Laden) values(?, ?, ?, ?)`)
 	
 		if err != nil {
 			panic(err)
@@ -248,7 +216,7 @@ func NotFoundHandler(w http.ResponseWriter, req *http.Request) {
 	notFoundTemplate.Execute(w, nil)
 }
 
-//var db *sql.DB
+var db *sql.DB
 
 func main() {
 	db := InitDB()
@@ -260,30 +228,10 @@ func main() {
 		{"West", "Kleidung", "Sale bis 50% auf T-Shirts", "Klamottenladen in Fulda"},
 		{"Nord", "Technik", "USB-C Kabel für nur 2,99€", "Tech Shop in Petersberg"},
 		{"West", "Essen", "Große Waffeln - 4€", "Waffelladen in Fulda"},
-		{"Süd", "Kleidung", "50€ Rabatt auf alle Jacken", "Klamottenladen 2 in Fulda"},
+		{"West", "Kleidung", "10€ Rabatt auf alle Jacken", "Klamottenladen 2 in Fulda"},
 	}
 
 	SaveItem(db, testItems)
-	//TEST
-	items := []StoreItem{
-		{"Süd", "Essen", "1", "2"},
-		
-	}
-	addItem, erro := db.Prepare(`INSERT OR REPLACE INTO items(
-		Region,
-		Kategorie,
-		Angebot,
-		Laden) VALUES (?, ?, ?, ?)`)
-
-	if erro != nil {
-		panic(erro)
-	}
-	defer addItem.Close()
-	for _, item := range items {
-		addItem.Exec(item.Region, item.Kategorie, item.Angebot, item.Laden)
-	}
-	
-	// ----------------
 
 	m := pat.New()
 	m.NotFound = http.HandlerFunc(NotFoundHandler)
