@@ -39,13 +39,15 @@
                 <label for="filterTech" class="checkboxtech"></label>
                 <input id="filterFood" type="checkbox" onchange="checkFilters()">
                 <label for="filterFood" class="checkboxfood"></label>
+            </div>
+			<div id="sortDiv">
                 <form id="sortForm" method="get">
                     <select name="sort" id="sortSelect" onchange="submitForm()">
                             <option value="newest" {{ if eq .Sort "newest" }}selected{{ end }}>neueste zuerst</option>
                             <option value="oldest" {{ if eq .Sort "oldest" }}selected{{ end }}>älteste zuerst</option>
                     </select>
                 </form>
-            </div>
+			</div>
 
             {{ range $i, $item := .RegionItems }}
                 <div class="item{{ $item.Kategorie }}">
