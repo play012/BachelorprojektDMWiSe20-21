@@ -160,6 +160,7 @@ nav ul li a:hover {
     }
 }
 
+/*-------------------------------------------max-width: 500 !!!-----------------------------------*/
 @media screen and (max-width: 500px) {
     .imageMapSmall {
         display: block;
@@ -170,6 +171,39 @@ nav ul li a:hover {
     }
 	nav ul {
     width: 30%;
+	}
+	
+	h1 {
+		margin-top: 40px;
+	}
+	
+	p {
+		text-align: center;
+		margin: 20px;
+		margin-top: 30px;
+		font-size: 12px;
+	}
+	
+	button {
+		margin: 10px;
+		width: 50px;
+		height: 50px;
+		margin-top: 50px;
+		cursor: pointer;
+	}
+	
+	.imgWrapper {
+		width: 50px;
+		height: 50px;	
+	}
+	
+	.itemTechnik {
+		margin: 10px;
+		margin-left: 0px;
+		margin-right: 0px;
+		max-width: 100%;
+		border: 1px solid;
+		border-radius: 0px;
 	}
 }
 
