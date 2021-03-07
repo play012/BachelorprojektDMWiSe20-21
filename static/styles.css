@@ -210,6 +210,9 @@ area {
 
 .wrapSortFormFilter {
 		display: flex;
+		width: 70%;
+		margin-left: auto;
+		margin-right: auto;
 }
 
 .checkboxclothing{
@@ -469,7 +472,8 @@ form {
 		margin-top: 40px;
 	}
 	
-	.wrapSortFilter {
+	.wrapSortFormFilter {
 		display: block;
+		width: 90%;
 	}
 }
