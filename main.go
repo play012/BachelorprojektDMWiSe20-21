@@ -37,7 +37,6 @@ type RegionHandler struct {
 // FormHandler gives database to form for adding new items
 type FormHandler struct {
 	db *sql.DB
-	
 }
 
 // InitDB initializes SQLite Database
@@ -191,12 +190,10 @@ func ListHandler(w http.ResponseWriter, req *http.Request) {
 	listTemplate.Execute(w, nil)
 }
 
-
-
 // FormHandler gets values from Item Form
 func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	formTemplate, _ := template.ParseFiles("static/formular.html")
-	
+
 	if r.Method == http.MethodPost {
 		r.ParseForm()
 		pReg := r.FormValue("Region")
@@ -204,7 +201,6 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		pAng := r.FormValue("Angebot")
 		pLad := r.FormValue("Laden")
 
-		
 		SaveItem(h.db, []StoreItem{{pReg, pKat, pAng, pLad}})
 		// Test
 		addItem, err := h.db.Prepare(`INSERT OR REPLACE INTO items(
@@ -212,15 +208,15 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			Kategorie,
 			Angebot,
 			Laden) VALUES (?, ?, ?, ?);`)
-	
+
 		if err != nil {
 			panic(err)
 		}
 		defer addItem.Close()
-	
+
 		//addItem.Exec(&pReg, &pKat, &pAng, &pLad)
-		addItem.Exec("Süd", "Essen", "Test", "Test")
-		
+		//addItem.Exec("Süd", "Essen", "Test", "Test")
+
 		rows, _ := h.db.Query("SELECT Region, Kategorie, Angebot, Laden FROM items")
 		var region string
 		var kategorie string
@@ -228,13 +224,11 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		var laden string
 		for rows.Next() {
 			rows.Scan(&region, &kategorie, &angebot, &laden)
-			log.Println(region +"," + kategorie +"," + angebot +"," + laden)
+			//log.Println(region + "," + kategorie + "," + angebot + "," + laden)
 		}
-		
-		
 
 		//
-		
+
 		log.Println("Neues Item gespeichert: "+pReg, pKat, pAng, pLad)
 		formTemplate.Execute(w, struct{ Success bool }{true})
 	} else {
@@ -264,27 +258,28 @@ func main() {
 	}
 
 	SaveItem(db, testItems)
-	//TEST
-	items := []StoreItem{
-		{"Süd", "Essen", "1", "2"},
-		
-	}
-	addItem, erro := db.Prepare(`INSERT OR REPLACE INTO items(
-		Region,
-		Kategorie,
-		Angebot,
-		Laden) VALUES (?, ?, ?, ?)`)
+	/*
+		//TEST
+		items := []StoreItem{
+			{"Süd", "Essen", "1", "2"},
+		}
+		addItem, erro := db.Prepare(`INSERT OR REPLACE INTO items(
+			Region,
+			Kategorie,
+			Angebot,
+			Laden) VALUES (?, ?, ?, ?)`)
 
-	if erro != nil {
-		panic(erro)
-	}
-	defer addItem.Close()
-	for _, item := range items {
-		addItem.Exec(item.Region, item.Kategorie, item.Angebot, item.Laden)
-	}
-	
-	// ----------------
+		if erro != nil {
+			panic(erro)
+		}
+		defer addItem.Close()
+		for _, item := range items {
+			addItem.Exec(item.Region, item.Kategorie, item.Angebot, item.Laden)
+		}
 
+		// ----------------
+
+	*/
 	m := pat.New()
 	m.NotFound = http.HandlerFunc(NotFoundHandler)
 	m.Get("/", http.HandlerFunc(HomeHandler))

@@ -1,12 +1,16 @@
 window.onload = function() {
-    document.getElementById("navList").style.top = document.getElementById("header").offsetHeight;
+    if (document.getElementById("header").offsetHeight != null) {
+        document.getElementById("navList").style.top = document.getElementById("header").offsetHeight;
+    }
+
     if (localStorage.length != 0) {
         loadButtonOnHomepage();
     }
 }
 
 function loadButtonOnHomepage() {
-    document.body.innerHTML += '<a href="/merkliste" class="merkliste"></a>';
+    console.log("what");
+    document.getElementById("indexBody").innerHTML += '<a href="/merkliste" class="merkliste"></a>';
 }
 
 function changeUlDisplay() {
