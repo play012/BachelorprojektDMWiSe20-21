@@ -5,6 +5,7 @@
 
         <link rel="icon" href="/static/favicon.ico">
         <link rel="stylesheet" href="/static/styles.css">
+		<link rel="stylesheet" href="/static/styleFormular.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
         
@@ -31,21 +32,37 @@
                 <button id="newPostBtn">Ein weiteres Angebot posten</button>
             </form>
         {{else}}
-            <form action="/formular" method="post">
-                <select name="Region">
-                    <option value="Nord">Nord</option>
-                    <option value="West">West</option>
-                    <option value="Süd">Süd</option>
-                </select>
-                <select name="Kategorie">
-                    <option value="Essen">Essen</option>
-                    <option value="Kleidung">Kleidung</option>
-                    <option value="Technik">Technik</option>
-                </select>
-                <input type="text" name="Angebot" placeholder="Angebot" />
-                <input type="text" name="Laden" placeholder="Laden" />
-                <input type="submit" value="Angebot hochladen">
-            </form>
+			<!--Formwrapper Div 	formWrapper-->
+			<div class="formWrapper">
+				<form action="/formular" method="post">
+			
+					<!--selection-->
+					<select class="selection" name="Region">
+						<option value="Nord">Nord</option>
+						<option value="West">West</option>
+						<option value="Süd">Süd</option>
+					</select>
+					
+					<!--selection-->
+					<select class="selection" name="Kategorie" >
+						<option value="Essen">Essen</option>
+						<option value="Kleidung">Kleidung</option>
+						<option value="Technik">Technik</option>
+					</select>
+					
+					<br>
+					
+					<!--Textfelder	textfield-->
+					<input class="textfield" type="text" name="Angebot" placeholder="Angebot" />
+					<input class="textfield" type="text" name="Laden" placeholder="Laden" />
+					
+					<br>
+					
+					<!--Send Button		send-->
+					<input id="send" type="submit" value="Angebot hochladen">
+					
+				</form>
+			</div>
         {{end}}
     </body>
 </html>
