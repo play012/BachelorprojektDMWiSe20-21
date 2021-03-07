@@ -450,7 +450,7 @@ form {
 		height: 50px;	
 	}
 	
-	.itemTechnik.itemEssen.itemKleidung {
+	.itemTechnik, .itemEssen, .itemKleidung {
 		margin: 10px;
 		margin-left: 0px;
 		margin-right: 0px;
