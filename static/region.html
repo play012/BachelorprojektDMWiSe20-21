@@ -32,15 +32,13 @@
         {{ if not .RegionItems}}
             <p>Aktuell sind hier keine Angebote.</p>
         {{ else }}
-			<div class= "wrapSortFilter">
-				<div id="sortDiv">
+			<div class= "wrapSortFormFilter">
 					<form id="sortForm" method="get">
 						<select name="sort" id="sortSelect" onchange="submitForm()">
 								<option value="newest" {{ if eq .Sort "newest" }}selected{{ end }}>neueste zuerst</option>
 								<option value="oldest" {{ if eq .Sort "oldest" }}selected{{ end }}>älteste zuerst</option>
 						</select>
 					</form>
-				</div>
 			
 				<div id="filter">
 					<input id="filterClothing" type="checkbox" onchange="checkFilters()">
