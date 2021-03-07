@@ -151,16 +151,7 @@ nav ul li a:hover {
 }
 
 
-/*-------------------------------------------min-width: 500 !!!-----------------------------------*/
-@media screen and (max-width: 500px) {
-    .imageMapLarge {
-        display: block;
-    }
 
-    .imageMapSmall {
-        display: none;
-    }
-}
 
 
 
@@ -411,8 +402,19 @@ form {
 }
 
 
+/*-------------------------------------------min-width: 500 !!!-----------------------------------*/
+@media screen and (min-width: 500px) {
+    .imageMapLarge {
+        display: block;
+    }
+
+    .imageMapSmall {
+        display: none;
+    }
+}
+
 /*-------------------------------------------max-width: 700 !!!-----------------------------------*/
-@media screen and (min-width: 700px) {
+@media screen and (max-width: 700px) {
     .imageMapSmall {
         display: block;
     }
