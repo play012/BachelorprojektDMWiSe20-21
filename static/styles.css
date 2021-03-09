@@ -500,3 +500,48 @@ form {
 	
 	
 }
+
+		/* FOOTER */
+
+		.copyright {
+			margin:10px;
+			color:white;
+		}
+				
+		.foot {
+			border-top-style: solid;
+			border-width: 1px;
+			position: relative;
+			padding: 25px;
+			margin-top:200px;
+			
+		}
+		.footneu {
+			background-color:black;
+			
+		}
+		
+		#footicons {
+		
+		text-align: center;
+		font-size: 25px;
+		color:white;
+		}
+		
+		
+		.fa {
+			
+		 
+		  font-size: 30px;
+		  width: 50px;
+		  text-align: center;
+		  text-decoration: none;
+		  margin-left: 55px;
+			
+			
+		}
+		
+		.fa:hover {
+			opacity:0.7;
+		}
+	
