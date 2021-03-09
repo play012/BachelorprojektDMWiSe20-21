@@ -506,6 +506,7 @@ form {
 		.copyright {
 			margin:10px;
 			color:white;
+            font-family: "Lemon Milk";
 		}
 				
 		.foot {
@@ -517,7 +518,7 @@ form {
 			
 		}
 		.footneu {
-			background-color:black;
+			background-color:#000080;
 			
 		}
 		
