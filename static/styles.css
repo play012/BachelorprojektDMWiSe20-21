@@ -507,6 +507,7 @@ form {
 			margin:10px;
 			color:white;
             font-family: "Lemon Milk";
+            text-align: left;
 		}
 				
 		.foot {
@@ -537,7 +538,7 @@ form {
 		  width: 50px;
 		  text-align: center;
 		  text-decoration: none;
-		  margin-left: 55px;
+		  margin-left: 5px;
 			
 			
 		}
