@@ -487,3 +487,89 @@ form {
 #sortSelect:hover {
     background-color: rgb(200, 255, 255);
 }
+
+a.ks {
+    text-decoration:none;
+    color:white;
+ }
+
+h1 {
+    margin: 0px;
+    text-align: center;
+    padding: 5%;
+    font-family: "Lemon Milk";
+    font-size: 4vw;
+    user-select: none;
+	color: white;
+	background-color: #000080;
+}
+
+.column h2{
+    font-family: "Lemon Milk";
+}
+
+.column p{
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.column {
+  float: left;
+  width: 32.1%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+/* Display the columns below each other instead of side by side on small screens */
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+  text-align: left;
+}
+
+.email{
+    text-align: left;
+    font-size: 1.5vw;
+}
+
+.kontakt {
+  margin-top: 15px;
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000080;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  height: 50%;
+}
+
+.kontakt:hover {
+    background-color: #0202a5;
+  }
+
+a.ks:hover{
+    background-color: #0202a5 !important;
+    color:white !important;
+}
