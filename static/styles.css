@@ -9,10 +9,9 @@ body {
 }
 
 h1 {
-    top: 10%;
-    margin: 0;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    margin: 0px;
+    text-align: center;
+    padding: 5%;
     font-family: "Lemon Milk";
     font-size: 4vw;
     user-select: none;
@@ -29,26 +28,21 @@ h2 {
        font-size: 48px;
        padding: 50px;
     }
-}
+  }
 
-.north {
+h1.north {
     background-color: #ff7ffe;
     color: white;
 }
 
-.south {
+h1.south {
     background-color: #d5ff00;
     color: black;
 }
 
-.west {
+h1.west {
     background-color: #000080;
     color: white;
-}
-
-.header {
-    position: relative;
-    text-align: center;
 }
 
 a:link {
@@ -60,13 +54,7 @@ a > h1 {
     transition: background-color 0.5s, color 0.5s;
 }
 
-a:hover > h1{
-    background-color: lightgray!important;
-    color: black!important;
-}
-
-a:hover {
-    border: none;
+a:hover > h1 {
     background-color: lightgray!important;
     color: black!important;
 }
@@ -83,8 +71,7 @@ a.merkliste {
 }
 
 a.merkliste:hover {
-    background-blend-mode: luminosity;
-    background-color: rgb(200, 255, 255)!important;
+    background-color: rgb(200, 255, 255);
 }
 
 a.formn {
@@ -94,10 +81,6 @@ a.formn {
     width: 100px;
     height: 100px;
     background: red;
-}
-
-.li-round {
-	border-radius: 0px 0px 30px 0px;
 }
 
 p {
@@ -113,61 +96,57 @@ p {
 }
 
 .burgerimage {
-    text-align: center;
     position: absolute;
-    left: 40px;
-    margin: 0;
-    width: 100px;
-    height: 100px;
-    top: 25%;
-    line-height: 100px;
+    top: 0;
+    left: 10px;
     font-size: 28pt;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 1);
-    border-radius: 100px;
-    user-select: none;
+    color: black;
 }
 
 nav {
+    background-color: #fff;
+    display: block;
+    height: 50px;
+    border-bottom: 3px solid black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     z-index: 100;
 }
 
-#navIcon {
-    font-family: sans-serif;
-    box-shadow: inset 0px 0px 5px 2px rgba(0, 0, 0, 0.7);
-    transition: background-color 0.5s;
-}
-
-#navIcon:hover {
-    background-color: lightgray;
-}
-
-ul {
+nav ul {
     display: none;
     position: fixed;
+    top: 53px;
     margin: 0;
     padding: 0;
-    width: 18%;
+    width: 30%;
     list-style: none;
 }
 
-ul li {
+nav ul li {
     display: block;
     width: auto;
 }
 
-ul li a {
-    text-decoration: none;
+nav ul li a {
+    /*text-decoration: none;*/
 	font-family: 'Noto Sans JP', sans-serif;
     color: black;
     background-color: #fff;
-    border-bottom: 1px solid;
-	border-right: 1px solid;
+    border-bottom: 1px solid black;
+	border-right: 1px solid black;
     display: block;
     padding: 20px;
 }
 
-ul li a:hover {
+.li-round {
+	border-radius: 0px 0px 30px 0px;
+}
+
+nav ul li a:hover {
     background-color: rgb(200, 255, 255);
     color: black;
 }
@@ -180,28 +159,10 @@ ul li a:hover {
     display: none;
 }
 
-@media screen and (min-width: 500px) {
-    .imageMapLarge {
-        display: block;
-    }
 
-    .imageMapSmall {
-        display: none;
-    }
-}
 
-@media screen and (max-width: 500px) {
-    .imageMapSmall {
-        display: block;
-    }
 
-    .imageMapLarge {
-        display: none;
-    }
-	nav ul {
-    width: 40%;
-	}
-}
+
 
 area {
     outline: none;
@@ -215,7 +176,8 @@ area {
 }
 
 #filter {
-    width: 680px;
+    /*width: 680px;*/
+	width: 350px;
     height: 120px;
     margin: 20px;
     margin-left: auto;
@@ -225,6 +187,42 @@ area {
 
 #filterClothing, #filterTech, #filterFood {
     display: none;
+}
+
+#sortSelect {
+    appearance: none;
+    margin: 10px;
+    height: 100px;
+    width: 300px;
+    outline: none;
+    border: 1px solid;
+    border-radius: 100px;
+    background-color: transparent;
+    cursor: default;
+    text-align-last: center;
+    font-family: "Lemon Milk";
+    font-size: 22px;
+    user-select: none;
+    transition: background-color 0.5s;
+}
+
+
+#sortForm {
+	margin-left: auto;
+	margin-right: auto;
+	width: 320px;
+}
+
+#sortSelect:hover {
+    background-color: rgb(200, 255, 255);
+}
+
+.wrapSortFormFilter {
+		display: flex;
+		width: 70%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 20px;
 }
 
 .checkboxclothing{
@@ -239,7 +237,6 @@ area {
 }
 
 .checkboxclothing:hover {
-    background-blend-mode: luminosity;
     background-color: rgb(200, 255, 255);
 }
 
@@ -255,7 +252,6 @@ area {
 }
 
 .checkboxtech:hover {
-    background-blend-mode: luminosity;
     background-color: rgb(200, 255, 255);
 }
 
@@ -271,7 +267,6 @@ area {
 }
 
 .checkboxfood:hover {
-    background-blend-mode: luminosity;
     background-color: rgb(200, 255, 255);
 }
 
@@ -279,27 +274,12 @@ area {
     background: transparent url(/static/icons.png) no-repeat 0 50%;
 }
 
-#filterClothing:checked + .checkboxclothing:hover{
-    background-blend-mode: luminosity;
-    background-color: rgb(255, 215, 200);
-}
-
 #filterTech:checked + .checkboxtech{
     background: transparent url(/static/icons.png) no-repeat 50% 50%;
 }
 
-#filterTech:checked + .checkboxtech:hover{
-    background-blend-mode: luminosity;
-    background-color: rgb(255, 215, 200);
-}
-
 #filterFood:checked + .checkboxfood{
     background: transparent url(/static/icons.png) no-repeat 100% 50%;
-}
-
-#filterFood:checked + .checkboxfood:hover{
-    background-blend-mode: luminosity;
-    background-color: rgb(255, 215, 200);
 }
 
 .formular {
@@ -449,41 +429,124 @@ form {
     text-align: center;
 }
 
-#newPostBtn {
-    margin: 10px;
-    height: 100px;
-    width: 300px;
-    font-size: 20px;
-    font-family: 'Noto Sans JP', sans-serif;
-    outline: none;
-    border: 1px solid;
-    border-radius: 100px;
-    background-color: transparent;
-    cursor: pointer;
-    transition: background-color 0.5s;
+
+
+
+
+
+/*-------------------------------------------min-width: 500 !!!-----------------------------------*/
+@media screen and (min-width: 700px) {
+    .imageMapLarge {
+        display: block;
+    }
+
+    .imageMapSmall {
+        display: none;
+    }
 }
 
-#newPostBtn:hover {
-    background-color: rgb(200, 255, 200);
+/*-------------------------------------------max-width: 700 !!!-----------------------------------*/
+@media screen and (max-width: 700px) {
+    .imageMapSmall {
+        display: block;
+    }
+
+    .imageMapLarge {
+        display: none;
+    }
+	nav ul {
+		width: 40%;
+	}
+
+	p {
+		text-align: center;
+		margin: 20px;
+		margin-top: 30px;
+		font-size: 12px;
+	}
+	
+	button {
+		margin-top: 20px;
+	}
+	
+	.imgWrapper {
+		width: 50px;
+		height: 50px;	
+	}
+	
+	.itemTechnik, .itemEssen, .itemKleidung {
+		margin: 10px;
+		margin-left: 0px;
+		margin-right: 0px;
+		max-width: 100%;
+		border: 1px solid;
+		border-radius: 0px;
+	}
+	
+	h1 {
+		margin-top: 40px;
+	}
+	
+	.wrapSortFormFilter {
+		display: block;
+		width: 90%;
+	}
+	
+	#sortSelect {
+		height: 60px;
+		width: 225px;
+		font-size: 14px;
+	}
+	
+	
 }
 
-#sortSelect {
-    appearance: none;
-    margin: 10px;
-    height: 100px;
-    width: 300px;
-    outline: none;
-    border: 1px solid;
-    border-radius: 100px;
-    background-color: transparent;
-    cursor: default;
-    text-align-last: center;
-    font-family: "Lemon Milk";
-    font-size: 22px;
-    user-select: none;
-    transition: background-color 0.5s;
-}
+		/* FOOTER */
 
-#sortSelect:hover {
-    background-color: rgb(200, 255, 255);
-}
+		.copyright {
+			margin:10px;
+			color:white;
+            font-family: "Lemon Milk";
+            text-align: left;
+		}
+				
+		.foot {
+			border-top-style: solid;
+			border-width: 1px;
+			width: 100%;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+			padding: 15px;
+			margin-top:200px;
+			
+		}
+		.footneu {
+			background-color:#000080;
+			
+		}
+		
+		#footicons {
+		
+		text-align: center;
+		font-size: 25px;
+		color:white;
+		}
+		
+		
+		.fa {
+			
+		 
+		  font-size: 30px;
+		  width: 50px;
+		  text-align: center;
+		  text-decoration: none;
+		  margin-left: 5px;
+			
+			
+		}
+		
+		.fa:hover {
+			opacity:0.7;
+		}
+	
