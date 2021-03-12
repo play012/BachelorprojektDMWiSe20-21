@@ -27,7 +27,6 @@ h2 {
 @media screen and (min-width: 1200px) {
     h1 {
        font-size: 48px;
-       padding: 50px;
     }
 }
 
@@ -491,18 +490,7 @@ form {
 a.ks {
     text-decoration:none;
     color:white;
- }
-
-h1 {
-    margin: 0px;
-    text-align: center;
-    padding: 5%;
-    font-family: "Lemon Milk";
-    font-size: 4vw;
-    user-select: none;
-	color: white;
-	background-color: #000080;
-}
+ }  
 
 .column h2{
     font-family: "Lemon Milk";
