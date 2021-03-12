@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <title>Local Shopping Fulda</title>
+
+        <link rel="icon" href="/static/favicon.ico">
+        <link rel="stylesheet" href="/static/styles.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="/static/index.js"></script>
+    </head>
+
+    <body>
+        <div class="header">
+			<nav>
+                <input type="checkbox" id="burgerbutton" onclick="changeUlDisplay()"/>
+                <label for="burgerbutton" id="navIcon" class="burgerimage" title="Navigation">&#x2630;</label>
+            </nav>
+
+			<a href="/"><h1 class="west">Angebot hinzufügen</h1></a>
+		</div>
+
+        <ul id="navList" style="display: none;">
+            <li><a href="/region/Nord" title="Nord" class="west">Fulda Nord</a></li>
+            <li><a href="/region/Süd" title="Süd" class="west">Fulda Süd</a></li>
+            <li><a href="/region/West" title="West" class="west">Fulda West</a></li>
+            <li><a href="/impressum" title="Impressum" class="li-round west">Impressum</a></li>
+        </ul>
+        
+        {{if .Success}}
+            <p>Vielen Dank für das Einreichen eines Angebots!</p>
+
+            <form action="/formular" method="get" id="postBtnForm">
+                <button id="newPostBtn">Ein weiteres Angebot posten</button>
+            </form>
+        {{else}}
+			<!--Formwrapper Div 	formWrapper-->
+			<div class="formWrapper">
+				<form action="/formular" method="post">
+			
+					<!--selection-->
+					<select class="selection" name="Region">
+						<option value="Nord">Nord</option>
+						<option value="West">West</option>
+						<option value="Süd">Süd</option>
+					</select>
+					
+					<!--selection-->
+					<select class="selection" name="Kategorie" >
+						<option value="Essen">Essen</option>
+						<option value="Kleidung">Kleidung</option>
+						<option value="Technik">Technik</option>
+					</select>
+					
+					<br>
+					
+					<!--Textfelder	textfield-->
+					<input class="textfield" type="text" name="Angebot" placeholder="Angebot" />
+					<input class="textfield" type="text" name="Laden" placeholder="Laden" />
+					
+					<br>
+					
+					<!--Send Button		send-->
+					<input id="send" type="submit" value="Angebot hochladen">
+					
+				</form>
+			</div>
+        {{end}}
+    </body>
+</html>

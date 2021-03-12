@@ -3,6 +3,7 @@ window.onload = function() {
         checkLocalStorageForNull();
         if (localStorage.length != 0) {
             loadItemsFromLocalStorage();
+            showClearAllBtn();
         }
     }
 }
@@ -71,4 +72,18 @@ function loadItemsFromLocalStorage() {
 function removeItemsFromLocalStorage(id) {
     eval('localStorage.removeItem("Item' + id +'");');
     document.location.reload();
+}
+
+function showClearAllBtn() {
+    var clearAllBtn = document.getElementById("clearAllBtn");
+    clearAllBtn.style.display = "block";
+}
+
+function clearAllItems() {
+    localStorage.clear();
+    document.location.reload();
+}
+
+function submitForm() {
+    document.getElementById("sortForm").submit();
 }

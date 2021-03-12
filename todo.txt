@@ -1,8 +1,5 @@
 TODO:
-- merkliste (localStorage.js) debuggen                                                      - Stefan
-- Sortiermethoden (neueste / älteste / nach Stadtteil)
-- Navigation                                                                                - Deniel
-- Form zum Items zur db hinzufügen (ohne login) + dropdown menü für jeweilige Stadtteile    - Philipp
-- Impressum
-- GoTailwindCSS Implementation
-- evtl GPS ping auf der Homepage (aktuellen Stadtteil highlighten)
+- Impressum                                 Kara
+- CSS & Responsiveness                      Dominik
+- Formular stylen
+- fix index.js -> loadButtonOnHomepage()    Stefan
