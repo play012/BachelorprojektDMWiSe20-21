@@ -1,4 +1,5 @@
 body {
+    overflow: hidden;
     margin: 0px;
 }
 
@@ -86,15 +87,6 @@ a.merkliste:hover {
     background-color: rgb(200, 255, 255)!important;
 }
 
-a.formn {
-    position:absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 100px;
-    height: 100px;
-    background: red;
-}
-
 .li-round {
 	border-radius: 0px 0px 30px 0px;
 }
@@ -120,7 +112,7 @@ p {
     height: 100px;
     top: 25%;
     line-height: 100px;
-    font-size: 28pt;
+    font-size: 28px;
     cursor: pointer;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 100px;
@@ -146,7 +138,7 @@ ul {
     position: fixed;
     margin: 0;
     padding: 0;
-    width: 18%;
+    width: 25%;
     list-style: none;
 }
 
@@ -197,8 +189,9 @@ ul li a:hover {
     .imageMapLarge {
         display: none;
     }
-	nav ul {
-    width: 40%;
+	
+    ul {
+        width: 50%;
 	}
 }
 
@@ -448,7 +441,7 @@ form {
     text-align: center;
 }
 
-#newPostBtn {
+.newPostBtn {
     margin: 10px;
     height: 100px;
     width: 300px;
@@ -462,7 +455,7 @@ form {
     transition: background-color 0.5s;
 }
 
-#newPostBtn:hover {
+.newPostBtn:hover {
     background-color: rgb(200, 255, 200);
 }
 
@@ -513,6 +506,14 @@ a.ks {
     width: 100%;
     display: block;
   }
+
+  /* navigation layouting*/
+  .burgerimage {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    }
 }
 
 .card {
@@ -560,4 +561,51 @@ a.ks {
 a.ks:hover{
     background-color: #0202a5 !important;
     color:white !important;
+}
+
+#gitLink {
+    margin: auto;
+    width: 150px;
+    height: 150px;
+}
+
+#gitLink a:hover {
+    background-color: transparent !important;
+}
+
+.selection {
+    appearance: none;
+    margin: 50px;
+    height: 100px;
+    width: 300px;
+    outline: none;
+    border: 1px solid;
+    border-radius: 100px;
+    text-align-last: center;
+    font-family: "Lemon Milk";
+    font-size: 22px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.5s;
+}
+
+.selection:hover {
+    background-color: rgb(200, 255, 255);
+}
+
+.textfield {
+    margin: 50px;
+    width: 300px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid;
+    font-family: "Noto Sans JP";
+    font-size: 16px;
+    cursor: text;
+    user-select: none;
+    transition: background-color 0.5s;
+}
+
+.textfield:hover {
+    background-color: rgb(200, 255, 200);
 }

@@ -17,7 +17,7 @@
                 <label for="burgerbutton" id="navIcon" class="burgerimage" title="Navigation">&#x2630;</label>
             </nav>
 
-			<a href="/"><h1 class="west">Angebot hinzufügen</h1></a>
+			<a href="/"><h1 class="west">Angebot<br>hinzufügen</h1></a>
 		</div>
 
         <ul id="navList" style="display: none;">
@@ -31,7 +31,7 @@
             <p>Vielen Dank für das Einreichen eines Angebots!</p>
 
             <form action="/formular" method="get" id="postBtnForm">
-                <button id="newPostBtn">Ein weiteres Angebot posten</button>
+                <button class="newPostBtn">Ein weiteres Angebot posten</button>
             </form>
         {{else}}
 			<!--Formwrapper Div 	formWrapper-->
@@ -61,7 +61,7 @@
 					<br>
 					
 					<!--Send Button		send-->
-					<input id="send" type="submit" value="Angebot hochladen">
+					<input class="newPostBtn" type="submit" value="Angebot hochladen">
 					
 				</form>
 			</div>
