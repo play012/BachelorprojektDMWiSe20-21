@@ -261,6 +261,24 @@ func main() {
 		{"Nord", "Technik", "USB-C Kabel für nur 2,99€", "Tech Shop in Petersberg"},
 		{"West", "Essen", "Große Waffeln - 4€", "Waffelladen in Fulda"},
 		{"Süd", "Kleidung", "50€ Rabatt auf alle Jacken", "Klamottenladen 2 in Fulda"},
+
+		{"Nord", "Kleidung", "Kinder-Jeans für 15€", "Klamottenladen  in Fulda-Eiterfeld"},
+		{"Nord", "Kleidung", "Bio-Pullover für 30€", "Klamottenladen in Fulda-Burghaun"},
+		{"Nord", "Technik", "Playstation V für 500€", "Game Laden in Fulda-Nüstal"},
+		{"Nord", "Technik", "15% Rabatt auf Headphones", "Tech Shop in Fulda-Hilders"},
+		{"Nord", "Essen", "Selbstgemachtes Hof Eis 0,90€", "Hof-Laden in Fulda-Eiterfeld"}
+
+		{"Süd", "Kleidung", "T-Shirts 2-Pack 12,99€", "Klammottenladen in Fulda-Dipperz"},
+		{"Süd", "Technik", "Notebooks 10% Rabatt", "Tech Shop Fulda-Künzell"},
+		{"Süd", "Essen", "Pommes diesen Monat nur 2€", "Imbiss Shop Fulda"},
+		{"Süd", "Kleidung", "15% Rabatt auf Graue Jeans", "Laden in Fulda-"},
+		{"Süd", "Essen", "Burger ab 5€", "Laden in Fulda-"},
+		{"Süd", "Kleidung", "Marken-Shirt 18€", "Laden in Fulda-"}
+
+		{"West", "Technik", "Bose Soundbox 199€", "Tech Shop in Fulda-Hosenfeld"},
+		{"West", "Kleidung", "Socken 5er-Pack 10€", "Klammottenladen in Fulda-Neuhof"},
+		{"West", "Essen", "Sandwichs 2,50€", "Imbiss Shop in Fulda-Flieden"},
+		{"West", "Technik", "Keyboard 17,50€", "Laden in Fulda-Kalbach"},
 	}
 
 	SaveItem(db, testItems)
