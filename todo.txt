@@ -1,4 +1,0 @@
-TODO:
-- Impressum                                 Kara
-- CSS & Responsiveness                      Dominik
-- Formular stylen
