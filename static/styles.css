@@ -525,27 +525,6 @@ h1 {
         width: 100%;
         display: block;
     }
-
-    .itemEssen {
-        margin: 10px;
-        margin-left: 15px;
-        margin-right: 15px;
-        max-width: 100%;
-    }
-
-    .itemKleidung {
-        margin: 10px;
-        margin-left: 15px;
-        margin-right: 15px;
-        max-width: 100%;
-    }
-
-    .itemTechnik {
-        margin: 10px;
-        margin-left: 15px;
-        margin-right: 15px;
-        max-width: 100%;
-    }
 }
 
 .card {
@@ -593,4 +572,28 @@ h1 {
 a.ks:hover{
     background-color: #0202a5 !important;
     color:white !important;
+}
+
+/* Display the columns below each other instead of side by side on small screens */
+@media screen and (max-width: 650px) {
+    .itemEssen {
+        margin: 10px;
+        margin-left: 15px;
+        margin-right: 15px;
+        max-width: 100%;
+    }
+
+    .itemKleidung {
+        margin: 10px;
+        margin-left: 15px;
+        margin-right: 15px;
+        max-width: 100%;
+    }
+
+    .itemTechnik {
+        margin: 10px;
+        margin-left: 15px;
+        margin-right: 15px;
+        max-width: 100%;
+    }
 }
