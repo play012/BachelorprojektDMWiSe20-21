@@ -573,24 +573,3 @@ a.ks:hover{
     background-color: #0202a5 !important;
     color:white !important;
 }
-
-/* Display the columns below each other instead of side by side on small screens */
-@media screen and (max-width: 500px) {
-    .itemEssen! {
-        max-width: 100%;
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-
-    .itemKleidung! {
-        max-width: 100%;
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-
-    .itemTechnik! {
-        max-width: 100%;
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-}
