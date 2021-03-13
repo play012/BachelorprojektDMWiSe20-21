@@ -575,25 +575,22 @@ a.ks:hover{
 }
 
 /* Display the columns below each other instead of side by side on small screens */
-@media screen and (max-width: 650px) {
-    .itemEssen {
-        margin: 10px;
+@media screen and (max-width: 500px) {
+    .itemEssen! {
+        max-width: 100%;
         margin-left: 15px;
         margin-right: 15px;
-        max-width: 100%;
     }
 
-    .itemKleidung {
-        margin: 10px;
+    .itemKleidung! {
+        max-width: 100%;
         margin-left: 15px;
         margin-right: 15px;
-        max-width: 100%;
     }
 
-    .itemTechnik {
-        margin: 10px;
+    .itemTechnik! {
+        max-width: 100%;
         margin-left: 15px;
         margin-right: 15px;
-        max-width: 100%;
     }
 }
