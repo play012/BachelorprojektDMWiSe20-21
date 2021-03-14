@@ -1,16 +1,19 @@
 window.onload = function() {
-    if (document.getElementById("header").offsetHeight != null) {
-        document.getElementById("navList").style.top = document.getElementById("header").offsetHeight;
+    var headerOffsetHeight = document.getElementById("header").offsetHeight;
+    var navListTop = document.getElementById("navList").style.top;
+
+    if (navListTop && headerOffsetHeight != null) {
+        navListTop = headerOffsetHeight;
     }
 
-    if (localStorage.length != 0) {
-        loadButtonOnHomepage();
-    }
+    console.log(localStorage.length);    
+    checkButtonOnHomepage();
 }
 
-function loadButtonOnHomepage() {
-    console.log("what");
-    document.getElementById("indexBody").innerHTML += '<a href="/merkliste" class="merkliste"></a>';
+function checkButtonOnHomepage() {
+    if (localStorage.length != 0) {
+        document.getElementById("indexBody").innerHTML += '<a href="/merkliste" class="merkliste"></a>';
+    }
 }
 
 function changeUlDisplay() {

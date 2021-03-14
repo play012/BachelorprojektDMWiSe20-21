@@ -236,6 +236,12 @@ func (h *FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// ImpressumHandler serves impressum.html
+func ImpressumHandler(w http.ResponseWriter, req *http.Request) {
+	impressumTpl, _ := template.ParseFiles("static/impressum.html")
+	impressumTpl.Execute(w, nil)
+}
+
 // NotFoundHandler catches requests for nonexistent routes and redirects to a 404 page
 func NotFoundHandler(w http.ResponseWriter, req *http.Request) {
 	notFoundTemplate, _ := template.ParseFiles("static/404.html")
@@ -287,6 +293,7 @@ func main() {
 	m.Get("/merkliste", http.HandlerFunc(ListHandler))
 	m.Get("/formular", &FormHandler{db})
 	m.Post("/formular", &FormHandler{db})
+	m.Get("/impressum", http.HandlerFunc(ImpressumHandler))
 
 	/* fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs) */
