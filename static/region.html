@@ -15,7 +15,7 @@
                 <input type="checkbox" id="burgerbutton" onclick="changeUlDisplay()"/>
                 <label for="burgerbutton" id="navIcon" class="burgerimage" title="Navigation">&#x2630;</label>
             </nav>
-        
+
             {{ if eq .Region "Nord" }}
                 <a href="/"><h1 class="north">Local Shopping<br/>Fulda-{{.Region}}</h1></a>
             {{ else if eq .Region "Süd"}}
@@ -79,7 +79,7 @@
                         {{ else }}
                         {{ end }}
                     </div>
-                    
+
                     <div class="textWrapper">
                         <p>{{ $item.Angebot }}</p>
                         <p>{{ $item.Laden }}</p>
@@ -91,10 +91,23 @@
                 </div>
             {{ end }}
         {{ end }}
-        
+
         <a href="/merkliste" class="merkliste"></a>
 
         <script type="text/javascript" src="/static/filter.js"></script>
         <script type="text/javascript" src="/static/localStorage.js"></script>
     </body>
+
+
+    <footer class="foot footneu">
+
+		<p class="copyright"> © Copyright 2019 <br>  Ba-Projekt 2021</p>
+			<div id="footicons">
+			  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+			  <i class="fa fa-instagram w3-hover-opacity"></i>
+			  <i class="fa fa-twitter w3-hover-opacity"></i>
+
+			</div>
+	</footer>
+
 </html>
