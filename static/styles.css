@@ -375,6 +375,17 @@ button {
     transition: background-color 0.5s;
 }
 
+#infoBox {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background-color: black;
+    right: 0px;
+    top: 0px;
+    margin-top: 5%;
+    z-index: 100;
+}
+
 .addItemBtn:hover {
     background-color: rgb(200, 255, 200);
 }
@@ -610,12 +621,3 @@ a.ks:hover{
     background-color: rgb(200, 255, 200);
 }
 
-#infoBox {
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    background-color: rgb(89, 9, 155);
-    opacity: 1;
-    top: 0px;
-    right: -100px;
-}
