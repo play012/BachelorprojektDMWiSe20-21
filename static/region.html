@@ -88,12 +88,13 @@
                     <div class="imgWrapper">
                         <button class="addItemBtn" id="addItemBtn{{ $item.ID }}" onclick="addToLocalStorage('{{ $item.ID }}', '{{ $item.Kategorie }}', '{{ $item.Angebot }}', '{{ $item.Laden }}')"></button>
                     </div>
+                    <div id="infoBox"></div>
                 </div>
             {{ end }}
         {{ end }}
         
         <a href="/merkliste" class="merkliste"></a>
-
+        <script type="text/javascript" src="/static/addToBasket.js"></script>
         <script type="text/javascript" src="/static/filter.js"></script>
         <script type="text/javascript" src="/static/localStorage.js"></script>
     </body>

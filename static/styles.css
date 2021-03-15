@@ -609,3 +609,13 @@ a.ks:hover{
 .textfield:hover {
     background-color: rgb(200, 255, 200);
 }
+
+#infoBox {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    background-color: rgb(89, 9, 155);
+    opacity: 1;
+    top: 0px;
+    right: -100px;
+}
