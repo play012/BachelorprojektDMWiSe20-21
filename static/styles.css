@@ -1,5 +1,5 @@
 body {
-    overflow: hidden;
+    overflow: scroll;
     margin: 0px;
 }
 
@@ -189,7 +189,7 @@ ul li a:hover {
     .imageMapLarge {
         display: none;
     }
-	
+
     ul {
         width: 50%;
 	}
@@ -493,7 +493,7 @@ form {
 a.ks {
     text-decoration:none;
     color:white;
- }  
+ }
 
 .column h2{
     font-family: "Lemon Milk";
@@ -619,4 +619,3 @@ a.ks:hover{
 .textfield:hover {
     background-color: rgb(200, 255, 200);
 }
-
