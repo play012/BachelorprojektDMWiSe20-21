@@ -1,6 +1,11 @@
 body {
-    overflow: scroll;
+    overflow: auto;
+    overflow-x: hidden;
     margin: 0px;
+}
+
+#indexBody {
+    overflow: hidden;
 }
 
 @font-face {
@@ -47,6 +52,7 @@ h2 {
 }
 
 .header {
+    width: 100%;
     position: relative;
     text-align: center;
 }
@@ -72,7 +78,7 @@ a:hover {
 }
 
 a.merkliste {
-    position:absolute;
+    position: fixed;
     bottom: 20px;
     right: 20px;
     width: 100px;
@@ -379,10 +385,9 @@ button {
     width: 100px;
     height: 100px;
     position: absolute;
-    right: 0px;
-    top: 0px;
-    margin-top: 5%;
-    z-index: 100;
+    right: 20px;
+    bottom: 90px;
+    z-index: 1;
 }
 
 .addItemBtn:hover {

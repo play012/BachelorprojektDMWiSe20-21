@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="imgWrapper">
-                        <button class="addItemBtn" id="addItemBtn{{ $item.ID }}" onclick="addToLocalStorage('{{ $item.ID }}', '{{ $item.Kategorie }}', '{{ $item.Angebot }}', '{{ $item.Laden }}')"></button>
+                        <button class="addItemBtn" id="addItemBtn{{ $item.ID }}" onclick="addToLocalStorage('{{ $item.ID }}', '{{ $item.Kategorie }}', '{{ $item.Angebot }}', '{{ $item.Laden }}'); animateAddToBasket('{{ $item.ID }}');"></button>
                     </div>
                 </div>
                 <div id="infoBox">
@@ -99,18 +99,11 @@
         <script type="text/javascript" src="/static/addToBasket.js"></script>
         <script type="text/javascript" src="/static/filter.js"></script>
         <script type="text/javascript" src="/static/localStorage.js"></script>
+
+        
+        <footer>
+		    <p> Bachelorprojekt 2021</p>
+	    </footer>
+
     </body>
-
-
-    <footer class="foot footneu">
-
-		<p class="copyright"> © Copyright 2019 <br>  Ba-Projekt 2021</p>
-			<div id="footicons">
-			  <i class="fa fa-facebook-official w3-hover-opacity"></i>
-			  <i class="fa fa-instagram w3-hover-opacity"></i>
-			  <i class="fa fa-twitter w3-hover-opacity"></i>
-
-			</div>
-	</footer>
-
 </html>
