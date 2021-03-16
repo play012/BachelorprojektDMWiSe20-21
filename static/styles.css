@@ -1,9 +1,10 @@
-body {
-    overflow: hidden;
-    margin: 0px;
+html, body {
+  overflow-y: scroll; 
 }
 
-html,body{overflow-y: scroll; }
+body {
+    margin: 0px;
+}
 
 @font-face {
     font-family: "Lemon Milk";
@@ -49,6 +50,7 @@ h2 {
 }
 
 .header {
+    width: 100%;
     position: relative;
     text-align: center;
 }
@@ -74,7 +76,7 @@ a:hover {
 }
 
 a.merkliste {
-    position:fixed;
+    position: fixed;
     bottom: 20px;
     right: 20px;
     width: 100px;
@@ -191,7 +193,7 @@ ul li a:hover {
     .imageMapLarge {
         display: none;
     }
-	
+
     ul {
         width: 50%;
 	}
@@ -381,10 +383,9 @@ button {
     width: 100px;
     height: 100px;
     position: absolute;
-    right: 0px;
-    top: 0px;
-    margin-top: 5%;
-    z-index: 100;
+    right: 20px;
+    bottom: 90px;
+    z-index: 1;
 }
 
 .addItemBtn:hover {
@@ -495,7 +496,7 @@ form {
 a.ks {
     text-decoration:none;
     color:white;
- }  
+ }
 
 .column h2{
     font-family: "Lemon Milk";
@@ -621,4 +622,3 @@ a.ks:hover{
 .textfield:hover {
     background-color: rgb(200, 255, 200);
 }
-

@@ -35,6 +35,7 @@ function loadItemsFromLocalStorage() {
     console.log(itemArr);
 
     for (var j = 0; j < itemArr.length; j++) {
+        var listDiv = document.getElementById("listedItems");
         var itemDiv = document.createElement("div");
         var imgDiv = itemDiv.cloneNode(true);
         var textDiv = itemDiv.cloneNode(true);
@@ -65,7 +66,7 @@ function loadItemsFromLocalStorage() {
         itemDiv.appendChild(imgDiv);
         itemDiv.appendChild(textDiv);
         itemDiv.appendChild(btnDiv);
-        document.body.appendChild(itemDiv);
+        listDiv.appendChild(itemDiv);
     }
 }
 

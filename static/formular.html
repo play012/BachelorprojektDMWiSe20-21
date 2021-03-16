@@ -26,7 +26,7 @@
             <li><a href="/region/West" title="West" class="west">Fulda West</a></li>
             <li><a href="/impressum" title="Impressum" class="li-round west">Impressum</a></li>
         </ul>
-        
+
         {{if .Success}}
             <p>Vielen Dank für das Einreichen eines Angebots!</p>
 
@@ -37,34 +37,39 @@
 			<!--Formwrapper Div 	formWrapper-->
 			<div class="formWrapper">
 				<form action="/formular" method="post">
-			
+
 					<!--selection-->
 					<select class="selection" name="Region">
 						<option value="Nord">Nord</option>
 						<option value="West">West</option>
 						<option value="Süd">Süd</option>
 					</select>
-					
+
 					<!--selection-->
 					<select class="selection" name="Kategorie" >
 						<option value="Essen">Essen</option>
 						<option value="Kleidung">Kleidung</option>
 						<option value="Technik">Technik</option>
 					</select>
-					
+
 					<br>
-					
+
 					<!--Textfelder	textfield-->
 					<input class="textfield" type="text" name="Angebot" placeholder="Angebot" />
 					<input class="textfield" type="text" name="Laden" placeholder="Laden" />
-					
+
 					<br>
-					
+
 					<!--Send Button		send-->
 					<input class="newPostBtn" type="submit" value="Angebot hochladen">
-					
+
 				</form>
 			</div>
         {{end}}
     </body>
+
+    <footer>
+		<p> Bachelorprojekt 2021</p>
+	</footer>
+
 </html>
