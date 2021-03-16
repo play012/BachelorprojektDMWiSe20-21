@@ -1,5 +1,5 @@
 window.onload = function() {
-    var headerOffsetHeight = document.getElementById("header").offsetHeight;
+    var headerOffsetHeight = document.getElementsByClassName("header").offsetHeight;
     var navListTop = document.getElementById("navList").style.top;
 
     if (navListTop && headerOffsetHeight != null) {

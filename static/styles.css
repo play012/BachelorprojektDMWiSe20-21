@@ -1,11 +1,9 @@
-body {
-    overflow: auto;
-    overflow-x: hidden;
-    margin: 0px;
+html, body {
+  overflow-y: scroll; 
 }
 
-#indexBody {
-    overflow: hidden;
+body {
+    margin: 0px;
 }
 
 @font-face {
