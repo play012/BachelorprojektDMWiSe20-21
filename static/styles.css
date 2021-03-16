@@ -3,6 +3,8 @@ body {
     margin: 0px;
 }
 
+html,body{overflow-y: scroll; }
+
 @font-face {
     font-family: "Lemon Milk";
     src: url("lemonmilk.woff") format("woff");
