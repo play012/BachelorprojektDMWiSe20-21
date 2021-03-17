@@ -10,9 +10,9 @@
 
     <body id="indexBody">
 
-		<div class="header">
+		<div id="indexHeader">
 			<nav>
-                <input type="checkbox" id="burgerbutton" onclick="changeUlDisplay()"/>
+                <input type="checkbox" id="burgerbutton" onclick="changeUlDisplayIndex()"/>
                 <label for="burgerbutton" id="navIcon" class="burgerimage" title="Navigation">&#x2630;</label>
             </nav>
 
@@ -27,8 +27,8 @@
             <li><a href="/impressum" title="Impressum" class="li-round west">Impressum</a></li>
         </ul>
 
-        <picture class="imageMapLarge">
-            <img alt="Landkreis Fulda" src="/static/Landkreis_1000px.webp" class="map" usemap="#imageMapLarge">
+        <picture id="imageMapLarge">
+            <img alt="Landkreis Fulda" src="/static/Landkreis_1000px.webp" class="map" id="mapL" usemap="#imageMapLarge">
 
             <map name="imageMapLarge">
                 <area alt="Eiterfeld" title="Eiterfeld" href="/region/Nord" coords="544,74,642,137" shape="rect">
@@ -57,7 +57,7 @@
             </map>
         </picture>
 
-        <picture class="imageMapSmall">
+        <picture id="imageMapSmall">
             <img alt="Landkreis Fulda" src="/static/Landkreis_500px.webp" class="map" usemap="#imageMapSmall">
 
             <map name="imageMapSmall">

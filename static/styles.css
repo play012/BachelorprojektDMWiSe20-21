@@ -1,9 +1,12 @@
-html, body {
-  overflow-y: scroll; 
-}
+/* --- allgemeines Styling --- */
 
 body {
+    overflow-y: auto;
     margin: 0px;
+}
+
+#indexBody {
+    overflow: hidden;
 }
 
 @font-face {
@@ -13,7 +16,6 @@ body {
 }
 
 h1 {
-    top: 10%;
     margin: 0;
     padding-top: 5%;
     padding-bottom: 5%;
@@ -30,9 +32,13 @@ h2 {
 
 @media screen and (min-width: 1200px) {
     h1 {
-       font-size: 48px;
+        padding-top: 60px;
+        padding-bottom: 60px;
+        font-size: 48px;
     }
 }
+
+/* --- Header und index.html --- */
 
 .north {
     background-color: #ff7ffe;
@@ -49,8 +55,14 @@ h2 {
     color: white;
 }
 
-.header {
+#indexHeader {
+    top: 0;
+    position: fixed;
     width: 100%;
+    text-align: center;
+}
+
+#header {
     position: relative;
     text-align: center;
 }
@@ -82,7 +94,7 @@ a.merkliste {
     width: 100px;
     height: 100px;
     border-radius: 100px;
-    background: transparent url(/static/icons.png) no-repeat 0 100%;
+    background: transparent url(/static/icons2.png) no-repeat 0 100%;
     transition: background-color 0.5s;
 }
 
@@ -97,7 +109,6 @@ a.merkliste:hover {
 
 p {
     text-align: center;
-    margin: 20px;
     font-size: 20px;
     font-family: 'Noto Sans JP', sans-serif;
     user-select: none;
@@ -108,12 +119,9 @@ p {
 }
 
 .burgerimage {
-    text-align: center;
     position: absolute;
     left: 40px;
-    margin: 0;
     width: 100px;
-    height: 100px;
     top: 25%;
     line-height: 100px;
     font-size: 28px;
@@ -123,8 +131,18 @@ p {
     user-select: none;
 }
 
-nav {
-    z-index: 100;
+@media screen and (max-width: 650px) {
+    .burgerimage {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 18px;
+    }
+}
+
+#navList {
+    top: 0px;
+    z-index: 999;
 }
 
 #navIcon {
@@ -146,51 +164,42 @@ ul {
     list-style: none;
 }
 
-ul li {
-    display: block;
-    width: auto;
-}
-
-ul li a {
-    text-decoration: none;
+ul a {
 	font-family: 'Noto Sans JP', sans-serif;
-    color: black;
-    background-color: #fff;
     border-bottom: 1px solid;
 	border-right: 1px solid;
     display: block;
     padding: 20px;
 }
 
-ul li a:hover {
-    background-color: rgb(200, 255, 255);
-    color: black;
-}
-
 #burgerbutton:checked ~ ul {
     display: block;
 }
 
-#noItemsStored {
-    display: none;
+#imageMapLarge,
+#imageMapSmall {
+    top: 0px;
+    width: 100%;
+    position: fixed;
+    text-align: center;
 }
 
 @media screen and (min-width: 500px) {
-    .imageMapLarge {
+    #imageMapLarge {
         display: block;
     }
 
-    .imageMapSmall {
+    #imageMapSmall {
         display: none;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .imageMapSmall {
+    #imageMapSmall {
         display: block;
     }
 
-    .imageMapLarge {
+    #imageMapLarge {
         display: none;
     }
 
@@ -204,15 +213,19 @@ area {
 }
 
 .map {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     max-width: 95%;
+    max-height: 100vh;
+}
+
+/* --- region.html --- */
+
+#noItemsStored {
+    display: none;
 }
 
 #filter {
     width: 680px;
-    height: 120px;
     margin: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -223,124 +236,66 @@ area {
     display: none;
 }
 
-.checkboxclothing{
-    flex: 1;
+#filter label {
     margin: 10px;
     width: 100px;
-    height: 100px;
     cursor: pointer;
     border-radius: 100px;
-    background: transparent url(/static/icons.png) no-repeat 0 0;
     transition: background-color 0.5s;
 }
 
-.checkboxclothing:hover {
+#filter label:hover {
     background-blend-mode: luminosity;
     background-color: rgb(200, 255, 255);
+}
+
+.checkboxclothing {
+    background: transparent url(/static/icons2.png) no-repeat 0 0;
 }
 
 .checkboxtech{
-    flex: 1;
-    margin: 10px;
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-    border-radius: 100px;
-    background: transparent url(/static/icons.png) no-repeat 50% 0;
-    transition: background-color 0.5s;
-}
-
-.checkboxtech:hover {
-    background-blend-mode: luminosity;
-    background-color: rgb(200, 255, 255);
+    background: transparent url(/static/icons2.png) no-repeat 50% 0;
 }
 
 .checkboxfood{
-    flex: 1;
-    margin: 10px;
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-    border-radius: 100px;
-    background: transparent url(/static/icons.png) no-repeat 100% 0;
-    transition: background-color 0.5s;
-}
-
-.checkboxfood:hover {
-    background-blend-mode: luminosity;
-    background-color: rgb(200, 255, 255);
+    background: transparent url(/static/icons2.png) no-repeat 100% 0;
 }
 
 #filterClothing:checked + .checkboxclothing{
-    background: transparent url(/static/icons.png) no-repeat 0 50%;
+    background: transparent url(/static/icons2.png) no-repeat 0 50%;
 }
 
 #filterClothing:checked + .checkboxclothing:hover{
-    background-blend-mode: luminosity;
     background-color: rgb(255, 215, 200);
 }
 
 #filterTech:checked + .checkboxtech{
-    background: transparent url(/static/icons.png) no-repeat 50% 50%;
+    background: transparent url(/static/icons2.png) no-repeat 50% 50%;
 }
 
 #filterTech:checked + .checkboxtech:hover{
-    background-blend-mode: luminosity;
     background-color: rgb(255, 215, 200);
 }
 
 #filterFood:checked + .checkboxfood{
-    background: transparent url(/static/icons.png) no-repeat 100% 50%;
+    background: transparent url(/static/icons2.png) no-repeat 100% 50%;
 }
 
 #filterFood:checked + .checkboxfood:hover{
-    background-blend-mode: luminosity;
     background-color: rgb(255, 215, 200);
 }
 
-.formular {
-    display: flex;
+#sortSelect {
     margin: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 60%;
-    border: 1px solid;
-    border-radius: 100px;
-}
-
-.add {
-    text-align: center;
-    margin: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 60%;
-    font-size: 20px;
-    font-family: 'Noto Sans JP', sans-serif;
+    width: 300px;
+    outline: none;
     user-select: none;
+    background-color: transparent;
+    transition: background-color 0.5s;
 }
 
-.itemEssen {
-    display: flex;
-    margin: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 60%;
-    border: 1px solid;
-    border-radius: 100px;
-    z-index: -1;
-}
-
-.itemKleidung {
-    display: flex;
-    margin: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 60%;
-    border: 1px solid;
-    border-radius: 100px;
-    z-index: -1;
-}
-
+.itemEssen,
+.itemKleidung,
 .itemTechnik {
     display: flex;
     margin: 10px;
@@ -349,19 +304,6 @@ area {
     max-width: 60%;
     border: 1px solid;
     border-radius: 100px;
-    z-index: -1;
-}
-
-.imgWrapper {
-    flex: 1;
-    height: 120px;
-    max-width: 120px;
-}
-
-.textWrapper {
-    flex: 1;
-    text-align: center;
-    line-height: 30px;
 }
 
 button {
@@ -371,12 +313,24 @@ button {
     width: 100px;
     height: 100px;
     cursor: pointer;
+    border-radius: 100px;
+    transition: background-color 0.5s;
 }
 
 .addItemBtn {
-    border-radius: 100px;
-    background: transparent url(/static/icons.png) no-repeat 50% 100%;
-    transition: background-color 0.5s;
+    background: transparent url(/static/icons2.png) no-repeat 50% 100%;
+}
+
+.addItemBtn:hover {
+    background-color: rgb(200, 255, 200);
+}
+
+.delItemBtn {
+    background: transparent url(/static/icons2.png) no-repeat 100% 100%;
+}
+
+.delItemBtn:hover {
+    background-color: rgb(255, 215, 200);
 }
 
 #infoBox {
@@ -385,196 +339,103 @@ button {
     position: absolute;
     right: 20px;
     bottom: 90px;
-    z-index: 1;
 }
 
-.addItemBtn:hover {
-    background-color: rgb(200, 255, 200);
+.textWrapper {
+    flex: 1;
 }
 
-.delItemBtn {
-    border-radius: 100px;
-    background: transparent url(/static/icons.png) no-repeat 100% 100%;
-    transition: background-color 0.5s;
-}
-
-.delItemBtn:hover {
-    background-color: rgb(255, 215, 200);
+.imgWrapper img {
+    float: left;
+    margin: 10px;
+    user-select: none;
 }
 
 #foodImg {
-    float: left;
-    margin: 10px;
-    width: 100px;
-    height: 100px;
-    user-select: none;
-    background: transparent url(/static/icons.png) no-repeat 100% 0;
+    background: transparent url(/static/icons2.png) no-repeat 100% 0;
 }
 
 #techImg {
-    float: left;
-    margin: 10px;
-    width: 100px;
-    height: 100px;
-    user-select: none;
-    background: transparent url(/static/icons.png) no-repeat 50% 0;
+    background: transparent url(/static/icons2.png) no-repeat 50% 0;
 }
 
 #clothingImg {
-    float: left;
-    margin: 10px;
-    width: 100px;
-    height: 100px;
-    user-select: none;
-    background: transparent url(/static/icons.png) no-repeat 0 0;
+    background: transparent url(/static/icons2.png) no-repeat 0 0;
 }
+
+/* --- merkliste.html --- */
 
 #clearAllBtn {
     display: none;
-    margin: 10px;
-    height: 100px;
     width: 300px;
     margin-left: auto;
     margin-right: auto;
-    font-size: 20px;
-    font-family: 'Noto Sans JP', sans-serif;
-    outline: none;
     border: 1px solid;
-    border-radius: 100px;
     background-color: transparent;
-    cursor: pointer;
-    transition: background-color 0.5s;
 }
 
 #clearAllBtn:hover {
     background-color: rgb(255, 215, 200);
 }
 
-form {
+/* --- formular.html --- */
+
+.formWrapper {
     text-align: center;
 }
 
-.newPostBtn {
-    margin: 10px;
-    height: 100px;
+.formWrapper input,
+.formWrapper select,
+.reupload {
+    margin: 50px;
     width: 300px;
-    font-size: 20px;
-    font-family: 'Noto Sans JP', sans-serif;
     outline: none;
+    background-color: transparent;
+    user-select: none;
+    transition: background-color 0.5s;
+}
+
+.newPostBtn,
+.selection {
+    height: 100px;
     border: 1px solid;
     border-radius: 100px;
-    background-color: transparent;
     cursor: pointer;
-    transition: background-color 0.5s;
+}
+
+.newPostBtn,
+.textfield {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 20px;
 }
 
 .newPostBtn:hover {
     background-color: rgb(200, 255, 200);
 }
 
-#sortSelect {
+.selection {
     appearance: none;
-    margin: 10px;
-    height: 100px;
-    width: 300px;
-    outline: none;
-    border: 1px solid;
-    border-radius: 100px;
-    background-color: transparent;
-    cursor: default;
     text-align-last: center;
     font-family: "Lemon Milk";
-    font-size: 22px;
-    user-select: none;
-    transition: background-color 0.5s;
+    font-size: 24px;
 }
 
-#sortSelect:hover {
-    background-color: rgb(200, 255, 255);
+.textfield {
+    border: none;
+    border-bottom: 1px solid;
+    cursor: text;
 }
 
-a.ks {
-    text-decoration:none;
-    color:white;
- }
-
-.column h2{
-    font-family: "Lemon Milk";
+.textfield:hover,
+.selection:hover {
+    background-color: rgb(200, 255, 255)!important;
 }
 
-.column p{
-    font-family: 'Noto Sans JP', sans-serif;
+#postBtnForm {
+    text-align: center;
 }
 
-.column {
-  float: left;
-  width: 32.1%;
-  margin-bottom: 16px;
-  padding: 0 8px;
-}
-
-/* Display the columns below each other instead of side by side on small screens */
-@media screen and (max-width: 650px) {
-  .column {
-    width: 100%;
-    display: block;
-  }
-
-  /* navigation layouting*/
-  .burgerimage {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    font-size: 18px;
-    }
-}
-
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.container {
-  padding: 0 16px;
-}
-
-.container::after, .row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.title {
-  color: grey;
-  text-align: left;
-}
-
-.email{
-    text-align: left;
-    font-size: 1.5vw;
-}
-
-.kontakt {
-  margin-top: 15px;
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000080;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  height: 50%;
-}
-
-.kontakt:hover {
-    background-color: #0202a5;
-  }
-
-a.ks:hover{
-    background-color: #0202a5 !important;
-    color:white !important;
-}
+/* --- impressum.html --- */
 
 #gitLink {
     margin: auto;
@@ -586,39 +447,80 @@ a.ks:hover{
     background-color: transparent !important;
 }
 
-.selection {
-    appearance: none;
-    margin: 50px;
-    height: 100px;
-    width: 300px;
-    outline: none;
-    border: 1px solid;
-    border-radius: 100px;
-    text-align-last: center;
-    font-family: "Lemon Milk";
-    font-size: 22px;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.5s;
+#impressumFlexBox {
+    margin: auto;
+    width: 95vw;
+    display: grid;
+    grid-template-columns: 30vw 30vw;
+    grid-template-rows: auto;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
 }
 
-.selection:hover {
-    background-color: rgb(200, 255, 255);
+.card {
+    width: 30vw;
+    margin: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.textfield {
-    margin: 50px;
-    width: 300px;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid;
-    font-family: "Noto Sans JP";
-    font-size: 16px;
-    cursor: text;
-    user-select: none;
-    transition: background-color 0.5s;
+@media screen and (min-width: 1666px) {
+    .card {
+        width: 500px;
+    }
 }
 
-.textfield:hover {
-    background-color: rgb(200, 255, 200);
+@media screen and (max-width: 1000px) {
+    #impressumFlexBox {
+        display: block;
+        margin: auto;
+        width: 332px;
+    }
+
+    .card {
+        width: 300px;
+    }
+}
+
+.card h2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.card::after {
+    content: "";
+    display: table;
+}
+
+.title {
+    color: grey;
+    text-align: left;
+}
+
+.email{
+    text-align: left;
+}
+
+.kontakt {
+    margin: auto;
+    padding: 8px;
+    background-color: #000080;
+    width: 95%;
+    height: 50%;
+    border-radius: 0px;
+}
+
+.kontakt:hover {
+    background-color: #0202a5;
+}
+
+a.ks {
+    color:white;
+}
+
+a.ks:hover{
+    background-color: #0202a5 !important;
+    color:white !important;
 }

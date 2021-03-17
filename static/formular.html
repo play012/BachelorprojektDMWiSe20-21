@@ -7,11 +7,11 @@
         <link rel="stylesheet" href="/static/styles.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
-        <script type="text/javascript" src="/static/index.js"></script>
+        <script type="text/javascript" src="/static/region.js"></script>
     </head>
 
     <body>
-        <div class="header">
+        <div id="header">
 			<nav>
                 <input type="checkbox" id="burgerbutton" onclick="changeUlDisplay()"/>
                 <label for="burgerbutton" id="navIcon" class="burgerimage" title="Navigation">&#x2630;</label>
@@ -31,7 +31,7 @@
             <p>Vielen Dank für das Einreichen eines Angebots!</p>
 
             <form action="/formular" method="get" id="postBtnForm">
-                <button class="newPostBtn">Ein weiteres Angebot posten</button>
+                <button class="newPostBtn reupload">Ein weiteres Angebot posten</button>
             </form>
         {{else}}
 			<!--Formwrapper Div 	formWrapper-->

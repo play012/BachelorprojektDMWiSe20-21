@@ -1,13 +1,41 @@
 window.onload = function() {
-    var headerOffsetHeight = document.getElementsByClassName("header").offsetHeight;
-    var navListTop = document.getElementById("navList").style.top;
+    var mapL = document.getElementById("mapL");
+    var imgMapL = document.getElementById("imageMapLarge");
+    var imgMapS = document.getElementById("imageMapSmall");
+    var headerOffsetHeight = document.getElementById("indexHeader").offsetHeight;
+    var navList = document.getElementById("navList");
 
-    if (navListTop && headerOffsetHeight != null) {
-        navListTop = headerOffsetHeight;
+    console.log(headerOffsetHeight);
+
+    if(typeof(navList) != 'undefined' && navList != null) {
+        navList.style.top = headerOffsetHeight + "px";
     }
 
-    console.log(localStorage.length);    
+    if(typeof(mapL) != 'undefined' && mapL != null && typeof(imgMapL) != 'undefined' && imgMapL != null && typeof(imgMapS) != 'undefined' && imgMapS != null) {
+        mapL.style.maxHeight = "calc(100vh - " + headerOffsetHeight + "px)";
+        imgMapL.style.top = headerOffsetHeight + "px";
+        imgMapS.style.top = headerOffsetHeight + "px";
+    }
+
     checkButtonOnHomepage();
+}
+
+window.onresize = function() {
+    var mapL = document.getElementById("mapL");
+    var imgMapL = document.getElementById("imageMapLarge");
+    var imgMapS = document.getElementById("imageMapSmall");
+    var headerOffsetHeight = document.getElementById("indexHeader").offsetHeight;
+    var navList = document.getElementById("navList");
+
+    if(typeof(navList) != 'undefined' && navList != null) {
+        navList.style.top = headerOffsetHeight + "px";
+    }
+
+    if(typeof(mapL) != 'undefined' && mapL != null && typeof(imgMapL) != 'undefined' && imgMapL != null && typeof(imgMapS) != 'undefined' && imgMapS != null) {
+        mapL.style.maxHeight = "calc(100vh - " + headerOffsetHeight + "px)";
+        imgMapL.style.top = headerOffsetHeight + "px";
+        imgMapS.style.top = headerOffsetHeight + "px";
+    }
 }
 
 function checkButtonOnHomepage() {
@@ -16,9 +44,13 @@ function checkButtonOnHomepage() {
     }
 }
 
-function changeUlDisplay() {
+function changeUlDisplayIndex() {
     var navList = document.getElementById("navList");
     var navIcon = document.getElementById("navIcon");
+    
+    var headerOffsetHeight = document.getElementById("indexHeader").offsetHeight;
+    navList.style.top = headerOffsetHeight + "px";
+
     if (navList.style.display == "none") {
         navList.style.display = "block";
         navIcon.innerHTML = "X";
