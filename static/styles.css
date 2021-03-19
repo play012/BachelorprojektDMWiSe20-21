@@ -525,15 +525,13 @@ a.ks:hover{
     color:white !important;
 }
 
-footer{
+.footer{
   background-color: #000080;
   color: white;
+  height: 200px;
 }
 
-.footer-title{
-  display:flex;
-  display: inline-block;
-}
+
 .Homebutton{
   display:flex;
   display: inline-block;
