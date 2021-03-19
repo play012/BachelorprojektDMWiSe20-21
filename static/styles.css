@@ -530,8 +530,12 @@ footer{
   color: white;
 }
 
-
+.footer-title{
+  display:flex;
+  display: inline-block;
+}
 .Homebutton{
+  float: left;
   color: black;
   outline: none;
   border: none;
@@ -544,6 +548,7 @@ footer{
 }
 
 .Aboutbutton{
+  float:right;
   color: black;
   outline: none;
   border: none;
