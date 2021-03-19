@@ -535,6 +535,8 @@ footer{
   display: inline-block;
 }
 .Homebutton{
+  display:flex;
+  display: inline-block;
   color: black;
   outline: none;
   border: none;
@@ -547,6 +549,8 @@ footer{
 }
 
 .Aboutbutton{
+  display:flex;
+  display: inline-block;
   color: black;
   outline: none;
   border: none;
