@@ -539,6 +539,9 @@ a.ks:hover{
 
 .footer .footer-content{
   position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-top: 20px;
 }
 
 
