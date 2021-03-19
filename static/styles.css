@@ -529,6 +529,16 @@ a.ks:hover{
   background-color: #000080;
   color: white;
   height: 75px;
+  position: relative;
+}
+
+.footer .footer-text{
+  text-align: center;
+  height: 30px;
+}
+
+.footer .footer-content{
+  position: absolute;
 }
 
 
