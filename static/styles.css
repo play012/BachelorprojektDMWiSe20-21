@@ -537,4 +537,17 @@ footer{
 .Homebutton{
   color: black;
   float: left;
+  outline: none;
+  border: none;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: background-color 0.5s;
+}
+
+.Aboutbutton{
+  color: black;
+  float: right;
 }
