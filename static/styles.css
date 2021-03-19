@@ -558,21 +558,20 @@ a.ks:hover{
   outline: none;
   border: none;
   margin: 10px;
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   cursor: pointer;
-  border-radius: 100px;
+  border-radius: 75px;
   transition: background-color 0.5s;
 }
 
 .Aboutbutton{
-  color: black;
   outline: none;
   border: none;
   margin: 10px;
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   cursor: pointer;
-  border-radius: 100px;
+  border-radius: 75px;
   transition: background-color 0.5s;
 }
