@@ -530,8 +530,13 @@ footer{
   color: white;
 }
 
+.footer-title{
+  float left;
+}
+
 .footer-navigation{
   list-style: none;
+  float: right;
 }
 
 .footer-navigation li{
