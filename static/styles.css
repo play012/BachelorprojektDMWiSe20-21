@@ -572,3 +572,12 @@ a.ks:hover{
   border-radius: 75px;
   transition: background-color 0.5s;
 }
+
+.footer north{
+  background-color: #ff7ffe;
+
+}
+
+.footer south{
+  background-color: #d5ff00;
+}
