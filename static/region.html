@@ -49,7 +49,7 @@
                     <li><a href="/impressum" title="Impressum" class="li-round west">Impressum</a></li>
                 {{ end }}
             </ul>
-    
+
             {{ if not .RegionItems}}
                 <p>Aktuell sind hier keine Angebote.</p>
             {{ else }}
@@ -67,7 +67,7 @@
                         </select>
                     </form>
                 </div>
-    
+
                 {{ range $i, $item := .RegionItems }}
                     <div class="item{{ $item.Kategorie }}">
                         <div class="imgWrapper">
@@ -80,32 +80,28 @@
                             {{ else }}
                             {{ end }}
                         </div>
-    
+
                         <div class="textWrapper">
                             <p>{{ $item.Angebot }}</p>
                             <p>{{ $item.Laden }}</p>
                         </div>
-    
+
                         <div class="imgWrapper">
                             <button class="addItemBtn" id="addItemBtn{{ $item.ID }}" onclick="addToLocalStorage('{{ $item.ID }}', '{{ $item.Kategorie }}', '{{ $item.Angebot }}', '{{ $item.Laden }}'); animateAddToBasket('{{ $item.ID }}');"></button>
                         </div>
                     </div>
                     <div id="infoBox">
-                        
+
                     </div>
                 {{ end }}
             {{ end }}
-    
+
             <a href="/merkliste" class="merkliste"></a>
             <script type="text/javascript" src="/static/addToBasket.js"></script>
             <script type="text/javascript" src="/static/filter.js"></script>
             <script type="text/javascript" src="/static/localStorage.js"></script>
-    
+
             
-            <footer>
-                <p> Bachelorprojekt 2021</p>
-            </footer>
-        </div>
 
     </body>
 </html>
