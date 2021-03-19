@@ -530,14 +530,10 @@ a.ks:hover{
 .footer{
   background-color: #000080;
   color: white;
-  height: 75px;
+  height: 100px;
   position: relative;
 }
 
-.footer .footer-text{
-  text-align: center;
-  height: 30px;
-}
 
 .footer .footer-content{
   position: absolute;
@@ -551,6 +547,10 @@ a.ks:hover{
 .footer .footer-content .footer-section{
     flex: 1;
     padding: 25px;
+}
+
+.footer .footer-content .footer-section text{
+  text-align: center;
 }
 
 .Homebutton{
