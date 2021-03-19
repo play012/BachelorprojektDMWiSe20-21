@@ -573,11 +573,46 @@ a.ks:hover{
   transition: background-color 0.5s;
 }
 
-.footer north{
+.footerNorth{
   background-color: #ff7ffe;
-
+  color: white;
+  height: 175px;
+  position: relative;
 }
 
-.footer south{
+
+.footerNorth .footer-content{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-top: 20px;
+  width: 100%;
+  display: flex;
+}
+
+.footerNorth .footer-content .footer-section{
+    flex: 1;
+    padding: 25px;
+}
+
+.footerSouth{
   background-color: #d5ff00;
+  color: white;
+  height: 175px;
+  position: relative;
+}
+
+
+.footerSouth .footer-content{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-top: 20px;
+  width: 100%;
+  display: flex;
+}
+
+.footerSouth .footer-content .footer-section{
+    flex: 1;
+    padding: 25px;
 }
