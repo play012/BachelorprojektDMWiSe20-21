@@ -554,8 +554,6 @@ a.ks:hover{
 }
 
 .Homebutton{
-  display:flex;
-  display: inline-block;
   color: black;
   outline: none;
   border: none;
@@ -568,8 +566,6 @@ a.ks:hover{
 }
 
 .Aboutbutton{
-  display:flex;
-  display: inline-block;
   color: black;
   outline: none;
   border: none;
