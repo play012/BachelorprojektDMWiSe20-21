@@ -535,5 +535,5 @@ footer{
 }
 
 .footer-navigation li{
-
+  float: left;
 }
