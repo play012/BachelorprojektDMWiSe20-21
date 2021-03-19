@@ -524,3 +524,16 @@ a.ks:hover{
     background-color: #0202a5 !important;
     color:white !important;
 }
+
+footer{
+  background-color: #000080;
+  color: white;
+}
+
+.footer-navigation{
+  list-style: none;
+}
+
+.footer-navigation li{
+
+}
