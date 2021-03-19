@@ -527,6 +527,8 @@ a.ks:hover{
     color:white !important;
 }
 
+/----Footer----/
+
 .footer{
   background-color: #000080;
   color: white;
@@ -547,10 +549,6 @@ a.ks:hover{
 .footer .footer-content .footer-section{
     flex: 1;
     padding: 25px;
-}
-
-.footer .footer-content .footer-section text{
-
 }
 
 .Homebutton{
@@ -574,4 +572,49 @@ a.ks:hover{
   cursor: pointer;
   border-radius: 75px;
   transition: background-color 0.5s;
+}
+/footersüd/
+
+.footer-süd{
+  background-color: #d5ff00;
+  color: white;
+  height: 175px;
+  position: relative;
+}
+
+.footer-süd .footer-content{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-top: 20px;
+  width: 100%;
+  display: flex;
+}
+
+.footer-süd .footer-content .footer-section{
+    flex: 1;
+    padding: 25px;
+}
+
+/footernord/
+
+.footer-nord{
+  background-color: #ff7ffe;
+  color: white;
+  height: 175px;
+  position: relative;
+}
+
+.footer-nord .footer-content{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-top: 20px;
+  width: 100%;
+  display: flex;
+}
+
+.footer-nord .footer-content .footer-section{
+    flex: 1;
+    padding: 25px;
 }
