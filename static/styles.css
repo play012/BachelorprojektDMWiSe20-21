@@ -545,8 +545,13 @@ a.ks:hover{
   left: 0px;
   padding-top: 20px;
   width: 100%;
+  display: flex;
 }
 
+.footer .footer-content .footer-section{
+    flex: 1;
+    padding: 25px;
+}
 
 .Homebutton{
   display:flex;
