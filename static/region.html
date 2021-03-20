@@ -100,8 +100,32 @@
             <script type="text/javascript" src="/static/addToBasket.js"></script>
             <script type="text/javascript" src="/static/filter.js"></script>
             <script type="text/javascript" src="/static/localStorage.js"></script>
-
             
+            {{ if eq .Region "Nord" }}
+            <footer>
+                <div class="footer-content north">
+                    <div class="footer-section"><p><button class="footerbtn"><a href="/impressum">About</a></button></p></div>
+                    <div class="footer-section footertxt"><p>Bachelorprojekt 2021</p></div>
+                    <div class="footer-section"><p><button class="footerbtn"><a href="/">Home</a></button></p></div>
+                </div>
+            </footer>
+            {{ else if eq .Region "Süd"}}
+            <footer>
+                <div class="footer-content south">
+                    <div class="footer-section"><p><button class="footerbtn"><a href="/impressum">About</a></button></p></div>
+                    <div class="footer-section footertxt"><p>Bachelorprojekt 2021</p></div>
+                    <div class="footer-section"><p><button class="footerbtn"><a href="/">Home</a></button></p></div>
+                </div>
+            </footer>
+            {{ else }}
+            <footer>
+                <div class="footer-content west">
+                    <div class="footer-section"><p><button class="footerbtn"><a href="/impressum">About</a></button></p></div>
+                    <div class="footer-section footertxt"><p>Bachelorprojekt 2021</p></div>
+                    <div class="footer-section"><p><button class="footerbtn"><a href="/">Home</a></button></p></div>
+                </div>
+            </footer>
+            {{ end }}
 
     </body>
 </html>

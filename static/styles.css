@@ -90,7 +90,7 @@ a:hover {
 
 a.merkliste {
     position: fixed;
-    bottom: 20px;
+    bottom: 150px;
     right: 20px;
     width: 100px;
     height: 100px;
@@ -221,6 +221,10 @@ area {
 
 /* --- region.html --- */
 
+#content {
+    margin-bottom: 150px;
+}
+
 #noItemsStored {
     display: none;
 }
@@ -339,7 +343,7 @@ button {
     height: 100px;
     position: absolute;
     right: 20px;
-    bottom: 90px;
+    bottom: 200px;
 }
 
 .textWrapper {
@@ -382,7 +386,6 @@ button {
 /* --- formular.html --- */
 
 .formWrapper {
-    min-height: 100%;
     text-align: center;
 }
 
@@ -451,14 +454,21 @@ button {
 
 #impressumFlexBox {
     margin: auto;
+    margin-bottom: 150px;
     width: 95vw;
     display: grid;
-    grid-template-columns: 30vw 30vw;
+    grid-template-columns: 30vw 30vw 30vw;
     grid-template-rows: auto;
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;
     align-items: center;
+}
+
+@media screen and (max-width: 1750px) {
+    #impressumFlexBox {
+        grid-template-columns: 30vw 30vw;
+    }
 }
 
 .card {
@@ -527,92 +537,26 @@ a.ks:hover{
     color:white !important;
 }
 
+/* --- Footer Styling---*/
 
-.footer{
-  background-color: #000080;
-  color: white;
-  height: 175px;
-  position: relative;
+footer .footer-content{
+    height: 130px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
 }
 
-
-.footer .footer-content{
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  padding-top: 20px;
-  width: 100%;
-  display: flex;
-}
-
-.footer .footer-content .footer-section{
+footer .footer-content .footer-section{
     flex: 1;
-    padding: 25px;
 }
 
-.Homebutton{
-  color: black;
-  outline: none;
-  border: none;
-  margin: 10px;
-  width: 75px;
-  height: 75px;
-  cursor: pointer;
-  border-radius: 75px;
-  transition: background-color 0.5s;
+.footerbtn{
+    width: 75px;
+    height: 75px;
+    border-radius: 75px;
 }
 
-.Aboutbutton{
-  outline: none;
-  border: none;
-  margin: 10px;
-  width: 75px;
-  height: 75px;
-  cursor: pointer;
-  border-radius: 75px;
-  transition: background-color 0.5s;
-}
-
-.footerNorth{
-  background-color: #ff7ffe;
-  color: white;
-  height: 175px;
-  position: relative;
-}
-
-
-.footerNorth .footer-content{
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  padding-top: 20px;
-  width: 100%;
-  display: flex;
-}
-
-.footerNorth .footer-content .footer-section{
-    flex: 1;
-    padding: 25px;
-}
-
-.footerSouth{
-  background-color: #d5ff00;
-  color: white;
-  height: 175px;
-  position: relative;
-}
-
-
-.footerSouth .footer-content{
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  padding-top: 20px;
-  width: 100%;
-  display: flex;
-}
-
-.footerSouth .footer-content .footer-section{
-    flex: 1;
-    padding: 25px;
+.footertxt {
+    line-height: 100px;
 }
