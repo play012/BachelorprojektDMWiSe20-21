@@ -40,7 +40,8 @@ window.onresize = function() {
 
 function checkButtonOnHomepage() {
     if (localStorage.length != 0) {
-        document.getElementById("indexBody").innerHTML += '<a href="/merkliste" class="merkliste"></a>';
+        document.getElementById("indexBody").innerHTML += '<a href="/merkliste" class="merkliste" id="merkLink"></a>';
+        document.getElementById("merkLink").style.bottom = "20px";
     }
 }
 
